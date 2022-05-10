@@ -44,7 +44,7 @@ test.describe('Элементы модального окна',async()=>{
 });
 
 
-test.describe.only('Общие проверки',async()=>{
+test.describe('Общие проверки',async()=>{
 
   test('Поле username -> редактируемо', async ({loginPage}) => {
     await expect(loginPage.loginUsernameField).toBeEditable();

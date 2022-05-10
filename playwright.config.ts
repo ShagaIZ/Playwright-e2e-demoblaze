@@ -15,7 +15,7 @@ const config: PlaywrightTestConfig = {
   reporter: 'line',
 
   use: {
-    headless:false,
+    headless: true,
     actionTimeout: 0,
     trace: 'on-first-retry',
   },

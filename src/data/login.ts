@@ -5,7 +5,6 @@ export  enum loginData {
     inCorrectUsername = "454545qq",
     inCorrectPassword = "454545qq",
     nameOfUserText = "Welcome Test2022",
-    dialogMessage = "User does not exist."
   
 
 };
