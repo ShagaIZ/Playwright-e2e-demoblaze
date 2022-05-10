@@ -70,16 +70,17 @@ test.describe('Общие проверки',async()=>{
     await expect(loginPage.nameOfUser).toContainText(loginData.nameOfUserText);
   });  
 
-  test('Ввести невалидный логин и пароль -> пользователь залогинен', async ({loginPage}) => {
+  test('Ввести невалидный логин и пароль -> пользователь не залогинен', async ({loginPage}) => {
     await loginPage.typeUsernameField(loginData.inCorrectUsername);
     await loginPage.typePasswordField(loginData.inCorrectPassword);
     await loginPage.clickLoginButton();
-    loginPage.page.once('dialog', dialog => {
-      console.log(`Dialog message: ${dialog.message()}`);
-      dialog.dismiss().catch(() => {});
-    });
     await expect(loginPage.nameOfUser).not.toBeVisible();
     await expect(loginPage.nameOfUser).not.toContainText(loginData.nameOfUserText);
+    loginPage.page.on('dialog', async (dialog) => {
+      expect(dialog.message()).toContain(loginData.dialogMessageUserNotExistText)
+      await dialog.accept();
+      });
+    await loginPage.page.waitForTimeout(1000);
   }); 
 
 });
