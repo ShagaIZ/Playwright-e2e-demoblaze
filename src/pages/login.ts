@@ -11,6 +11,7 @@ export class LoginPage {
   readonly closeModalButton:Locator;
   readonly loginButton:Locator;
   readonly nameOfUser:Locator;
+  readonly modalFade:Locator;
 
 
 
@@ -25,6 +26,7 @@ export class LoginPage {
     this.closeModalButton = page.locator('#logInModal >> text=Close');
     this.loginButton = page.locator('[onclick="logIn()"]'); 
     this.nameOfUser = page.locator('[id="nameofuser"]');
+    this.modalFade = page.locator('[class="modal fade"]');
     
   }
   async openDemoblaze(){
@@ -55,6 +57,18 @@ export class LoginPage {
 
   async clickLoginButton(){
     await this.loginButton.click();
+  };
+
+  async clickCrossButton(){
+    await this.closeModalCross.click();
+  };
+
+  async clickCloseButton(){
+    await this.closeModalButton.click();
+  };
+
+  async dubleClickOutOfModalWindow(x:number,y:number){
+    await this.page.mouse.dblclick(x,y);
   };
 
  

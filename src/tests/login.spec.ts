@@ -1,8 +1,6 @@
 import { expect } from '@playwright/test';
-import { loginData } from '../data/login';
+import { loginDataString,loginDataNumber, credentialsData } from '../data/login';
 import {test} from '../fixtures/login';
-
-
 
 
 
@@ -14,6 +12,8 @@ test.describe('Элементы модального окна',async()=>{
 
     test('Модальное окно -> отображается корректно', async ({loginPage}) => {
       await expect(loginPage.modalWindow).toBeVisible();
+      await expect(loginPage.modalWindow).toHaveAttribute(loginDataString.attributeOfModalWindowNameIsStyle, loginDataString.attributefModalWindowValueOfStyleTwo);
+      await expect(loginPage.modalWindow).toHaveAttribute(loginDataString.attributefModalWindowNameIsClass, loginDataString.attributefModalWindowValueOfClassOne);
     });  
 
     test('Кнопка крести -> отображается корректно', async ({loginPage}) => {
@@ -22,15 +22,17 @@ test.describe('Элементы модального окна',async()=>{
 
     test('Тайтл модалки -> отображается корректно', async ({loginPage}) => {
       await expect(loginPage.loginInModalLabel).toBeVisible();
-      await expect(loginPage.loginInModalLabel).toContainText(loginData.logInModalLabelText);
+      await expect(loginPage.loginInModalLabel).toContainText(loginDataString.logInModalLabelText);
     });
 
-    test('Поле username -> отображается корректно', async ({loginPage}) => {
+    test('Поле username -> отображается корректно,редактируемо', async ({loginPage}) => {
       await expect(loginPage.loginUsernameField).toBeVisible();
+      await expect(loginPage.loginUsernameField).toBeEditable();
     });
 
-    test('Поле password -> отображается корректно', async ({loginPage}) => {
+    test('Поле password -> отображается корректно,редактируемо', async ({loginPage}) => {
       await expect(loginPage.loginPasswordField).toBeVisible();
+      await expect(loginPage.loginPasswordField).toBeEditable();
     });
 
     test('Кнопка close -> отображается корректно', async ({loginPage}) => {
@@ -46,41 +48,131 @@ test.describe('Элементы модального окна',async()=>{
 
 test.describe('Общие проверки',async()=>{
 
-  test('Поле username -> редактируемо', async ({loginPage}) => {
-    await expect(loginPage.loginUsernameField).toBeEditable();
-  });
-
-  test('Поле password -> редактируемо', async ({loginPage}) => {
-    await expect(loginPage.loginPasswordField).toBeEditable();
-  });
- 
-  test('Ввести валидный логин и пароль -> пользователь залогинен', async ({loginPage}) => {
-    await loginPage.typeUsernameField(loginData.correctUsername);
-    await loginPage.typePasswordField(loginData.correctPassword);
+  test('Ввести валидный логин и пароль, нажать на кнопку "Log in" -> пользователь залогинен', async ({loginPage}) => {
+    await loginPage.typeUsernameField(credentialsData.correctUsername);
+    await loginPage.typePasswordField(credentialsData.correctPassword);
     await loginPage.clickLoginButton();
     await expect(loginPage.nameOfUser).toBeVisible();
-    await expect(loginPage.nameOfUser).toContainText(loginData.nameOfUserText);
+    await expect(loginPage.nameOfUser).toContainText(loginDataString.nameOfUserText);
   }); 
 
-  test('Вставить из БО валидный логин и пароль -> пользователь залогинен', async ({loginPage}) => {
-    await loginPage.fillUsernameField(loginData.correctUsername);
-    await loginPage.fillPasswordField(loginData.correctPassword);
+  test('Вставить из БО валидный логин и пароль, нажать на кнопку "Log in" -> пользователь залогинен', async ({loginPage}) => {
+    await loginPage.fillUsernameField(credentialsData.correctUsername);
+    await loginPage.fillPasswordField(credentialsData.correctPassword);
     await loginPage.clickLoginButton();
     await expect(loginPage.nameOfUser).toBeVisible();
-    await expect(loginPage.nameOfUser).toContainText(loginData.nameOfUserText);
+    await expect(loginPage.nameOfUser).toContainText(loginDataString.nameOfUserText);
   });  
 
-  test('Ввести невалидный логин и пароль -> пользователь не залогинен', async ({loginPage}) => {
-    await loginPage.typeUsernameField(loginData.inCorrectUsername);
-    await loginPage.typePasswordField(loginData.inCorrectPassword);
+  test('Ввести невалидный логин и пароль, нажать на кнопку "Log in" -> пользователь не залогинен', async ({loginPage}) => {
+    await loginPage.typeUsernameField(credentialsData.inCorrectUsername);
+    await loginPage.typePasswordField(credentialsData.inCorrectPassword);
     await loginPage.clickLoginButton();
     await expect(loginPage.nameOfUser).not.toBeVisible();
-    await expect(loginPage.nameOfUser).not.toContainText(loginData.nameOfUserText);
+    await expect(loginPage.nameOfUser).not.toContainText(loginDataString.nameOfUserText);
     loginPage.page.on('dialog', async (dialog) => {
-      expect(dialog.message()).toContain(loginData.dialogMessageUserNotExistText)
+      expect(dialog.message()).toContain(loginDataString.dialogMessageUserNotExistText)
       await dialog.accept();
       });
     await loginPage.page.waitForTimeout(1000);
   }); 
 
+  test('Ввести невалидный логин и пароль, нажать на кнопку "Log in" -> пользователь не залогинен, ошибка-пользователь не существует', async ({loginPage}) => {
+    await loginPage.typeUsernameField(credentialsData.inCorrectUsername);
+    await loginPage.typePasswordField(credentialsData.inCorrectPassword);
+    await loginPage.clickLoginButton();
+    await expect(loginPage.nameOfUser).not.toBeVisible();
+    await expect(loginPage.nameOfUser).not.toContainText(loginDataString.nameOfUserText);
+    loginPage.page.on('dialog', async (dialog) => {
+      expect(dialog.message()).toContain(loginDataString.dialogMessageUserNotExistText)
+      await dialog.accept();
+      });
+    await loginPage.page.waitForTimeout(1000);
+  });
+
+  test('Ввести невалидный логин и валидный пароль, нажать на кнопку "Log in" -> пользователь не залогинен, ошибка-пользователь не существует', async ({loginPage}) => {
+    await loginPage.typeUsernameField(credentialsData.inCorrectUsername);
+    await loginPage.typePasswordField(credentialsData.correctPassword);
+    await loginPage.clickLoginButton();
+    await expect(loginPage.nameOfUser).not.toBeVisible();
+    await expect(loginPage.nameOfUser).not.toContainText(loginDataString.nameOfUserText);
+    loginPage.page.on('dialog', async (dialog) => {
+      expect(dialog.message()).toContain(loginDataString.dialogMessageUserNotExistText)
+      await dialog.accept();
+      });
+    await loginPage.page.waitForTimeout(1000);
+  });
+
+  test('Ввести валидный логин и невалидный пароль, нажать на кнопку "Log in" -> пользователь не залогинен, ошибка-неверный пароль', async ({loginPage}) => {
+    await loginPage.typeUsernameField(credentialsData.correctUsername);
+    await loginPage.typePasswordField(credentialsData.inCorrectPassword);
+    await loginPage.clickLoginButton();
+    await expect(loginPage.nameOfUser).not.toBeVisible();
+    await expect(loginPage.nameOfUser).not.toContainText(loginDataString.nameOfUserText);
+    loginPage.page.on('dialog', async (dialog) => {
+      expect(dialog.message()).toContain(loginDataString.dialogMessageWrongPasswordText)
+      await dialog.accept();
+      });
+    await loginPage.page.waitForTimeout(1000);
+  });
+
+  test('Оставить поля пустыми, нажать на кнопку "Log in" -> пользователь не залогинен, ошибка-валидации', async ({loginPage}) => {
+    await loginPage.clickLoginButton();
+    await expect(loginPage.nameOfUser).not.toBeVisible();
+    await expect(loginPage.nameOfUser).not.toContainText(loginDataString.nameOfUserText);
+    loginPage.page.on('dialog', async (dialog) => {
+      expect(dialog.message()).toContain(loginDataString.dialogMessageValidationErrorText)
+      await dialog.accept();
+      });
+    await loginPage.page.waitForTimeout(1000);
+  });
+
+  test('Ввести валидный логин и оставить пустым поле password , нажать на кнопку "Log in" -> пользователь не залогинен, ошибка-валидации', async ({loginPage}) => {
+    await loginPage.typeUsernameField(credentialsData.correctUsername);
+    await loginPage.clickLoginButton();
+    await expect(loginPage.nameOfUser).not.toBeVisible();
+    await expect(loginPage.nameOfUser).not.toContainText(loginDataString.nameOfUserText);
+    loginPage.page.on('dialog', async (dialog) => {
+      expect(dialog.message()).toContain(loginDataString.dialogMessageValidationErrorText)
+      await dialog.accept();
+      });
+    await loginPage.page.waitForTimeout(1000);
+  });
+
+  test('Оставить пустым поле username и ввести валидный пароль , нажать на кнопку "Log in" -> пользователь не залогинен, ошибка-валидации', async ({loginPage}) => {
+    await loginPage.typePasswordField(credentialsData.correctPassword);
+    await loginPage.clickLoginButton();
+    await expect(loginPage.nameOfUser).not.toBeVisible();
+    await expect(loginPage.nameOfUser).not.toContainText(loginDataString.nameOfUserText);
+    loginPage.page.on('dialog', async (dialog) => {
+      expect(dialog.message()).toContain(loginDataString.dialogMessageValidationErrorText)
+      await dialog.accept();
+      });
+    await loginPage.page.waitForTimeout(1000);
+  });
+
 });
+
+test.describe('Действия с модальным окном', async ()=>{
+
+
+  test('Нажать на крестик -> модальное окно закрывается', async({loginPage})=>{
+      await loginPage.clickCrossButton();
+      await expect(loginPage.modalWindow).toHaveAttribute(loginDataString.attributefModalWindowNameIsClass, loginDataString.attributefModalWindowValueOfClassTwo);
+      await expect(loginPage.modalWindow).toHaveAttribute(loginDataString.attributeOfModalWindowNameIsStyle, loginDataString.attributefModalWindowValueOfStyleOne);
+  });
+
+  test('Нажать на кнопку "Close" -> модальное окно закрывается', async({loginPage})=>{
+    await loginPage.clickCloseButton();
+    await expect(loginPage.modalWindow).toHaveAttribute(loginDataString.attributefModalWindowNameIsClass, loginDataString.attributefModalWindowValueOfClassTwo);
+    await expect(loginPage.modalWindow).toHaveAttribute(loginDataString.attributeOfModalWindowNameIsStyle, loginDataString.attributefModalWindowValueOfStyleOne);
+  });
+  // Тест падает
+  // test('Нажать на область вне модального окна -> модальное окно закрывается', async({loginPage})=>{
+  //   await loginPage.page.mouse.click(2000,0);
+  //   await expect(loginPage.modalWindow).toHaveAttribute(loginDataString.attributefModalWindowNameIsClass, loginDataString.attributefModalWindowValueOfClassTwo);
+  //   await expect(loginPage.modalWindow).toHaveAttribute(loginDataString.attributeOfModalWindowNameIsStyle, loginDataString.attributefModalWindowValueOfStyleOne);
+   
+  // }); 
+
+})
