@@ -70,6 +70,15 @@ export class LoginPage {
   async dubleClickOutOfModalWindow(x:number,y:number){
     await this.page.mouse.dblclick(x,y);
   };
+  async clearUsernameAndPasswordField(keyOne:string,keyTwo:string){
+    await this.loginUsernameField.click();
+    await this.page.keyboard.press(keyOne);
+    await this.page.keyboard.press(keyTwo);
+    await this.loginPasswordField.click();
+    await this.page.keyboard.press(keyOne);
+    await this.page.keyboard.press(keyTwo);
+  };
+  
 
  
 }
