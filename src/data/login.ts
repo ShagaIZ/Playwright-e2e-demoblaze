@@ -18,6 +18,8 @@ export  enum loginDataString {
     attributefModalWindowNameIsClass = "class",
     attributefModalWindowValueOfClassOne = "modal fade show",
     attributefModalWindowValueOfClassTwo = "modal fade",
+    NameOfTheKeyOne = "Control+A",
+    NameOfTheKeyTwo = "Backspace",
 
 };
 
