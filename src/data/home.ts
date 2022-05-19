@@ -7,9 +7,17 @@ export  enum credentialsData {
 };
 
 export  enum homeDataString {
-   navbarBrendText = "PRODUCT STORE",
+   titleHeaderText = "PRODUCT STORE",
+   homeButtonHeaderText = "Home",
+   contactButtonHeaderText = "Contact",
+   aboutUsButtonHeaderText = "About us",
+   cartButtonHeaderText = "Cart",
+   logoutButtonHeaderText = "Log out",
+   nameUserButtonHeaderText = "Welcome Test2022",
+
 };
 export  enum homeDataNumber {
     numberOfElementsInNavbarBrend = 1,
+  
  };
  
