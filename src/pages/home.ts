@@ -2,31 +2,45 @@ import { Locator, Page } from '@playwright/test';
 
 export class HomePage {
   readonly page: Page;
-  readonly loginInModal:Locator;
+  readonly loginModal:Locator;
   readonly loginUsernameField:Locator;
   readonly loginPasswordField:Locator;
   readonly loginButton:Locator;
-  readonly navbarBrend:Locator;
+  readonly titleOfHeader:Locator;
   readonly iconOfNavbarBrend:Locator;
-  readonly countOfElementsInNavbarBrend:Locator;
-
-
+  readonly countOfElementsInTitleOfHeader:Locator;
+  readonly navbarHeaderElement: Locator;
+  readonly homeButtonHeader:Locator;
+  readonly contactButtonHeader:Locator;
+  readonly aboutUsButtonHeader:Locator;
+  readonly cartButtonHeader:Locator;
+  readonly logoutButtonHeader:Locator;
+  readonly nameUserButtonHeader:Locator;
   readonly sliderWindow:Locator;
+  readonly sliderWindowPreviousButton:Locator;
+  readonly sliderWindowNextButton:Locator;
   
 
 
 
   constructor(page: Page) {
     this.page = page;
-    this.loginInModal = page.locator('[data-target="#logInModal"]');
+    this.loginModal = page.locator('[data-target="#logInModal"]');
     this.loginUsernameField = page.locator('[id="loginusername"]');
     this.loginPasswordField = page.locator('[id="loginpassword"]');
     this.loginButton = page.locator('[onclick="logIn()"]'); 
-    this.navbarBrend = page.locator('[class="navbar-brand"]');
-    this.countOfElementsInNavbarBrend = page.locator('[class="navbar-brand"]>[src="bm.png"]')
-
+    this.titleOfHeader = page.locator('[class="navbar-brand"]');
+    this.countOfElementsInTitleOfHeader = page.locator('[class="navbar-brand"]>[src="bm.png"]');
+    this.navbarHeaderElement = page.locator('[id="navbarExample"]');
+    this.homeButtonHeader = page.locator('[class="nav-item active"]');
+    this.contactButtonHeader = page.locator('[data-target="#exampleModal"]');
+    this.aboutUsButtonHeader = page.locator('[data-target="#videoModal"]');
+    this.cartButtonHeader = page.locator('[id="cartur"]');
+    this.logoutButtonHeader = page.locator('[id="logout2"]');
+    this.nameUserButtonHeader = page.locator('[id="nameofuser"]');
     this.sliderWindow = page.locator('[id="contcar"]');
-    
+    this.sliderWindowPreviousButton = page.locator('[class="carousel-control-prev"]');
+    this.sliderWindowNextButton = page.locator('[class="carousel-control-next-icon"]');
     
     
   }
@@ -35,7 +49,7 @@ export class HomePage {
   };
 
   async clickLoginInModal(){
-      await this.loginInModal.click();
+      await this.loginModal.click();
   };
 
   async typeUsernameField(username:string){
