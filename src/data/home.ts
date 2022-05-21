@@ -14,6 +14,10 @@ export  enum homeDataString {
    cartButtonHeaderText = "Cart",
    logoutButtonHeaderText = "Log out",
    nameUserButtonHeaderText = "Welcome Test2022",
+   categoriesTitleText = "CATEGORIES",
+   categoryPhonesText = "Phones",
+   categoryLaptopsText = "Laptops",
+   categoryMonitorsText = "Monitors",
 
 };
 export  enum homeDataNumber {
