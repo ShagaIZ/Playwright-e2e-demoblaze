@@ -19,7 +19,11 @@ export class HomePage {
   readonly sliderWindow:Locator;
   readonly sliderWindowPreviousButton:Locator;
   readonly sliderWindowNextButton:Locator;
-  
+  readonly categoriesTitle:Locator;
+  readonly categoryPhones:Locator;
+  readonly categoryLaptops:Locator;
+  readonly categoryMonitors:Locator;
+
 
 
 
@@ -41,6 +45,10 @@ export class HomePage {
     this.sliderWindow = page.locator('[id="contcar"]');
     this.sliderWindowPreviousButton = page.locator('[class="carousel-control-prev"]');
     this.sliderWindowNextButton = page.locator('[class="carousel-control-next-icon"]');
+    this.categoriesTitle = page.locator('[id="cat"]');
+    this.categoryPhones = page.locator('#itemc >> text=Phones');
+    this.categoryLaptops = page.locator('#itemc >> text=Laptops');
+    this.categoryMonitors = page.locator('#itemc >> text=Monitors');
     
     
   }
