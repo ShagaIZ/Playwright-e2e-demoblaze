@@ -26,7 +26,6 @@ export class HomePage {
 
 
 
-
   constructor(page: Page) {
     this.page = page;
     this.loginModal = page.locator('[data-target="#logInModal"]');
