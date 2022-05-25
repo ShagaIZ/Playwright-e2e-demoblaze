@@ -1,5 +1,6 @@
 import { Locator, Page } from '@playwright/test';
 
+
 export class HomePage {
   readonly page: Page;
   readonly loginModal:Locator;
@@ -23,6 +24,8 @@ export class HomePage {
   readonly categoryPhones:Locator;
   readonly categoryLaptops:Locator;
   readonly categoryMonitors:Locator;
+  readonly activenessOfSlideImg:Locator
+  readonly firstSlide:Locator;
 
 
 
@@ -42,12 +45,14 @@ export class HomePage {
     this.logoutButtonHeader = page.locator('[id="logout2"]');
     this.nameUserButtonHeader = page.locator('[id="nameofuser"]');
     this.sliderWindow = page.locator('[id="contcar"]');
-    this.sliderWindowPreviousButton = page.locator('[class="carousel-control-prev"]');
+    this.sliderWindowPreviousButton = page.locator('[class="carousel-control-prev-icon"]');
     this.sliderWindowNextButton = page.locator('[class="carousel-control-next-icon"]');
     this.categoriesTitle = page.locator('[id="cat"]');
     this.categoryPhones = page.locator('#itemc >> text=Phones');
     this.categoryLaptops = page.locator('#itemc >> text=Laptops');
     this.categoryMonitors = page.locator('#itemc >> text=Monitors');
+    this.activenessOfSlideImg = page.locator('[class="carousel-item active"]>[class="d-block img-fluid"]');
+  
     
     
   }
@@ -68,8 +73,18 @@ export class HomePage {
     await this.loginPasswordField.click();
     await this.loginPasswordField.type(password);
   };
+
   async clickLoginButton(){
     await this.loginButton.click();
   };
 
+  async clickSliderWindowNextButton(){
+    await this.sliderWindowNextButton.click();
+    await this.page.waitForTimeout(1000);
+  };
+  
+  async clickSliderWindowPreviousButton(){
+    await this.sliderWindowPreviousButton.click();
+    await this.page.waitForTimeout(1000);
+  };
 };
