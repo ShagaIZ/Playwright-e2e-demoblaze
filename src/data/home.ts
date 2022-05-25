@@ -18,10 +18,13 @@ export  enum homeDataString {
    categoryPhonesText = "Phones",
    categoryLaptopsText = "Laptops",
    categoryMonitorsText = "Monitors",
+   attributeOfSlideImgNameIsAlt = "alt",
+   attributeOfSlideImgValueIsFirstSlide = "First slide",
+   attributeOfSlideImgValueIsSecondSlide = "Second slide",
+   attributeOfSlideImgValueIsThirdSlide = "Third slide",
 
 };
 export  enum homeDataNumber {
-    numberOfElementsInNavbarBrend = 1,
-  
- };
+    numberOfElementsInNavbarBrend = 1, 
+}
  

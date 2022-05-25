@@ -94,3 +94,44 @@ test.describe('Элементы страницы home',async()=>{
     }); 
   });
 });
+test.describe('Действия слайдером', async ()=>{
+  test('Слайд по умолчанию -> отображается первый слайд', async ({homePage})=>{
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(homeDataString.attributeOfSlideImgNameIsAlt,homeDataString.attributeOfSlideImgValueIsFirstSlide);
+  });
+
+  test('Отображается первый слайд, нажать на следующую стрелку -> отображается второй слайд', async ({homePage})=>{
+    await homePage.clickSliderWindowNextButton();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(homeDataString.attributeOfSlideImgNameIsAlt,homeDataString.attributeOfSlideImgValueIsSecondSlide);
+  });
+
+  test('Отображается первый слайд, нажать на предыдущую стрелку -> отображается третий слайд', async ({homePage})=>{
+    await homePage.clickSliderWindowPreviousButton();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(homeDataString.attributeOfSlideImgNameIsAlt,homeDataString.attributeOfSlideImgValueIsThirdSlide);
+  });
+
+  test('Отображается второй слайд, нажать на следующую стрелку -> отображается третий слайд', async ({homePage})=>{
+    await homePage.clickSliderWindowNextButton();
+    await homePage.clickSliderWindowNextButton();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(homeDataString.attributeOfSlideImgNameIsAlt,homeDataString.attributeOfSlideImgValueIsThirdSlide);
+  });
+
+  test('Отображается второй слайд, нажать на предыдущую стрелку -> отображается первый слайд', async ({homePage})=>{
+    await homePage.clickSliderWindowNextButton();
+    await homePage.clickSliderWindowPreviousButton();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(homeDataString.attributeOfSlideImgNameIsAlt,homeDataString.attributeOfSlideImgValueIsFirstSlide);
+  });
+
+  test('Отображается третий слайд, нажать на следующую стрелку -> отображается первый слайд', async ({homePage})=>{
+    await homePage.clickSliderWindowNextButton();
+    await homePage.clickSliderWindowNextButton();
+    await homePage.clickSliderWindowNextButton();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(homeDataString.attributeOfSlideImgNameIsAlt,homeDataString.attributeOfSlideImgValueIsFirstSlide);
+  });
+
+  test('Отображается третий слайд, нажать на предыдущую стрелку -> отображается второй слайд', async ({homePage})=>{
+    await homePage.clickSliderWindowNextButton();
+    await homePage.clickSliderWindowNextButton();
+    await homePage.clickSliderWindowPreviousButton();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(homeDataString.attributeOfSlideImgNameIsAlt,homeDataString.attributeOfSlideImgValueIsSecondSlide);
+  });
+})
