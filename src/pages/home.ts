@@ -26,6 +26,24 @@ export class HomePage {
   readonly categoryMonitors:Locator;
   readonly activenessOfSlideImg:Locator
   readonly firstSlide:Locator;
+  readonly previousButtonOfPagination:Locator
+  readonly nextButtonOfPagination:Locator
+  readonly nokiaLumiaItem:Locator
+  readonly nexusSixItem:Locator
+  readonly samsungGalaxySevenItem:Locator
+  readonly samsungGalaxySixItem:Locator
+  readonly iphoneSixItem:Locator
+  readonly sonyXperiazFiveItem:Locator
+  readonly htcOnemNineItem:Locator
+  readonly sonyVaioiFiveItem:Locator
+  readonly sonyVaioiSevenItem:Locator
+  readonly appleMonitorItem:Locator
+  readonly macBookAirItem:Locator
+  readonly delliSevenItem:Locator
+  readonly dellInchItem:Locator
+  readonly asusFullHDItem:Locator
+  readonly macBookProItem:Locator
+  readonly numberOfItems:Locator
 
 
 
@@ -52,6 +70,27 @@ export class HomePage {
     this.categoryLaptops = page.locator('#itemc >> text=Laptops');
     this.categoryMonitors = page.locator('#itemc >> text=Monitors');
     this.activenessOfSlideImg = page.locator('[class="carousel-item active"]>[class="d-block img-fluid"]');
+    this.previousButtonOfPagination = page.locator('[id="prev2"]');
+    this.nextButtonOfPagination = page.locator('[id="next2"]');
+    this.samsungGalaxySixItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=1"]');
+    this.nokiaLumiaItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=2"]');
+    this.nexusSixItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=3"]');
+    this.samsungGalaxySevenItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=4"]');
+    this.iphoneSixItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=5"]');
+    this.sonyXperiazFiveItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=6"]');
+    this.htcOnemNineItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=7"]');
+    this.sonyVaioiFiveItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=8"]');
+    this.sonyVaioiSevenItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=9"]');
+    this.appleMonitorItem = page.locator('[class="card-title"]>[href="prod.html?idp_=10"]');
+    this.macBookAirItem = page.locator('[class="card-title"]>[href="prod.html?idp_=11"]');
+    this.delliSevenItem = page.locator('[class="card-title"]>[href="prod.html?idp_=12"]');
+    this.dellInchItem = page.locator('[class="card-title"]>[href="prod.html?idp_=13"]');
+    this.asusFullHDItem = page.locator('[class="card-title"]>[href="prod.html?idp_=14"]');
+    this.macBookProItem = page.locator('[class="card-title"]>[href="prod.html?idp_=15"]');
+    this.numberOfItems = page.locator('[id="tbodyid"]>[class="col-lg-4 col-md-6 mb-4"]')
+
+
+
   
     
     
@@ -87,4 +126,13 @@ export class HomePage {
     await this.sliderWindowPreviousButton.click();
     await this.page.waitForTimeout(1000);
   };
+
+  async clickpreviousButtonOfPagination(){
+    await this.previousButtonOfPagination.click();
+  };
+
+  async clicknextButtonOfPagination(){
+    await this.nextButtonOfPagination.click();
+  };
+
 };
