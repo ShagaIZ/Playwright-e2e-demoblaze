@@ -135,3 +135,18 @@ test.describe('Действия слайдером', async ()=>{
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
   });
 })
+
+test.describe.only('Пагинация', async()=>{
+  test('По умолчанию -> отображается 9 позиций', async ({homePage})=>{
+    await expect(homePage.numberOfItems).toHaveCount(9);
+    await expect(homePage.samsungGalaxySixItem).toBeVisible();
+    await expect(homePage.nokiaLumiaItem).toBeVisible();
+    await expect(homePage.nexusSixItem).toBeVisible();
+    await expect(homePage.samsungGalaxySevenItem).toBeVisible();
+    await expect(homePage.iphoneSixItem).toBeVisible();
+    await expect(homePage.sonyXperiazFiveItem).toBeVisible();
+    await expect(homePage.htcOnemNineItem).toBeVisible();
+    await expect(homePage.sonyVaioiFiveItem).toBeVisible();
+    await expect(homePage.sonyVaioiSevenItem).toBeVisible();
+  });
+})
