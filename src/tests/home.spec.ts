@@ -136,7 +136,7 @@ test.describe('Действия слайдером', async ()=>{
   });
 })
 
-test.describe.only('Пагинация', async()=>{
+test.describe('Пагинация', async()=>{
   test('По умолчанию -> отображается 9 позиций', async ({homePage})=>{
     await expect(homePage.numberOfItems).toHaveCount(9);
     await expect(homePage.samsungGalaxySixItem).toBeVisible();
