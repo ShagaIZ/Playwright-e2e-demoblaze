@@ -1,29 +1,29 @@
-export  enum credentialsData {
-    correctUsername = "Test2022",
-    correctPassword = "Test2022",
-    inCorrectUsername = "454545qq",
-    inCorrectPassword = "454545qq",
+export  enum Credentials {
+    CorrectUsername = "Test2022",
+    CorrectPassword = "Test2022",
+    InCorrectUsername = "454545qq",
+    InCorrectPassword = "454545qq",
 
 };
 
-export  enum loginDataString {
-    logInModalLabelText = "Log in",
-    nameOfUserText = "Welcome Test2022",
-    dialogMessageUserNotExistText = "User does not exist.",
-    dialogMessageWrongPasswordText = "Wrong password.",
-    dialogMessageValidationErrorText = "Please fill out Username and Password.",
-    attributeOfModalWindowNameIsStyle = "style",
-    attributefModalWindowValueOfStyleOne = "display: none;",
-    attributefModalWindowValueOfStyleTwo = "display: block;",
-    attributefModalWindowNameIsClass = "class",
-    attributefModalWindowValueOfClassOne = "modal fade show",
-    attributefModalWindowValueOfClassTwo = "modal fade",
+export  enum DataString {
+    LogInModalLabelText = "Log in",
+    NameOfUserText = "Welcome Test2022",
+    DialogMessageUserNotExistText = "User does not exist.",
+    DialogMessageWrongPasswordText = "Wrong password.",
+    DialogMessageValidationErrorText = "Please fill out Username and Password.",
+    AttributeOfModalWindowNameIsStyle = "style",
+    AttributefModalWindowValueOfStyleOne = "display: none;",
+    AttributefModalWindowValueOfStyleTwo = "display: block;",
+    AttributefModalWindowNameIsClass = "class",
+    AttributefModalWindowValueOfClassOne = "modal fade show",
+    AttributefModalWindowValueOfClassTwo = "modal fade",
     NameOfTheKeyOne = "Control+A",
     NameOfTheKeyTwo = "Backspace",
 
 };
 
-export enum loginDataNumber {
-    x = 1,
-    y = 1,
+export enum DataNumber {
+    X = 1,
+    Y = 1,
 }
