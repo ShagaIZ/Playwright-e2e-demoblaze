@@ -137,7 +137,8 @@ test.describe('Действия слайдером', async ()=>{
 })
 
 test.describe('Пагинация', async()=>{
-  test('По умолчанию -> отображается 9 позиций', async ({homePage})=>{
+
+  test('По умолчанию -> отображается 9 позиций первой страницы', async ({homePage})=>{
     await expect(homePage.numberOfItems).toHaveCount(9);
     await expect(homePage.samsungGalaxySixItem).toBeVisible();
     await expect(homePage.nokiaLumiaItem).toBeVisible();
@@ -149,4 +150,53 @@ test.describe('Пагинация', async()=>{
     await expect(homePage.sonyVaioiFiveItem).toBeVisible();
     await expect(homePage.sonyVaioiSevenItem).toBeVisible();
   });
-})
+
+  test('Нажать на кнопку пред.страница, первая страница по умолчанию -> остаёмся на первой странице, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ({homePage})=>{
+    await homePage.clickPreviousButtonOfPagination();
+    await expect(homePage.numberOfItems).toHaveCount(9);
+    await expect(homePage.nokiaLumiaItem).toBeVisible();
+    await expect(homePage.nexusSixItem).toBeVisible();
+    await expect(homePage.samsungGalaxySevenItem).toBeVisible();
+    await expect(homePage.iphoneSixItem).toBeVisible();
+    await expect(homePage.sonyXperiazFiveItem).toBeVisible();
+    await expect(homePage.htcOnemNineItem).toBeVisible();
+    await expect(homePage.sonyVaioiFiveItem).toBeVisible();
+    await expect(homePage.sonyVaioiSevenItem).toBeVisible();
+    await expect(homePage.appleMonitorItem).toBeVisible();
+  });
+
+  test('Перейти на последнюю страницу -> осуществляется переход на последнюю страницу, отображается 6 позиций', async ({homePage})=>{
+    await homePage.clickNextButtonOfPagination();
+    await expect(homePage.numberOfItems).toHaveCount(6);
+    await expect(homePage.appleMonitorItem).toBeVisible();
+    await expect(homePage.macBookAirItem).toBeVisible();
+    await expect(homePage.delliSevenItem).toBeVisible();
+    await expect(homePage.dellInchItem).toBeVisible();
+    await expect(homePage.asusFullHDItem).toBeVisible();
+    await expect(homePage.macBookProItem).toBeVisible();
+  });
+
+  test('Перейти на первую страницу из последней странице -> осуществляется переход на первую страницу, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ({homePage})=>{
+    await homePage.clickNextAfterPreviousButtonOfPagination();
+    await expect(homePage.numberOfItems).toHaveCount(9);
+    await expect(homePage.nokiaLumiaItem).toBeVisible();
+    await expect(homePage.nexusSixItem).toBeVisible();
+    await expect(homePage.samsungGalaxySevenItem).toBeVisible();
+    await expect(homePage.iphoneSixItem).toBeVisible();
+    await expect(homePage.sonyXperiazFiveItem).toBeVisible();
+    await expect(homePage.htcOnemNineItem).toBeVisible();
+    await expect(homePage.sonyVaioiFiveItem).toBeVisible();
+    await expect(homePage.sonyVaioiSevenItem).toBeVisible();
+    await expect(homePage.appleMonitorItem).toBeVisible();
+  });
+
+  test('Перейти на последнюю страницу после перехода из последней в первую -> осуществляется переход на последнюю страницу, отображается 5 позиций, apple monitor--не отображается', async ({homePage})=>{
+    await homePage.clickNextAfterPreviousThenNextButtonOfPagination();
+    await expect(homePage.numberOfItems).toHaveCount(5);
+    await expect(homePage.macBookAirItem).toBeVisible();
+    await expect(homePage.delliSevenItem).toBeVisible();
+    await expect(homePage.dellInchItem).toBeVisible();
+    await expect(homePage.asusFullHDItem).toBeVisible();
+    await expect(homePage.macBookProItem).toBeVisible();
+  });
+});
