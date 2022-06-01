@@ -72,15 +72,15 @@ export class HomePage {
     this.activenessOfSlideImg = page.locator('[class="carousel-item active"]>[class="d-block img-fluid"]');
     this.previousButtonOfPagination = page.locator('[id="prev2"]');
     this.nextButtonOfPagination = page.locator('[id="next2"]');
-    this.samsungGalaxySixItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=1"]');
-    this.nokiaLumiaItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=2"]');
-    this.nexusSixItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=3"]');
-    this.samsungGalaxySevenItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=4"]');
-    this.iphoneSixItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=5"]');
-    this.sonyXperiazFiveItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=6"]');
-    this.htcOnemNineItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=7"]');
-    this.sonyVaioiFiveItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=8"]');
-    this.sonyVaioiSevenItem = page.locator('[class="card h-100"]>[href="prod.html?idp_=9"]');
+    this.samsungGalaxySixItem = page.locator('[class="card-title"]>[href="prod.html?idp_=1"]');
+    this.nokiaLumiaItem = page.locator('[class="card-title"]>[href="prod.html?idp_=2"]');
+    this.nexusSixItem = page.locator('[class="card-title"]>[href="prod.html?idp_=3"]');
+    this.samsungGalaxySevenItem = page.locator('[class="card-title"]>[href="prod.html?idp_=4"]');
+    this.iphoneSixItem = page.locator('[class="card-title"]>[href="prod.html?idp_=5"]');
+    this.sonyXperiazFiveItem = page.locator('[class="card-title"]>[href="prod.html?idp_=6"]');
+    this.htcOnemNineItem = page.locator('[class="card-title"]>[href="prod.html?idp_=7"]');
+    this.sonyVaioiFiveItem = page.locator('[class="card-title"]>[href="prod.html?idp_=8"]');
+    this.sonyVaioiSevenItem = page.locator('[class="card-title"]>[href="prod.html?idp_=9"]');
     this.appleMonitorItem = page.locator('[class="card-title"]>[href="prod.html?idp_=10"]');
     this.macBookAirItem = page.locator('[class="card-title"]>[href="prod.html?idp_=11"]');
     this.delliSevenItem = page.locator('[class="card-title"]>[href="prod.html?idp_=12"]');
@@ -127,11 +127,29 @@ export class HomePage {
     await this.page.waitForTimeout(1000);
   };
 
-  async clickpreviousButtonOfPagination(){
+  async clickPreviousButtonOfPagination(){
+    await this.page.waitForTimeout(2000)
     await this.previousButtonOfPagination.click();
   };
 
-  async clicknextButtonOfPagination(){
+  async clickNextButtonOfPagination() {
+    await this.page.waitForTimeout(2000)
+    await this.nextButtonOfPagination.click();
+  };
+
+  async clickNextAfterPreviousButtonOfPagination(){
+    await this.page.waitForTimeout(2000)
+    await this.nextButtonOfPagination.click();
+    await this.page.waitForTimeout(2000)
+    await this.previousButtonOfPagination.click();
+  };
+
+  async clickNextAfterPreviousThenNextButtonOfPagination(){
+    await this.page.waitForTimeout(2000)
+    await this.nextButtonOfPagination.click();
+    await this.page.waitForTimeout(2000)
+    await this.previousButtonOfPagination.click();
+    await this.page.waitForTimeout(2000)
     await this.nextButtonOfPagination.click();
   };
 
