@@ -5,7 +5,7 @@ import { devices } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   testDir: './src/tests',
   fullyParallel: true,
-  workers: 3,
+  workers: 4,
   timeout: 30 * 1000,
   expect: {
     
@@ -15,7 +15,7 @@ const config: PlaywrightTestConfig = {
   reporter: 'line',
 
   use: {
-    headless: false,
+    headless: true,
     actionTimeout: 0,
     trace: 'on-first-retry',
   },
