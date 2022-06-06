@@ -112,12 +112,14 @@ test.describe.only('Действия слайдером', async ()=>{
 
   test('Отображается второй слайд, нажать на следующую стрелку -> отображается третий слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickSliderWindowNextButton();
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
   });
 
   test('Отображается второй слайд, нажать на предыдущую стрелку -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickSliderWindowPreviousButton();
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
   });
@@ -125,7 +127,8 @@ test.describe.only('Действия слайдером', async ()=>{
   test('Отображается третий слайд, нажать на следующую стрелку -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.clickSliderWindowNextButton();
-    await homePage.page.waitForTimeout(600);
+    await homePage.page.waitForLoadState('networkidle');
+    await homePage.page.waitForTimeout(500);
     await homePage.clickSliderWindowNextButton();
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
   });
@@ -133,13 +136,14 @@ test.describe.only('Действия слайдером', async ()=>{
   test('Отображается третий слайд, нажать на предыдущую стрелку -> отображается второй слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.clickSliderWindowNextButton();
-    await homePage.page.waitForTimeout(600);
+    await homePage.page.waitForLoadState('networkidle');
+    await homePage.page.waitForTimeout(500);
     await homePage.clickSliderWindowPreviousButton();
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
   });
 })
 
-test.describe('Пагинация', async()=>{
+test.describe.only('Пагинация', async()=>{
 
   test('По умолчанию -> отображается 9 позиций первой страницы', async ({homePage})=>{
     await expect(homePage.numberOfItems).toHaveCount(9);
@@ -155,6 +159,7 @@ test.describe('Пагинация', async()=>{
   });
 
   test('Нажать на кнопку пред.страница, первая страница по умолчанию -> остаёмся на первой странице, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ({homePage})=>{
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickPreviousButtonOfPagination();
     await expect(homePage.numberOfItems).toHaveCount(9);
     await expect(homePage.nokiaLumiaItem).toBeVisible();
@@ -169,6 +174,7 @@ test.describe('Пагинация', async()=>{
   });
 
   test('Перейти на последнюю страницу -> осуществляется переход на последнюю страницу, отображается 6 позиций', async ({homePage})=>{
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickNextButtonOfPagination();
     await expect(homePage.numberOfItems).toHaveCount(6);
     await expect(homePage.appleMonitorItem).toBeVisible();
@@ -180,6 +186,7 @@ test.describe('Пагинация', async()=>{
   });
 
   test('Перейти на первую страницу из последней странице -> осуществляется переход на первую страницу, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ({homePage})=>{
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickNextAfterPreviousButtonOfPagination();
     await expect(homePage.numberOfItems).toHaveCount(9);
     await expect(homePage.nokiaLumiaItem).toBeVisible();
@@ -194,6 +201,7 @@ test.describe('Пагинация', async()=>{
   });
 
   test('Перейти на последнюю страницу после перехода из последней в первую -> осуществляется переход на последнюю страницу, отображается 5 позиций, apple monitor--не отображается', async ({homePage})=>{
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickNextAfterPreviousThenNextButtonOfPagination();
     await expect(homePage.numberOfItems).toHaveCount(5);
     await expect(homePage.macBookAirItem).toBeVisible();
