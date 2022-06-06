@@ -127,30 +127,25 @@ export class HomePage {
     await this.page.waitForLoadState('networkidle');
   };
   
-
   async clickPreviousButtonOfPagination(){
-    await this.page.waitForTimeout(2000)
     await this.previousButtonOfPagination.click();
   };
 
   async clickNextButtonOfPagination() {
-    await this.page.waitForTimeout(2000)
     await this.nextButtonOfPagination.click();
   };
 
   async clickNextAfterPreviousButtonOfPagination(){
-    await this.page.waitForTimeout(2000)
     await this.nextButtonOfPagination.click();
-    await this.page.waitForTimeout(2000)
+    await this.page.waitForTimeout(500);
     await this.previousButtonOfPagination.click();
   };
 
   async clickNextAfterPreviousThenNextButtonOfPagination(){
-    await this.page.waitForTimeout(2000)
     await this.nextButtonOfPagination.click();
-    await this.page.waitForTimeout(2000)
+    await this.page.waitForTimeout(500);
     await this.previousButtonOfPagination.click();
-    await this.page.waitForTimeout(2000)
+    await this.page.waitForTimeout(500);
     await this.nextButtonOfPagination.click();
   };
 
