@@ -63,8 +63,8 @@ export class HomePage {
     this.logoutButtonHeader = page.locator('[id="logout2"]');
     this.nameUserButtonHeader = page.locator('[id="nameofuser"]');
     this.sliderWindow = page.locator('[id="contcar"]');
-    this.sliderWindowPreviousButton = page.locator('[class="carousel-control-prev-icon"]');
-    this.sliderWindowNextButton = page.locator('[class="carousel-control-next-icon"]');
+    this.sliderWindowPreviousButton = page.locator('[data-slide="prev"]');
+    this.sliderWindowNextButton = page.locator('[data-slide="next"]');
     this.categoriesTitle = page.locator('[id="cat"]');
     this.categoryPhones = page.locator('#itemc >> text=Phones');
     this.categoryLaptops = page.locator('#itemc >> text=Laptops');
@@ -119,13 +119,14 @@ export class HomePage {
 
   async clickSliderWindowNextButton(){
     await this.sliderWindowNextButton.click();
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForLoadState('networkidle');
   };
   
   async clickSliderWindowPreviousButton(){
     await this.sliderWindowPreviousButton.click();
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForLoadState('networkidle');
   };
+  
 
   async clickPreviousButtonOfPagination(){
     await this.page.waitForTimeout(2000)
