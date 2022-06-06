@@ -94,7 +94,8 @@ test.describe('Элементы страницы home',async()=>{
     }); 
   });
 });
-test.describe('Действия слайдером', async ()=>{
+test.describe.only('Действия слайдером', async ()=>{
+
   test('Слайд по умолчанию -> отображается первый слайд', async ({homePage})=>{
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
   });
@@ -124,6 +125,7 @@ test.describe('Действия слайдером', async ()=>{
   test('Отображается третий слайд, нажать на следующую стрелку -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.clickSliderWindowNextButton();
+    await homePage.page.waitForTimeout(600);
     await homePage.clickSliderWindowNextButton();
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
   });
@@ -131,6 +133,7 @@ test.describe('Действия слайдером', async ()=>{
   test('Отображается третий слайд, нажать на предыдущую стрелку -> отображается второй слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.clickSliderWindowNextButton();
+    await homePage.page.waitForTimeout(600);
     await homePage.clickSliderWindowPreviousButton();
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
   });
