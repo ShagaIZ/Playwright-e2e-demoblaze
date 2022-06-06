@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [ main, master ]
 jobs:
-  run end-to-end tests:
+  run test:
     timeout-minutes: 60
     runs-on: windows-2019
     steps:
