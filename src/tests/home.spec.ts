@@ -95,6 +95,7 @@ test.describe('Элементы страницы home',async()=>{
   });
 });
 test.describe('Действия слайдером', async ()=>{
+
   test('Слайд по умолчанию -> отображается первый слайд', async ({homePage})=>{
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
   });
