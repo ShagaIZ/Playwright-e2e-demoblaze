@@ -5,10 +5,10 @@ import { devices } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   testDir: './src/tests',
   fullyParallel: true,
+  retries: 1,
   workers: 4,
   timeout: 30 * 1000,
-  expect: {
-    
+  expect: { 
     timeout: 5000
   },
  
@@ -16,7 +16,6 @@ const config: PlaywrightTestConfig = {
 
   use: {
     headless: true,
-    actionTimeout: 0,
     trace: 'on-first-retry',
   },
 
