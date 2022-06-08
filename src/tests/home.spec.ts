@@ -11,6 +11,7 @@ test.beforeEach(async({homePage})=>{
   await homePage.typePasswordField(Credentials.CorrectPassword);
   await homePage.clickLoginButton();
   await homePage.page.waitForLoadState('domcontentloaded');
+  await homePage.page.waitForLoadState('networkidle');
 });
 
 test.describe('Элементы страницы home',async()=>{
@@ -117,92 +118,114 @@ test.describe('Действия слайдером', async ()=>{
   test('Отображается первый слайд, нажать на следующую стрелку -> отображается второй слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
   });
 
   test('Отображается первый слайд, нажать на предыдущую стрелку -> отображается третий слайд', async ({homePage})=>{
     await homePage.clickSliderWindowPreviousButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
   });
 
   test('Отображается второй слайд, нажать на следующую стрелку -> отображается третий слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickSliderWindowNextButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
   });
 
   test('Отображается второй слайд, нажать на предыдущую стрелку -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickSliderWindowPreviousButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
   });
 
   test('Отображается третий слайд, нажать на следующую стрелку -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickSliderWindowNextButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickSliderWindowNextButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
   });
 
   test('Отображается третий слайд, нажать на предыдущую стрелку -> отображается второй слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickSliderWindowNextButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickSliderWindowPreviousButton();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
   });
 
   test('Отображается первый слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ({homePage})=>{
     await homePage.clickOnSecondButtonInSliderWindow();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
   });
 
   test('Отображается первый слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ({homePage})=>{
     await homePage.clickOnThirdButtonInSliderWindow();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
   });
 
   test('Отображается второй слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ({homePage})=>{
     await homePage.clickOnSecondButtonInSliderWindow();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickOnThirdButtonInSliderWindow();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
   });
 
   test('Отображается второй слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickOnSecondButtonInSliderWindow();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickOnFirstButtonInSliderWindow();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
   });
 
   test('Отображается третий слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickOnThirdButtonInSliderWindow();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickOnFirstButtonInSliderWindow();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
   });
 
   test('Отображается третий слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ({homePage})=>{
     await homePage.clickOnThirdButtonInSliderWindow();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickOnSecondButtonInSliderWindow();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
   });
 })
@@ -225,6 +248,7 @@ test.describe('Пагинация', async()=>{
   test('Нажать на кнопку пред.страница, первая страница по умолчанию -> остаёмся на первой странице, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ({homePage})=>{
     await homePage.clickPreviousButtonOfPagination();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.numberOfItems).toHaveCount(9);
     await expect(homePage.nokiaLumiaItem).toBeVisible();
     await expect(homePage.nexusSixItem).toBeVisible();
@@ -240,6 +264,7 @@ test.describe('Пагинация', async()=>{
   test('Перейти на последнюю страницу -> осуществляется переход на последнюю страницу, отображается 6 позиций', async ({homePage})=>{
     await homePage.clickNextButtonOfPagination();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.numberOfItems).toHaveCount(6);
     await expect(homePage.appleMonitorItem).toBeVisible();
     await expect(homePage.macBookAirItem).toBeVisible();
@@ -252,8 +277,10 @@ test.describe('Пагинация', async()=>{
   test('Перейти на первую страницу из последней странице -> осуществляется переход на первую страницу, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ({homePage})=>{
     await homePage.clickNextButtonOfPagination();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickPreviousButtonOfPagination();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     // await homePage.clickNextAfterPreviousButtonOfPagination();
     await expect(homePage.numberOfItems).toHaveCount(9);
     await expect(homePage.nokiaLumiaItem).toBeVisible();
@@ -270,10 +297,13 @@ test.describe('Пагинация', async()=>{
   test('Перейти на последнюю страницу после перехода из последней в первую -> осуществляется переход на последнюю страницу, отображается 5 позиций, apple monitor--не отображается', async ({homePage})=>{
     await homePage.clickNextButtonOfPagination();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickPreviousButtonOfPagination();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await homePage.clickNextButtonOfPagination();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     // await homePage.clickNextAfterPreviousThenNextButtonOfPagination();
     await expect(homePage.numberOfItems).toHaveCount(5);
     await expect(homePage.macBookAirItem).toBeVisible();
@@ -289,6 +319,7 @@ test.describe('Сортировка по категориям', async()=>{
   test('Нажать на Phones -> позиции сортируется по категории Phones', async ({homePage})=>{
     await homePage.clickOnCategoryPhones();
     await homePage.page.waitForLoadState('domcontentloaded');
+    await homePage.page.waitForLoadState('networkidle');
     await expect(homePage.numberOfItems).toHaveCount(7);
     await expect(homePage.samsungGalaxySixItem).toBeVisible();
     await expect(homePage.nokiaLumiaItem).toBeVisible();
@@ -302,6 +333,7 @@ test.describe('Сортировка по категориям', async()=>{
 test('Нажать на Laptops -> позиции сортируется по категории Laptops', async ({homePage})=>{
   await homePage.clickOnCategoryLaptops();
   await homePage.page.waitForLoadState('domcontentloaded');
+  await homePage.page.waitForLoadState('networkidle');
   await expect(homePage.numberOfItems).toHaveCount(6);
   await expect(homePage.sonyVaioiFiveItem).toBeVisible();
   await expect(homePage.sonyVaioiSevenItem).toBeVisible();
@@ -314,6 +346,7 @@ test('Нажать на Laptops -> позиции сортируется по к
 test('Нажать на Monitors -> позиции сортируется по категории Monitors', async ({homePage})=>{
   await homePage.clickOnCategoryMonitors();
   await homePage.page.waitForLoadState('domcontentloaded');
+  await homePage.page.waitForLoadState('networkidle');
   await expect(homePage.numberOfItems).toHaveCount(2);
   await expect(homePage.appleMonitorItem).toBeVisible();
   await expect(homePage.asusFullHDItem).toBeVisible();
