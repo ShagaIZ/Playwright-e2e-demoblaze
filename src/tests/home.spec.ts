@@ -253,6 +253,7 @@ test.describe('Сортировка по категориям', async()=>{
 
   test('Нажать на Phones -> позиции сортируется по категории Phones', async ({homePage})=>{
     await homePage.clickOnCategoryPhones();
+    await homePage.page.waitForLoadState('domcontentloaded');
     await expect(homePage.numberOfItems).toHaveCount(7);
     await expect(homePage.samsungGalaxySixItem).toBeVisible();
     await expect(homePage.nokiaLumiaItem).toBeVisible();
@@ -265,6 +266,7 @@ test.describe('Сортировка по категориям', async()=>{
 
 test('Нажать на Laptops -> позиции сортируется по категории Laptops', async ({homePage})=>{
   await homePage.clickOnCategoryLaptops();
+  await homePage.page.waitForLoadState('domcontentloaded');
   await expect(homePage.numberOfItems).toHaveCount(6);
   await expect(homePage.sonyVaioiFiveItem).toBeVisible();
   await expect(homePage.sonyVaioiSevenItem).toBeVisible();
@@ -276,6 +278,7 @@ test('Нажать на Laptops -> позиции сортируется по к
 
 test('Нажать на Monitors -> позиции сортируется по категории Monitors', async ({homePage})=>{
   await homePage.clickOnCategoryMonitors();
+  await homePage.page.waitForLoadState('domcontentloaded');
   await expect(homePage.numberOfItems).toHaveCount(2);
   await expect(homePage.appleMonitorItem).toBeVisible();
   await expect(homePage.asusFullHDItem).toBeVisible();
