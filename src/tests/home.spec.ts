@@ -1,6 +1,7 @@
 import { expect } from '@playwright/test';
 import { DataString, Credentials, DataNumber } from '../data/home';
 import {test} from '../fixtures/home';
+import { HomePage } from '../pages/home';
 
 
 test.beforeEach(async({homePage})=>{
@@ -135,6 +136,40 @@ test.describe('Действия слайдером', async ()=>{
     await homePage.clickSliderWindowPreviousButton();
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
   });
+
+  test('Отображается первый слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ({homePage})=>{
+    await homePage.clickOnSecondButtonInSliderWindow();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
+  });
+
+  test('Отображается первый слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ({homePage})=>{
+    await homePage.clickOnThirdButtonInSliderWindow();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
+  });
+
+  test('Отображается второй слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ({homePage})=>{
+    await homePage.clickOnSecondButtonInSliderWindow();
+    await homePage.clickOnThirdButtonInSliderWindow();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
+  });
+
+  test('Отображается второй слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ({homePage})=>{
+    await homePage.clickOnSecondButtonInSliderWindow();
+    await homePage.clickOnFirstButtonInSliderWindow();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
+  });
+
+  test('Отображается третий слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ({homePage})=>{
+    await homePage.clickOnThirdButtonInSliderWindow();
+    await homePage.clickOnFirstButtonInSliderWindow();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
+  });
+
+  test('Отображается третий слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ({homePage})=>{
+    await homePage.clickOnThirdButtonInSliderWindow();
+    await homePage.clickOnSecondButtonInSliderWindow();
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
+  });
 })
 
 test.describe('Пагинация', async()=>{
@@ -199,5 +234,38 @@ test.describe('Пагинация', async()=>{
     await expect(homePage.dellInchItem).toBeVisible();
     await expect(homePage.asusFullHDItem).toBeVisible();
     await expect(homePage.macBookProItem).toBeVisible();
+  });
+});
+
+test.describe('Сортировка по категориям', async()=>{
+
+  test('Нажать на Phones -> позиции сортируется по категории Phones', async ({homePage})=>{
+    await homePage.clickOnCategoryPhones();
+    await expect(homePage.numberOfItems).toHaveCount(7);
+    await expect(homePage.samsungGalaxySixItem).toBeVisible();
+    await expect(homePage.nokiaLumiaItem).toBeVisible();
+    await expect(homePage.nexusSixItem).toBeVisible();
+    await expect(homePage.samsungGalaxySevenItem).toBeVisible();
+    await expect(homePage.iphoneSixItem).toBeVisible();
+    await expect(homePage.sonyXperiazFiveItem).toBeVisible();
+    await expect(homePage.htcOnemNineItem).toBeVisible();
+  });
+
+test('Нажать на Laptops -> позиции сортируется по категории Laptops', async ({homePage})=>{
+  await homePage.clickOnCategoryLaptops();
+  await expect(homePage.numberOfItems).toHaveCount(6);
+  await expect(homePage.sonyVaioiFiveItem).toBeVisible();
+  await expect(homePage.sonyVaioiSevenItem).toBeVisible();
+  await expect(homePage.macBookAirItem).toBeVisible();
+  await expect(homePage.delliSevenItem).toBeVisible();
+  await expect(homePage.dellInchItem).toBeVisible();
+  await expect(homePage.macBookProItem).toBeVisible();
+  });
+
+test('Нажать на Monitors -> позиции сортируется по категории Monitors', async ({homePage})=>{
+  await homePage.clickOnCategoryMonitors();
+  await expect(homePage.numberOfItems).toHaveCount(2);
+  await expect(homePage.appleMonitorItem).toBeVisible();
+  await expect(homePage.asusFullHDItem).toBeVisible();
   });
 });
