@@ -63,13 +63,25 @@ test.describe('Элементы страницы home',async()=>{
       await expect(homePage.sliderWindow).toBeVisible();
     });  
 
-    test('Rнопка назад -> отображается корректно', async ({homePage}) => {
+    test('Кнопка назад -> отображается корректно', async ({homePage}) => {
       await expect(homePage.sliderWindowPreviousButton).toBeVisible();
     });  
 
-    test('Rнопка вперёд -> отображается корректно', async ({homePage}) => {
+    test('Кнопка вперёд -> отображается корректно', async ({homePage}) => {
       await expect(homePage.sliderWindowNextButton).toBeVisible();
+    });
+    
+    test('Кнопка первый слайдер -> отображается корректно', async ({homePage}) => {
+      await expect(homePage.firstButtonInSliderWindow).toBeVisible();
     });  
+
+    test('Кнопка второй слайдер -> отображается корректно', async ({homePage}) => {
+      await expect(homePage.secondButtonInSliderWindow).toBeVisible();
+    });
+
+    test('Кнопка третий слайдер -> отображается корректно', async ({homePage}) => {
+      await expect(homePage.thirdButtonInSliderWindow).toBeVisible();
+    });
   });
   
   test.describe('Категория', async()=>{
