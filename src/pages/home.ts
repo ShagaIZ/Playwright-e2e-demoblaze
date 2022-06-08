@@ -124,39 +124,45 @@ export class HomePage {
   };
 
   async clickSliderWindowNextButton(){
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
     await this.sliderWindowNextButton.click();
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
   };
   
   async clickSliderWindowPreviousButton(){
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
     await this.sliderWindowPreviousButton.click();
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
   };
   
   async clickOnFirstButtonInSliderWindow(){
+    await this.page.waitForTimeout(2000);
     await this.firstButtonInSliderWindow.click();
+    await this.page.waitForTimeout(2000);
   };
 
   async clickOnSecondButtonInSliderWindow(){
+    await this.page.waitForTimeout(2000);
     await this.secondButtonInSliderWindow.click();
+    await this.page.waitForTimeout(2000);
   };
 
   async clickOnThirdButtonInSliderWindow(){
+    await this.page.waitForTimeout(2000);
     await this.thirdButtonInSliderWindow.click();
+    await this.page.waitForTimeout(2000);
   };
   
   async clickPreviousButtonOfPagination(){
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
     await this.previousButtonOfPagination.click();
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
   };
 
   async clickNextButtonOfPagination() {
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
     await this.nextButtonOfPagination.click();
-    await this.page.waitForTimeout(1000);
+    await this.page.waitForTimeout(2000);
   };
 
   async clickNextAfterPreviousButtonOfPagination(){
