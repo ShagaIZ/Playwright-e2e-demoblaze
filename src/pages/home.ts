@@ -124,15 +124,15 @@ export class HomePage {
   };
 
   async clickSliderWindowNextButton(){
-    await this.page.waitForTimeout(1000);
+    // await this.page.waitForTimeout(1000);
     await this.sliderWindowNextButton.click();
-    await this.page.waitForTimeout(1000);
+    // await this.page.waitForTimeout(1000);
   };
   
   async clickSliderWindowPreviousButton(){
-    await this.page.waitForTimeout(1000);
+    // await this.page.waitForTimeout(1000);
     await this.sliderWindowPreviousButton.click();
-    await this.page.waitForTimeout(1000);
+    // await this.page.waitForTimeout(1000);
   };
   
   async clickOnFirstButtonInSliderWindow(){
@@ -148,32 +148,32 @@ export class HomePage {
   };
   
   async clickPreviousButtonOfPagination(){
-    await this.page.waitForTimeout(1000);
+    // await this.page.waitForTimeout(1000);
     await this.previousButtonOfPagination.click();
-    await this.page.waitForTimeout(1000);
+    // await this.page.waitForTimeout(1000);
   };
 
   async clickNextButtonOfPagination() {
-    await this.page.waitForTimeout(1000);
+    // await this.page.waitForTimeout(1000);
     await this.nextButtonOfPagination.click();
-    await this.page.waitForTimeout(1000);
+    // await this.page.waitForTimeout(1000);
   };
 
-  async clickNextAfterPreviousButtonOfPagination(){
-    await this.page.waitForTimeout(2000);
-    await this.nextButtonOfPagination.click();
-    await this.page.waitForTimeout(2000);
-    await this.previousButtonOfPagination.click();
-  };
+  // async clickNextAfterPreviousButtonOfPagination(){
+  //   // await this.page.waitForTimeout(2000);
+  //   await this.nextButtonOfPagination.click();
+  //   await this.page.waitForTimeout(2000);
+  //   // await this.previousButtonOfPagination.click();
+  // };
 
-  async clickNextAfterPreviousThenNextButtonOfPagination(){
-    await this.page.waitForTimeout(2000);
-    await this.nextButtonOfPagination.click();
-    await this.page.waitForTimeout(2000);
-    await this.previousButtonOfPagination.click();
-    await this.page.waitForTimeout(2000);
-    await this.nextButtonOfPagination.click();
-  };
+  // async clickNextAfterPreviousThenNextButtonOfPagination(){
+  //   await this.page.waitForTimeout(2000);
+  //   await this.nextButtonOfPagination.click();
+  //   await this.page.waitForTimeout(2000);
+  //   await this.previousButtonOfPagination.click();
+  //   await this.page.waitForTimeout(2000);
+  //   await this.nextButtonOfPagination.click();
+  // };
 
   async clickOnCategoryPhones(){
     await this.categoryPhones.click();
