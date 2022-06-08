@@ -7,7 +7,7 @@ const config: PlaywrightTestConfig = {
   fullyParallel: true,
   retries: 1,
   workers: 4,
-  timeout: 30 * 1000,
+  timeout: 50 * 1000,
   expect: { 
     timeout: 5000
   },
