@@ -20,6 +20,9 @@ export class HomePage {
   readonly sliderWindow:Locator;
   readonly sliderWindowPreviousButton:Locator;
   readonly sliderWindowNextButton:Locator;
+  readonly firstButtonInSliderWindow:Locator;
+  readonly secondButtonInSliderWindow:Locator;
+  readonly thirdButtonInSliderWindow:Locator;
   readonly categoriesTitle:Locator;
   readonly categoryPhones:Locator;
   readonly categoryLaptops:Locator;
@@ -65,6 +68,9 @@ export class HomePage {
     this.sliderWindow = page.locator('[id="contcar"]');
     this.sliderWindowPreviousButton = page.locator('[data-slide="prev"]');
     this.sliderWindowNextButton = page.locator('[data-slide="next"]');
+    this.firstButtonInSliderWindow = page.locator('[data-slide-to="0"]');
+    this.secondButtonInSliderWindow = page.locator('[data-slide-to="1"]');
+    this.thirdButtonInSliderWindow = page.locator('[data-slide-to="2"]');
     this.categoriesTitle = page.locator('[id="cat"]');
     this.categoryPhones = page.locator('#itemc >> text=Phones');
     this.categoryLaptops = page.locator('#itemc >> text=Laptops');
@@ -129,6 +135,18 @@ export class HomePage {
     await this.page.waitForTimeout(1000);
   };
   
+  async clickOnFirstButtonInSliderWindow(){
+    await this.firstButtonInSliderWindow.click();
+  };
+
+  async clickOnSecondButtonInSliderWindow(){
+    await this.secondButtonInSliderWindow.click();
+  };
+
+  async clickOnThirdButtonInSliderWindow(){
+    await this.thirdButtonInSliderWindow.click();
+  };
+  
   async clickPreviousButtonOfPagination(){
     await this.page.waitForTimeout(1000);
     await this.previousButtonOfPagination.click();
@@ -155,6 +173,18 @@ export class HomePage {
     await this.previousButtonOfPagination.click();
     await this.page.waitForTimeout(2000);
     await this.nextButtonOfPagination.click();
+  };
+
+  async clickOnCategoryPhones(){
+    await this.categoryPhones.click();
+  };
+
+  async clickOnCategoryLaptops(){
+    await this.categoryLaptops.click();
+  };
+
+  async clickOnCategoryMonitors(){
+    await this.categoryMonitors.click();
   };
 
 };
