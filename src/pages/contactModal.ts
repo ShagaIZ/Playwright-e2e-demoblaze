@@ -10,6 +10,13 @@ export class ContactModal{
     readonly loginButton:Locator;
     readonly contactButtonHeader:Locator;
     readonly modalVisibility:Locator;
+    readonly modalTitle:Locator;
+    readonly closeModalCross:Locator;
+    readonly emailField:Locator;
+    readonly nameField:Locator;
+    readonly messageField:Locator;
+    readonly closeModalButton:Locator;
+    readonly sendMessageButton:Locator;
 
     constructor(page:Page){
         this.page = page;
@@ -19,6 +26,13 @@ export class ContactModal{
         this.loginButton = page.locator('[onclick="logIn()"]');
         this.contactButtonHeader = page.locator('[data-target="#exampleModal"]');
         this.modalVisibility = page.locator('[class="modal fade show"]');
+        this.modalTitle = page.locator('[id="exampleModalLabel"]');
+        this.closeModalCross = page.locator('text=New message × >> [aria-label="Close"]');
+        this.emailField = page.locator('[id="recipient-email"]');
+        this.nameField = page.locator('[id="recipient-name"]');
+        this.messageField = page.locator('[id="message-text"]');
+        this.closeModalButton = page.locator('#exampleModal >> text=Close');
+        this.sendMessageButton = page.locator('#exampleModal >> text=Send message')
          
     };
     async openContactModal(CorrectUsername:string,CorrectPassword:string){
@@ -28,6 +42,9 @@ export class ContactModal{
         await this.loginPasswordField.fill(CorrectPassword);
         await this.loginButton.click();
         await this.contactButtonHeader.click()
-
     };
+
+    async clickCrossButton(){
+        await this.closeModalCross.click()
+    }
 };
