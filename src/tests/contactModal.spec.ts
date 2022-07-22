@@ -8,8 +8,32 @@ import {DataString} from '../data/contactModal'
 test.describe('Общие проверки', async()=>{
 
     test('Нажать на Contact -> открывается модальное окно контактов', async({contactModal})=>{
-       await expect(contactModal.modalVisibility).toBeVisible();
+       await expect(contactModal.modalVisibile).toBeVisible();
     });
+
+    test('Нажать на кнопку Send Mesage, поля не заполнены ->  модальное окно контактов закрывается, сообщение отправлено', async({contactModal})=>{
+        await contactModal.clicksendMessageButton();
+        await expect(contactModal.modalVisibile).not.toBeVisible();
+     });
+
+     test('Нажать на кнопку Send Mesage, поля заполнены ->  модальное окно контактов закрывается, сообщение отправлено', async({contactModal})=>{
+        await contactModal.fillemailField(DataString.emailFieldText);
+        await contactModal.fillnameField(DataString.nameFieldText) ;
+        await contactModal.fillmessageField(DataString.messageFieldText);
+        await contactModal.clicksendMessageButton();
+        await expect(contactModal.modalVisibile).not.toBeVisible();
+     });
+
+    test('Нажать на кнопку крестиk ->  модальное окно контактов закрывается', async({contactModal})=>{
+        await contactModal.clickCrossButton();
+        await expect(contactModal.modalVisibile).not.toBeVisible();
+     });
+
+     test('Нажать на кнопку Close->  модальное окно контактов закрывается', async({contactModal})=>{
+        await contactModal.clickCloseButton();
+        await contactModal.page.waitForTimeout(1000);
+        await expect(contactModal.modalVisibile).not.toBeVisible();
+     });
 });
 
 test.describe('Элементы модального окна', async()=>{

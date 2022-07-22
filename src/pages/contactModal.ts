@@ -9,7 +9,7 @@ export class ContactModal{
     readonly loginPasswordField:Locator;
     readonly loginButton:Locator;
     readonly contactButtonHeader:Locator;
-    readonly modalVisibility:Locator;
+    readonly modalVisibile:Locator;
     readonly modalTitle:Locator;
     readonly closeModalCross:Locator;
     readonly emailField:Locator;
@@ -25,7 +25,7 @@ export class ContactModal{
         this.loginPasswordField = page.locator('[id="loginpassword"]');
         this.loginButton = page.locator('[onclick="logIn()"]');
         this.contactButtonHeader = page.locator('[data-target="#exampleModal"]');
-        this.modalVisibility = page.locator('[class="modal fade show"]');
+        this.modalVisibile = page.locator('[class="modal fade show"]');
         this.modalTitle = page.locator('[id="exampleModalLabel"]');
         this.closeModalCross = page.locator('text=New message × >> [aria-label="Close"]');
         this.emailField = page.locator('[id="recipient-email"]');
@@ -45,6 +45,24 @@ export class ContactModal{
     };
 
     async clickCrossButton(){
-        await this.closeModalCross.click()
-    }
+        await this.closeModalCross.click();
+    };
+    async clickCloseButton(){
+        await this.closeModalButton.click();
+    };
+    async clicksendMessageButton(){
+        await this.sendMessageButton.click();
+    };
+
+    async fillemailField(value:string){
+        await this.emailField.fill(value);
+    };
+
+    async fillnameField(value:string){
+        await this.nameField.fill(value);
+    };
+
+    async fillmessageField(value:string){
+        await this.messageField.fill(value);
+    };
 };
