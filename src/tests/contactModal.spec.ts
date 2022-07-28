@@ -3,13 +3,12 @@ import { expect } from '@playwright/test';
 import {DataString} from '../data/contactModal'
 
 
-
-
-test.describe('Общие проверки', async()=>{
-
 test.beforeEach(async({contactModal})=>{
     await contactModal.page.waitForLoadState('domcontentloaded')
 })
+
+test.describe('Общие проверки', async()=>{
+
     test('Нажать на Contact -> открывается модальное окно контактов', async({contactModal})=>{
        await expect(contactModal.modalVisibile).toBeVisible();
     });
@@ -17,6 +16,7 @@ test.beforeEach(async({contactModal})=>{
     test('Нажать на кнопку Send Mesage, поля не заполнены ->  модальное окно контактов закрывается, сообщение отправлено', async({contactModal})=>{
         await contactModal.clicksendMessageButton();
         await contactModal.page.waitForLoadState('domcontentloaded')
+        await contactModal.page.waitForTimeout(1000)
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 
@@ -26,17 +26,21 @@ test.beforeEach(async({contactModal})=>{
         await contactModal.fillmessageField(DataString.Message);
         await contactModal.clicksendMessageButton();
         await contactModal.page.waitForLoadState('domcontentloaded')
+        await contactModal.page.waitForTimeout(1000)
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 
     test('Нажать на кнопку крестиk ->  модальное окно контактов закрывается', async({contactModal})=>{
         await contactModal.clickCrossButton();
+        await contactModal.page.waitForLoadState('domcontentloaded')
+        await contactModal.page.waitForTimeout(1000)
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 
      test('Нажать на кнопку Close->  модальное окно контактов закрывается', async({contactModal})=>{
         await contactModal.clickCloseButton();
         await contactModal.page.waitForLoadState('domcontentloaded')
+        await contactModal.page.waitForTimeout(1000)
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 });
