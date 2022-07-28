@@ -17,9 +17,9 @@ test.describe('Общие проверки', async()=>{
      });
 
      test('Нажать на кнопку Send Mesage, поля заполнены ->  модальное окно контактов закрывается, сообщение отправлено', async({contactModal})=>{
-        await contactModal.fillemailField(DataString.emailFieldText);
-        await contactModal.fillnameField(DataString.nameFieldText) ;
-        await contactModal.fillmessageField(DataString.messageFieldText);
+        await contactModal.fillemailField(DataString.Email);
+        await contactModal.fillnameField(DataString.Name) ;
+        await contactModal.fillmessageField(DataString.Message);
         await contactModal.clicksendMessageButton();
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
@@ -40,7 +40,7 @@ test.describe('Элементы модального окна', async()=>{
 
     test('Тайтл модального -> отображается "New message"', async({contactModal})=>{
         await expect(contactModal.modalTitle).toBeVisible();
-        await expect(contactModal.modalTitle).toContainText(DataString.modalTitleText);
+        await expect(contactModal.modalTitle).toContainText(DataString.Title);
     });
 
     test('Крестик -> отображается корректно', async({contactModal})=>{
