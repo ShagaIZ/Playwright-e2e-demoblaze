@@ -7,8 +7,8 @@ import { HomePage } from '../pages/home';
 test.beforeEach(async({homePage})=>{
   await homePage.openDemoblaze();
   await homePage.clickLoginInModal();
-  await homePage.typeUsernameField(Credentials.CorrectUsername);
-  await homePage.typePasswordField(Credentials.CorrectPassword);
+  await homePage.typeUsernameField(Credentials.Username);
+  await homePage.typePasswordField(Credentials.Password);
   await homePage.clickLoginButton();
 });
 
@@ -18,7 +18,7 @@ test.describe('Элементы страницы home',async()=>{
     
     test('Логотип -> отображается корректно, расположен верхнем в правом углу', async ({homePage}) => {
       await expect(homePage.titleOfHeader).toBeVisible();
-      await expect(homePage.titleOfHeader).toContainText(DataString.TitleHeaderText);
+      await expect(homePage.titleOfHeader).toContainText(DataString.PRODUCT_STORE);
       await expect(homePage.countOfElementsInTitleOfHeader).toHaveCount(DataNumber.NumberOfElementsInNavbarBrend);
     });
 
@@ -28,32 +28,32 @@ test.describe('Элементы страницы home',async()=>{
 
     test('Кнопка Home  -> отображается корректно', async ({homePage}) => {
       await expect(homePage.homeButtonHeader).toBeVisible();
-      await expect(homePage.homeButtonHeader).toContainText(DataString.HomeButtonHeaderText);
+      await expect(homePage.homeButtonHeader).toContainText(DataString.Home);
     });
 
     test('Кнопка Contact  -> отображается корректно', async ({homePage}) => {
       await expect(homePage.contactButtonHeader).toBeVisible();
-      await expect(homePage.contactButtonHeader).toContainText(DataString.ContactButtonHeaderText);
+      await expect(homePage.contactButtonHeader).toContainText(DataString.Contact);
     });
 
     test('Кнопка About us  -> отображается корректно', async ({homePage}) => {
       await expect(homePage.aboutUsButtonHeader).toBeVisible();
-      await expect(homePage.aboutUsButtonHeader).toContainText(DataString.AboutUsButtonHeaderText);
+      await expect(homePage.aboutUsButtonHeader).toContainText(DataString.AboutUs);
     });
 
     test('Кнопка Cart  -> отображается корректно', async ({homePage}) => {
       await expect(homePage.cartButtonHeader).toBeVisible();
-      await expect(homePage.cartButtonHeader).toContainText(DataString.CartButtonHeaderText);
+      await expect(homePage.cartButtonHeader).toContainText(DataString.Cart);
     });
 
     test('Кнопка Log Out  -> отображается корректно', async ({homePage}) => {
       await expect(homePage.logoutButtonHeader).toBeVisible();
-      await expect(homePage.logoutButtonHeader).toContainText(DataString.LogoutButtonHeaderText);
+      await expect(homePage.logoutButtonHeader).toContainText(DataString.Logout);
     });
 
     test('Кнопка "currenUser"  -> отображается корректно', async ({homePage}) => {
       await expect(homePage.nameUserButtonHeader).toBeVisible();
-      await expect(homePage.nameUserButtonHeader).toContainText(DataString.NameUserButtonHeaderText);
+      await expect(homePage.nameUserButtonHeader).toContainText(DataString.Name);
     });
   });
 
@@ -88,99 +88,99 @@ test.describe('Элементы страницы home',async()=>{
 
     test('Тайтл категории -> отображается корректно', async ({homePage}) => {
       await expect(homePage.categoriesTitle).toBeVisible();
-      await expect(homePage.categoriesTitle).toContainText(DataString.CategoriesTitleText);
+      await expect(homePage.categoriesTitle).toContainText(DataString.PRODUCT_STORE);
     });
 
     test('Категория Phones -> отображается корректно', async ({homePage}) => {
       await expect(homePage.categoryPhones).toBeVisible();
-      await expect(homePage.categoryPhones).toContainText(DataString.CategoryPhonesText);
+      await expect(homePage.categoryPhones).toContainText(DataString.Phones);
     });
 
     test('Категория Laptops -> отображается корректно', async ({homePage}) => {
       await expect(homePage.categoryLaptops).toBeVisible();
-      await expect(homePage.categoryLaptops).toContainText(DataString.CategoryLaptopsText);
+      await expect(homePage.categoryLaptops).toContainText(DataString.Laptops);
     });
 
     test('Категория Monitors -> отображается корректно', async ({homePage}) => {
       await expect(homePage.categoryMonitors).toBeVisible();
-      await expect(homePage.categoryMonitors).toContainText(DataString.CategoryMonitorsText);
+      await expect(homePage.categoryMonitors).toContainText(DataString.Monitors);
     }); 
   });
 });
 test.describe('Действия слайдером', async ()=>{
 
   test('Слайд по умолчанию -> отображается первый слайд', async ({homePage})=>{
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.FirstSlide);
   });
 
   test('Отображается первый слайд, нажать на следующую стрелку -> отображается второй слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.SecondSlide);
   });
 
   test('Отображается первый слайд, нажать на предыдущую стрелку -> отображается третий слайд', async ({homePage})=>{
     await homePage.clickSliderWindowPreviousButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.ThirdSlide);
   });
 
   test('Отображается второй слайд, нажать на следующую стрелку -> отображается третий слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.clickSliderWindowNextButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.ThirdSlide);
   });
 
   test('Отображается второй слайд, нажать на предыдущую стрелку -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.clickSliderWindowPreviousButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.FirstSlide);
   });
 
   test('Отображается третий слайд, нажать на следующую стрелку -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.clickSliderWindowNextButton();
     await homePage.clickSliderWindowNextButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.FirstSlide);
   });
 
   test('Отображается третий слайд, нажать на предыдущую стрелку -> отображается второй слайд', async ({homePage})=>{
     await homePage.clickSliderWindowNextButton();
     await homePage.clickSliderWindowNextButton();
     await homePage.clickSliderWindowPreviousButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.SecondSlide);
   });
 
   test('Отображается первый слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ({homePage})=>{
     await homePage.clickOnSecondButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.SecondSlide);
   });
 
   test('Отображается первый слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ({homePage})=>{
     await homePage.clickOnThirdButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.ThirdSlide);
   });
 
   test('Отображается второй слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ({homePage})=>{
     await homePage.clickOnSecondButtonInSliderWindow();
     await homePage.clickOnThirdButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsThirdSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.ThirdSlide);
   });
 
   test('Отображается второй слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickOnSecondButtonInSliderWindow();
     await homePage.clickOnFirstButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.FirstSlide);
   });
 
   test('Отображается третий слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ({homePage})=>{
     await homePage.clickOnThirdButtonInSliderWindow();
     await homePage.clickOnFirstButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsFirstSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.FirstSlide);
   });
 
   test('Отображается третий слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ({homePage})=>{
     await homePage.clickOnThirdButtonInSliderWindow();
     await homePage.clickOnSecondButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.AttributeOfSlideImgNameIsAlt,DataString.AttributeOfSlideImgValueIsSecondSlide);
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.SecondSlide);
   });
 })
 
