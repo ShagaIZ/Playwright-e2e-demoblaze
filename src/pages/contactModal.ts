@@ -35,11 +35,11 @@ export class ContactModal{
         this.sendMessageButton = page.locator('#exampleModal >> text=Send message')
          
     };
-    async openContactModal(CorrectUsername:string,CorrectPassword:string){
+    async openContactModal(Username:string,Password:string){
         await this.page.goto('https://www.demoblaze.com/index.html');
         await this.loginModal.click();
-        await this.loginUsernameField.fill(CorrectUsername);
-        await this.loginPasswordField.fill(CorrectPassword);
+        await this.loginUsernameField.fill(Username);
+        await this.loginPasswordField.fill(Password);
         await this.loginButton.click();
         await this.contactButtonHeader.click()
     };

@@ -88,7 +88,7 @@ test.describe('Элементы страницы home',async()=>{
 
     test('Тайтл категории -> отображается корректно', async ({homePage}) => {
       await expect(homePage.categoriesTitle).toBeVisible();
-      await expect(homePage.categoriesTitle).toContainText(DataString.PRODUCT_STORE);
+      await expect(homePage.categoriesTitle).toContainText(DataString.Categories);
     });
 
     test('Категория Phones -> отображается корректно', async ({homePage}) => {
