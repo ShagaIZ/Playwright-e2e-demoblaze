@@ -1,6 +1,6 @@
 export enum DataString {
-    modalTitleText = 'New message',
-    emailFieldText = 'sha@mail.ru',
-    nameFieldText = 'Mike',
-    messageFieldText = 'My name is Mike. Hello guys'
+    Title = 'New message',
+    Email = 'sha@mail.ru',
+    Name = 'Mike',
+    Message = 'My name is Mike. Hello guys'
 }

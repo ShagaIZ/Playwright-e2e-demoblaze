@@ -3,7 +3,9 @@ import { expect } from '@playwright/test';
 import {DataString} from '../data/contactModal'
 
 
-
+test.beforeEach(async({contactModal})=>{
+    await contactModal.page.waitForLoadState('domcontentloaded')
+})
 
 test.describe('Общие проверки', async()=>{
 
@@ -13,25 +15,32 @@ test.describe('Общие проверки', async()=>{
 
     test('Нажать на кнопку Send Mesage, поля не заполнены ->  модальное окно контактов закрывается, сообщение отправлено', async({contactModal})=>{
         await contactModal.clicksendMessageButton();
+        await contactModal.page.waitForLoadState('domcontentloaded')
+        await contactModal.page.waitForTimeout(1000)
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 
      test('Нажать на кнопку Send Mesage, поля заполнены ->  модальное окно контактов закрывается, сообщение отправлено', async({contactModal})=>{
-        await contactModal.fillemailField(DataString.emailFieldText);
-        await contactModal.fillnameField(DataString.nameFieldText) ;
-        await contactModal.fillmessageField(DataString.messageFieldText);
+        await contactModal.fillemailField(DataString.Email);
+        await contactModal.fillnameField(DataString.Name) ;
+        await contactModal.fillmessageField(DataString.Message);
         await contactModal.clicksendMessageButton();
+        await contactModal.page.waitForLoadState('domcontentloaded')
+        await contactModal.page.waitForTimeout(1000)
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 
     test('Нажать на кнопку крестиk ->  модальное окно контактов закрывается', async({contactModal})=>{
         await contactModal.clickCrossButton();
+        await contactModal.page.waitForLoadState('domcontentloaded')
+        await contactModal.page.waitForTimeout(1000)
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 
      test('Нажать на кнопку Close->  модальное окно контактов закрывается', async({contactModal})=>{
         await contactModal.clickCloseButton();
-        await contactModal.page.waitForTimeout(1000);
+        await contactModal.page.waitForLoadState('domcontentloaded')
+        await contactModal.page.waitForTimeout(1000)
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 });
@@ -40,7 +49,7 @@ test.describe('Элементы модального окна', async()=>{
 
     test('Тайтл модального -> отображается "New message"', async({contactModal})=>{
         await expect(contactModal.modalTitle).toBeVisible();
-        await expect(contactModal.modalTitle).toContainText(DataString.modalTitleText);
+        await expect(contactModal.modalTitle).toContainText(DataString.Title);
     });
 
     test('Крестик -> отображается корректно', async({contactModal})=>{

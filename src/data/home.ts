@@ -1,24 +1,24 @@
 export  enum Credentials {
-    CorrectUsername = "Test2022",
-    CorrectPassword = "Test2022",
+    Username = "Test2022",
+    Password = "Test2022",
 };
 
 export  enum DataString {
-   TitleHeaderText = "PRODUCT STORE",
-   HomeButtonHeaderText = "Home",
-   ContactButtonHeaderText = "Contact",
-   AboutUsButtonHeaderText = "About us",
-   CartButtonHeaderText = "Cart",
-   LogoutButtonHeaderText = "Log out",
-   NameUserButtonHeaderText = "Welcome Test2022",
-   CategoriesTitleText = "CATEGORIES",
-   CategoryPhonesText = "Phones",
-   CategoryLaptopsText = "Laptops",
-   CategoryMonitorsText = "Monitors",
-   AttributeOfSlideImgNameIsAlt = "alt",
-   AttributeOfSlideImgValueIsFirstSlide = "First slide",
-   AttributeOfSlideImgValueIsSecondSlide = "Second slide",
-   AttributeOfSlideImgValueIsThirdSlide = "Third slide",
+   PRODUCT_STORE = "PRODUCT STORE",
+   Home = "Home",
+   Contact = "Contact",
+   AboutUs = "About us",
+   Cart = "Cart",
+   Logout = "Log out",
+   Name = "Welcome Test2022",
+   Categories = "CATEGORIES",
+   Phones = "Phones",
+   Laptops = "Laptops",
+   Monitors = "Monitors",
+   Alt = "alt",
+   FirstSlide = "First slide",
+   SecondSlide = "Second slide",
+   ThirdSlide = "Third slide",
 
 };
 export  enum DataNumber {
