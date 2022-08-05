@@ -1,8 +1,10 @@
 export const Credentials = {
-    Username:"Test2022",
-    Password:"Test2022",
-    NotUsername:"454545qq",
-    NotPassword:"454545qq",
+    CorrectUsername:"Test2022",
+    CorrectPassword:"Test2022",
+    NotCorrectUsername:"454545qq",
+    NotCorrectPassword:"454545qq",
+    EmptyUsername:'',
+    EmptyPassword:''
 }
 
 export const VerificationText = {
