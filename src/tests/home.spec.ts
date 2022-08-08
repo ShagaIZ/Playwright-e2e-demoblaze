@@ -1,283 +1,245 @@
 import { expect } from '@playwright/test';
-import { DataString, Credentials, DataNumber } from '../data/home';
+import { Headers, Categories } from '../data/home';
+import { Credentials} from '../data/login';
 import {test} from '../fixtures/home';
-import { HomePage } from '../pages/home';
 
 
 test.beforeEach(async({homePage})=>{
-  await homePage.openDemoblaze();
-  await homePage.clickLoginInModal();
-  await homePage.typeUsernameField(Credentials.Username);
-  await homePage.typePasswordField(Credentials.Password);
-  await homePage.clickLoginButton();
-});
+  await homePage.page.goto('https://www.demoblaze.com/index.html')
+  await homePage.loginInModal.click()
+  await homePage.typeUsernameField(Credentials.CorrectUsername)
+  await homePage.typePasswordField(Credentials.CorrectPassword)
+  await homePage.loginButton.click()
+})
 
 test.describe('Элементы страницы home',async()=>{
 
-  test.describe('Хедер страницы', async()=>{
-    
-    test('Логотип -> отображается корректно, расположен верхнем в правом углу', async ({homePage}) => {
-      await expect(homePage.titleOfHeader).toBeVisible();
-      await expect(homePage.titleOfHeader).toContainText(DataString.PRODUCT_STORE);
-      await expect(homePage.countOfElementsInTitleOfHeader).toHaveCount(DataNumber.NumberOfElementsInNavbarBrend);
-    });
+    test('Элементы хедера -> отображаются корректно', async ({homePage}) => {
+      //Логотип
+      await expect(homePage.titleOfHeader).toBeVisible()
+      await expect(homePage.titleOfHeader).toContainText(Headers.PRODUCT_STORE)
+      await expect(homePage.countOfElementsInTitleOfHeader).toHaveCount(1)
+      //Сайдбар
+      await expect(homePage.navbarHeaderElement).toBeVisible()
+      //Кнопка Home
+      await expect(homePage.homeButtonHeader).toBeVisible()
+      await expect(homePage.homeButtonHeader).toContainText(Headers.Home)
+      //Кнопка Contact
+      await expect(homePage.contactButtonHeader).toBeVisible()
+      await expect(homePage.contactButtonHeader).toContainText(Headers.Contact)
+      //Кнопка About us
+      await expect(homePage.aboutUsButtonHeader).toBeVisible()
+      await expect(homePage.aboutUsButtonHeader).toContainText(Headers.AboutUs)
+      //Кнопка Cart
+      await expect(homePage.cartButtonHeader).toBeVisible()
+      await expect(homePage.cartButtonHeader).toContainText(Headers.Cart)
+      //Кнопка Log Out
+      await expect(homePage.logoutButtonHeader).toBeVisible()
+      await expect(homePage.logoutButtonHeader).toContainText(Headers.Logout)
+      //Текущий сотрудник
+      await expect(homePage.nameUserButtonHeader).toBeVisible()
+      await expect(homePage.nameUserButtonHeader).toContainText(Headers.Name)
+  })
 
-    test('Сайдбар -> отображается корректно, расположен по центру в хедере', async ({homePage}) => {
-      await expect(homePage.navbarHeaderElement).toBeVisible();
-    });
+    test('Элементы слайдера товаров -> отображается корректно', async ({homePage}) => {
+      //Слайдер товаров
+      await expect(homePage.sliderWindow).toBeVisible()
+      //Кнопка назад
+      await expect(homePage.sliderWindowPreviousButton).toBeVisible()
+      //Кнопка вперёд
+      await expect(homePage.sliderWindowNextButton).toBeVisible()
+      //Кнопка первый слайдер
+      await expect(homePage.firstButtonInSliderWindow).toBeVisible()
+      //Кнопка второй слайдер
+      await expect(homePage.secondButtonInSliderWindow).toBeVisible()
+      //Кнопка третий слайдер
+      await expect(homePage.thirdButtonInSliderWindow).toBeVisible()
+    })
+ 
+    test(' Элементы блока категории -> отображается корректно', async ({homePage}) => {
+      //Тайтл категории
+      await expect(homePage.categoriesTitle).toBeVisible()
+      await expect(homePage.categoriesTitle).toContainText(Categories.Categories)
+      //Категория Phones
+      await expect(homePage.categoryPhones).toBeVisible()
+      await expect(homePage.categoryPhones).toContainText(Categories.Phones)
+      //Категория Laptops
+      await expect(homePage.categoryLaptops).toBeVisible()
+      await expect(homePage.categoryLaptops).toContainText(Categories.Laptops)
+      //Категория Monitors
+      await expect(homePage.categoryMonitors).toBeVisible()
+      await expect(homePage.categoryMonitors).toContainText(Categories.Monitors)
+  })
+})
 
-    test('Кнопка Home  -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.homeButtonHeader).toBeVisible();
-      await expect(homePage.homeButtonHeader).toContainText(DataString.Home);
-    });
-
-    test('Кнопка Contact  -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.contactButtonHeader).toBeVisible();
-      await expect(homePage.contactButtonHeader).toContainText(DataString.Contact);
-    });
-
-    test('Кнопка About us  -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.aboutUsButtonHeader).toBeVisible();
-      await expect(homePage.aboutUsButtonHeader).toContainText(DataString.AboutUs);
-    });
-
-    test('Кнопка Cart  -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.cartButtonHeader).toBeVisible();
-      await expect(homePage.cartButtonHeader).toContainText(DataString.Cart);
-    });
-
-    test('Кнопка Log Out  -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.logoutButtonHeader).toBeVisible();
-      await expect(homePage.logoutButtonHeader).toContainText(DataString.Logout);
-    });
-
-    test('Кнопка "currenUser"  -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.nameUserButtonHeader).toBeVisible();
-      await expect(homePage.nameUserButtonHeader).toContainText(DataString.Name);
-    });
-  });
-
-  test.describe('Слайдер товаров', async()=>{
-
-    test('Слайдер товаров -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.sliderWindow).toBeVisible();
-    });  
-
-    test('Кнопка назад -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.sliderWindowPreviousButton).toBeVisible();
-    });  
-
-    test('Кнопка вперёд -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.sliderWindowNextButton).toBeVisible();
-    });
-    
-    test('Кнопка первый слайдер -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.firstButtonInSliderWindow).toBeVisible();
-    });  
-
-    test('Кнопка второй слайдер -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.secondButtonInSliderWindow).toBeVisible();
-    });
-
-    test('Кнопка третий слайдер -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.thirdButtonInSliderWindow).toBeVisible();
-    });
-  });
-  
-  test.describe('Категория', async()=>{
-
-    test('Тайтл категории -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.categoriesTitle).toBeVisible();
-      await expect(homePage.categoriesTitle).toContainText(DataString.Categories);
-    });
-
-    test('Категория Phones -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.categoryPhones).toBeVisible();
-      await expect(homePage.categoryPhones).toContainText(DataString.Phones);
-    });
-
-    test('Категория Laptops -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.categoryLaptops).toBeVisible();
-      await expect(homePage.categoryLaptops).toContainText(DataString.Laptops);
-    });
-
-    test('Категория Monitors -> отображается корректно', async ({homePage}) => {
-      await expect(homePage.categoryMonitors).toBeVisible();
-      await expect(homePage.categoryMonitors).toContainText(DataString.Monitors);
-    }); 
-  });
-});
 test.describe('Действия слайдером', async ()=>{
 
   test('Слайд по умолчанию -> отображается первый слайд', async ({homePage})=>{
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.FirstSlide);
-  });
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.FirstSlide)
+  })
 
   test('Отображается первый слайд, нажать на следующую стрелку -> отображается второй слайд', async ({homePage})=>{
-    await homePage.clickSliderWindowNextButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.SecondSlide);
-  });
+    await homePage.clickSliderWindowNextButton()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.SecondSlide)
+  })
 
   test('Отображается первый слайд, нажать на предыдущую стрелку -> отображается третий слайд', async ({homePage})=>{
-    await homePage.clickSliderWindowPreviousButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.ThirdSlide);
-  });
+    await homePage.clickSliderWindowPreviousButton()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.ThirdSlide)
+  })
 
   test('Отображается второй слайд, нажать на следующую стрелку -> отображается третий слайд', async ({homePage})=>{
-    await homePage.clickSliderWindowNextButton();
-    await homePage.clickSliderWindowNextButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.ThirdSlide);
-  });
-
+    await homePage.clickTwiceSliderWindowNextButton()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.ThirdSlide)
+  })
+  
   test('Отображается второй слайд, нажать на предыдущую стрелку -> отображается первый слайд', async ({homePage})=>{
-    await homePage.clickSliderWindowNextButton();
-    await homePage.clickSliderWindowPreviousButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.FirstSlide);
-  });
+    await homePage.clickSliderWindowNextButton()
+    await homePage.clickSliderWindowPreviousButton()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.FirstSlide)
+  })
 
   test('Отображается третий слайд, нажать на следующую стрелку -> отображается первый слайд', async ({homePage})=>{
-    await homePage.clickSliderWindowNextButton();
-    await homePage.clickSliderWindowNextButton();
-    await homePage.clickSliderWindowNextButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.FirstSlide);
-  });
+    await homePage.clickTwiceSliderWindowNextButton()
+    await homePage.clickSliderWindowNextButton()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.FirstSlide)
+  })
 
   test('Отображается третий слайд, нажать на предыдущую стрелку -> отображается второй слайд', async ({homePage})=>{
-    await homePage.clickSliderWindowNextButton();
-    await homePage.clickSliderWindowNextButton();
-    await homePage.clickSliderWindowPreviousButton();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.SecondSlide);
-  });
+    await homePage.clickTwiceSliderWindowNextButton()
+    await homePage.clickSliderWindowPreviousButton()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.SecondSlide)
+  })
 
   test('Отображается первый слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ({homePage})=>{
-    await homePage.clickOnSecondButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.SecondSlide);
-  });
+    await homePage.clickOnSecondButtonInSliderWindow()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.SecondSlide)
+  })
 
   test('Отображается первый слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ({homePage})=>{
-    await homePage.clickOnThirdButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.ThirdSlide);
-  });
+    await homePage.clickOnThirdButtonInSliderWindow()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.ThirdSlide)
+  })
 
   test('Отображается второй слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ({homePage})=>{
-    await homePage.clickOnSecondButtonInSliderWindow();
-    await homePage.clickOnThirdButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.ThirdSlide);
-  });
+    await homePage.clickOnSecondButtonInSliderWindow()
+    await homePage.clickOnThirdButtonInSliderWindow()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.ThirdSlide)
+  })
 
   test('Отображается второй слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ({homePage})=>{
-    await homePage.clickOnSecondButtonInSliderWindow();
-    await homePage.clickOnFirstButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.FirstSlide);
-  });
+    await homePage.clickOnSecondButtonInSliderWindow()
+    await homePage.clickOnFirstButtonInSliderWindow()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.FirstSlide)
+  })
 
   test('Отображается третий слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ({homePage})=>{
-    await homePage.clickOnThirdButtonInSliderWindow();
-    await homePage.clickOnFirstButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.FirstSlide);
-  });
+    await homePage.clickOnThirdButtonInSliderWindow()
+    await homePage.clickOnFirstButtonInSliderWindow()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.FirstSlide)
+  })
 
   test('Отображается третий слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ({homePage})=>{
-    await homePage.clickOnThirdButtonInSliderWindow();
-    await homePage.clickOnSecondButtonInSliderWindow();
-    await expect(homePage.activenessOfSlideImg).toHaveAttribute(DataString.Alt,DataString.SecondSlide);
-  });
+    await homePage.clickOnThirdButtonInSliderWindow()
+    await homePage.clickOnSecondButtonInSliderWindow()
+    await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.SecondSlide)
+  })
 })
 
 test.describe('Пагинация', async()=>{
 
   test('По умолчанию -> отображается 9 позиций первой страницы', async ({homePage})=>{
-    await expect(homePage.numberOfItems).toHaveCount(9);
-    await expect(homePage.samsungGalaxySixItem).toBeVisible();
-    await expect(homePage.nokiaLumiaItem).toBeVisible();
-    await expect(homePage.nexusSixItem).toBeVisible();
-    await expect(homePage.samsungGalaxySevenItem).toBeVisible();
-    await expect(homePage.iphoneSixItem).toBeVisible();
-    await expect(homePage.sonyXperiazFiveItem).toBeVisible();
-    await expect(homePage.htcOnemNineItem).toBeVisible();
-    await expect(homePage.sonyVaioiFiveItem).toBeVisible();
-    await expect(homePage.sonyVaioiSevenItem).toBeVisible();
-  });
+    await expect(homePage.numberOfItems).toHaveCount(9)
+    await expect(homePage.samsungGalaxySixItem).toBeVisible()
+    await expect(homePage.nokiaLumiaItem).toBeVisible()
+    await expect(homePage.nexusSixItem).toBeVisible()
+    await expect(homePage.samsungGalaxySevenItem).toBeVisible()
+    await expect(homePage.iphoneSixItem).toBeVisible()
+    await expect(homePage.sonyXperiazFiveItem).toBeVisible()
+    await expect(homePage.htcOnemNineItem).toBeVisible()
+    await expect(homePage.sonyVaioiFiveItem).toBeVisible()
+    await expect(homePage.sonyVaioiSevenItem).toBeVisible()
+  })
 
   test('Нажать на кнопку пред.страница, первая страница по умолчанию -> остаёмся на первой странице, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ({homePage})=>{
-    await homePage.clickPreviousButtonOfPagination();
-    await expect(homePage.numberOfItems).toHaveCount(9);
-    await expect(homePage.nokiaLumiaItem).toBeVisible();
-    await expect(homePage.nexusSixItem).toBeVisible();
-    await expect(homePage.samsungGalaxySevenItem).toBeVisible();
-    await expect(homePage.iphoneSixItem).toBeVisible();
-    await expect(homePage.sonyXperiazFiveItem).toBeVisible();
-    await expect(homePage.htcOnemNineItem).toBeVisible();
-    await expect(homePage.sonyVaioiFiveItem).toBeVisible();
-    await expect(homePage.sonyVaioiSevenItem).toBeVisible();
-    await expect(homePage.appleMonitorItem).toBeVisible();
+    await homePage.clickPreviousButtonOfPagination()
+    await expect(homePage.numberOfItems).toHaveCount(9)
+    await expect(homePage.nokiaLumiaItem).toBeVisible()
+    await expect(homePage.nexusSixItem).toBeVisible()
+    await expect(homePage.samsungGalaxySevenItem).toBeVisible()
+    await expect(homePage.iphoneSixItem).toBeVisible()
+    await expect(homePage.sonyXperiazFiveItem).toBeVisible()
+    await expect(homePage.htcOnemNineItem).toBeVisible()
+    await expect(homePage.sonyVaioiFiveItem).toBeVisible()
+    await expect(homePage.sonyVaioiSevenItem).toBeVisible()
+    await expect(homePage.appleMonitorItem).toBeVisible()
   });
 
   test('Перейти на последнюю страницу -> осуществляется переход на последнюю страницу, отображается 6 позиций', async ({homePage})=>{
-    await homePage.clickNextButtonOfPagination();
-    await expect(homePage.numberOfItems).toHaveCount(6);
-    await expect(homePage.appleMonitorItem).toBeVisible();
-    await expect(homePage.macBookAirItem).toBeVisible();
-    await expect(homePage.delliSevenItem).toBeVisible();
-    await expect(homePage.dellInchItem).toBeVisible();
-    await expect(homePage.asusFullHDItem).toBeVisible();
-    await expect(homePage.macBookProItem).toBeVisible();
-  });
+    await homePage.clickNextButtonOfPagination()
+    await expect(homePage.numberOfItems).toHaveCount(6)
+    await expect(homePage.appleMonitorItem).toBeVisible()
+    await expect(homePage.macBookAirItem).toBeVisible()
+    await expect(homePage.delliSevenItem).toBeVisible()
+    await expect(homePage.dellInchItem).toBeVisible()
+    await expect(homePage.asusFullHDItem).toBeVisible()
+    await expect(homePage.macBookProItem).toBeVisible()
+  })
 
   test('Перейти на первую страницу из последней странице -> осуществляется переход на первую страницу, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ({homePage})=>{
-    await homePage.clickNextAfterPreviousButtonOfPagination();
-    await expect(homePage.numberOfItems).toHaveCount(9);
-    await expect(homePage.nokiaLumiaItem).toBeVisible();
-    await expect(homePage.nexusSixItem).toBeVisible();
-    await expect(homePage.samsungGalaxySevenItem).toBeVisible();
-    await expect(homePage.iphoneSixItem).toBeVisible();
-    await expect(homePage.sonyXperiazFiveItem).toBeVisible();
-    await expect(homePage.htcOnemNineItem).toBeVisible();
-    await expect(homePage.sonyVaioiFiveItem).toBeVisible();
-    await expect(homePage.sonyVaioiSevenItem).toBeVisible();
-    await expect(homePage.appleMonitorItem).toBeVisible();
+    await homePage.clickNextAfterPreviousButtonOfPagination()
+    await expect(homePage.numberOfItems).toHaveCount(9)
+    await expect(homePage.nokiaLumiaItem).toBeVisible()
+    await expect(homePage.nexusSixItem).toBeVisible()
+    await expect(homePage.samsungGalaxySevenItem).toBeVisible()
+    await expect(homePage.iphoneSixItem).toBeVisible()
+    await expect(homePage.sonyXperiazFiveItem).toBeVisible()
+    await expect(homePage.htcOnemNineItem).toBeVisible()
+    await expect(homePage.sonyVaioiFiveItem).toBeVisible()
+    await expect(homePage.sonyVaioiSevenItem).toBeVisible()
+    await expect(homePage.appleMonitorItem).toBeVisible()
   });
 
   test('Перейти на последнюю страницу после перехода из последней в первую -> осуществляется переход на последнюю страницу, отображается 5 позиций, apple monitor--не отображается', async ({homePage})=>{
-    await homePage.clickNextAfterPreviousThenNextButtonOfPagination();
-    await expect(homePage.numberOfItems).toHaveCount(5);
-    await expect(homePage.macBookAirItem).toBeVisible();
-    await expect(homePage.delliSevenItem).toBeVisible();
-    await expect(homePage.dellInchItem).toBeVisible();
-    await expect(homePage.asusFullHDItem).toBeVisible();
-    await expect(homePage.macBookProItem).toBeVisible();
-  });
-});
+    await homePage.clickNextAfterPreviousThenNextButtonOfPagination()
+    await expect(homePage.numberOfItems).toHaveCount(5)
+    await expect(homePage.macBookAirItem).toBeVisible()
+    await expect(homePage.delliSevenItem).toBeVisible()
+    await expect(homePage.dellInchItem).toBeVisible()
+    await expect(homePage.asusFullHDItem).toBeVisible()
+    await expect(homePage.macBookProItem).toBeVisible()
+  })
+})
 
 test.describe('Сортировка по категориям', async()=>{
 
   test('Нажать на Phones -> позиции сортируется по категории Phones', async ({homePage})=>{
-    await homePage.clickOnCategoryPhones();
-    await expect(homePage.numberOfItems).toHaveCount(7);
-    await expect(homePage.samsungGalaxySixItem).toBeVisible();
-    await expect(homePage.nokiaLumiaItem).toBeVisible();
-    await expect(homePage.nexusSixItem).toBeVisible();
-    await expect(homePage.samsungGalaxySevenItem).toBeVisible();
-    await expect(homePage.iphoneSixItem).toBeVisible();
-    await expect(homePage.sonyXperiazFiveItem).toBeVisible();
-    await expect(homePage.htcOnemNineItem).toBeVisible();
-  });
+    await homePage.categoryPhones.click()
+    await expect(homePage.numberOfItems).toHaveCount(7)
+    await expect(homePage.samsungGalaxySixItem).toBeVisible()
+    await expect(homePage.nokiaLumiaItem).toBeVisible()
+    await expect(homePage.nexusSixItem).toBeVisible()
+    await expect(homePage.samsungGalaxySevenItem).toBeVisible()
+    await expect(homePage.iphoneSixItem).toBeVisible()
+    await expect(homePage.sonyXperiazFiveItem).toBeVisible()
+    await expect(homePage.htcOnemNineItem).toBeVisible()
+  })
 
 test('Нажать на Laptops -> позиции сортируется по категории Laptops', async ({homePage})=>{
-  await homePage.clickOnCategoryLaptops();
-  await expect(homePage.numberOfItems).toHaveCount(6);
-  await expect(homePage.sonyVaioiFiveItem).toBeVisible();
-  await expect(homePage.sonyVaioiSevenItem).toBeVisible();
-  await expect(homePage.macBookAirItem).toBeVisible();
-  await expect(homePage.delliSevenItem).toBeVisible();
-  await expect(homePage.dellInchItem).toBeVisible();
-  await expect(homePage.macBookProItem).toBeVisible();
-  });
+  await homePage.categoryLaptops.click()
+  await expect(homePage.numberOfItems).toHaveCount(6)
+  await expect(homePage.sonyVaioiFiveItem).toBeVisible()
+  await expect(homePage.sonyVaioiSevenItem).toBeVisible()
+  await expect(homePage.macBookAirItem).toBeVisible()
+  await expect(homePage.delliSevenItem).toBeVisible()
+  await expect(homePage.dellInchItem).toBeVisible()
+  await expect(homePage.macBookProItem).toBeVisible()
+  })
 
 test('Нажать на Monitors -> позиции сортируется по категории Monitors', async ({homePage})=>{
-  await homePage.clickOnCategoryMonitors();
-  await expect(homePage.numberOfItems).toHaveCount(2);
-  await expect(homePage.appleMonitorItem).toBeVisible();
-  await expect(homePage.asusFullHDItem).toBeVisible();
-  });
-});
+  await homePage.categoryMonitors.click()
+  await expect(homePage.numberOfItems).toHaveCount(2)
+  await expect(homePage.appleMonitorItem).toBeVisible()
+  await expect(homePage.asusFullHDItem).toBeVisible()
+  })
+})
