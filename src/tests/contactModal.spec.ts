@@ -1,12 +1,12 @@
 import { test } from "../fixtures/contactModal";
 import { expect } from '@playwright/test';
 import {DataString} from '../data/contactModal'
+import {  Credentials } from '../data/login';
 
 
 test.beforeEach(async({contactModal})=>{
-    await contactModal.page.waitForLoadState('domcontentloaded')
+    await contactModal.openContactModal(Credentials.CorrectUsername,Credentials.CorrectPassword);
 })
-
 test.describe('Общие проверки', async()=>{
 
     test('Нажать на Contact -> открывается модальное окно контактов', async({contactModal})=>{
@@ -15,8 +15,7 @@ test.describe('Общие проверки', async()=>{
 
     test('Нажать на кнопку Send Mesage, поля не заполнены ->  модальное окно контактов закрывается, сообщение отправлено', async({contactModal})=>{
         await contactModal.clicksendMessageButton();
-        await contactModal.page.waitForLoadState('domcontentloaded')
-        await contactModal.page.waitForTimeout(1000)
+        await contactModal.loadPage()
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 
@@ -25,22 +24,19 @@ test.describe('Общие проверки', async()=>{
         await contactModal.fillnameField(DataString.Name) ;
         await contactModal.fillmessageField(DataString.Message);
         await contactModal.clicksendMessageButton();
-        await contactModal.page.waitForLoadState('domcontentloaded')
-        await contactModal.page.waitForTimeout(1000)
+        await contactModal.loadPage()
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 
     test('Нажать на кнопку крестиk ->  модальное окно контактов закрывается', async({contactModal})=>{
         await contactModal.clickCrossButton();
-        await contactModal.page.waitForLoadState('domcontentloaded')
-        await contactModal.page.waitForTimeout(1000)
+        await contactModal.loadPage()
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 
      test('Нажать на кнопку Close->  модальное окно контактов закрывается', async({contactModal})=>{
         await contactModal.clickCloseButton();
-        await contactModal.page.waitForLoadState('domcontentloaded')
-        await contactModal.page.waitForTimeout(1000)
+        await contactModal.loadPage()
         await expect(contactModal.modalVisibile).not.toBeVisible();
      });
 });
