@@ -52,7 +52,7 @@ test.describe('Общие проверки',async()=>{
   })
 
   test('Ввести валидный логин и невалидный пароль, нажать на кнопку "Log in" -> пользователь не залогинен, ошибка авторизации', async ({loginPage}) => {
-    await loginPage.typeAndLogin(Credentials.CorrectUsername,Credentials.CorrectPassword)
+    await loginPage.typeAndLogin(Credentials.CorrectUsername,Credentials.NotCorrectPassword)
     await loginPage.page.waitForTimeout(1000)
     await loginPage.validationNotVisibilityUserName(VerificationText.Name)
     await loginPage.validationDialog(ErrorsText.WrongPassword)

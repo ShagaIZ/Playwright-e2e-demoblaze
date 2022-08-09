@@ -41,6 +41,7 @@ export class ContactModal{
         await this.loginUsernameField.fill(Username);
         await this.loginPasswordField.fill(Password);
         await this.loginButton.click();
+        await this.page.waitForNavigation()
         await this.contactButtonHeader.click()
     };
 
@@ -65,4 +66,10 @@ export class ContactModal{
     async fillmessageField(value:string){
         await this.messageField.fill(value);
     };
+
+    async loadPage():Promise<void>{
+        await this.page.waitForLoadState('load')
+        await this.page.waitForLoadState('domcontentloaded')
+        await this.page.waitForLoadState('networkidle')
+    }
 };
