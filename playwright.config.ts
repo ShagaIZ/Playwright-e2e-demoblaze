@@ -5,7 +5,6 @@ import { devices } from '@playwright/test';
 const config: PlaywrightTestConfig = {
   testDir: './src/tests',
   fullyParallel: true,
-  retries: 1,
   workers: 4,
   timeout: 50 * 1000,
   expect: { 
