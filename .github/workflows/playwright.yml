@@ -6,6 +6,7 @@ on:
     branches: [ main, master ]
   schedule:
     - cron: '30 08 * * *'
+    - timezone: 'Asia/Yekaterinburg'
 jobs:
   run_test:
     timeout-minutes: 60
