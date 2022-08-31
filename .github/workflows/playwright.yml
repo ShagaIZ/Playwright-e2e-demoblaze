@@ -1,23 +1,21 @@
-- name: CI
-      on:
-        push:
-          branches: [main, master]
-        pull_request:
-          branches: [main, master]
-        schedule:
-          - cron: '30 08 * * *'
-- jobs:
+name: CI
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+  schedule:
+    cron: '30 08 * * *'
+jobs:
   container-test-job:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.25.0-focal
-      options: --cpus 1
     steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-node@v3
-      with:
-      node-version: '16'
-    - name: Install dependencies
-      run: npm ci
-    - name: Run your tests
-      run: npx playwright test
+      - uses: actions/setup-node@v3
+        with:
+        node-version: '16'
+      - name: Install dependencies
+        run: npm ci
+      - name: Run your tests
+        run: npx playwright test
