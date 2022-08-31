@@ -5,7 +5,7 @@ on:
   pull_request:
     branches: [main, master]
   schedule:
-    cron: '30 08 * * *'
+    - cron: '30 08 * * *'
 jobs:
   container-test-job:
     runs-on: ubuntu-latest
