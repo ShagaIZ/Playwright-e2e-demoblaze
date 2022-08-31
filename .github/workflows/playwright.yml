@@ -8,7 +8,7 @@ on:
     - cron: '30 08 * * *'
 jobs:
   container-test-job:
-    runs-on: ubuntu-latest
+    runs-on: windows-2019
     container:
       image: mcr.microsoft.com/playwright:v1.25.0-focal
     steps:
