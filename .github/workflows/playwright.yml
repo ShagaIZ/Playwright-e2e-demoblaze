@@ -1,12 +1,12 @@
-name: CI
-on:
-   push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
-  schedule:
-    - cron: '30 08 * * *'
-jobs:
+- name: CI
+      on:
+        push:
+          branches: [main, master]
+        pull_request:
+          branches: [main, master]
+        schedule:
+          - cron: '30 08 * * *'
+- jobs:
   container-test-job:
     runs-on: ubuntu-latest
     container:
