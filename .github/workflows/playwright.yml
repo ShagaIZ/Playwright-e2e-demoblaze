@@ -10,9 +10,9 @@ jobs:
   playwright:
     name: 'Tests for Demoblaxe'
     runs-on: ubuntu-latest
-    container:
+steps:
+  container:
       image: mcr.microsoft.com/playwright:v1.25.0-focal
-  steps:
     - uses: actions/checkout@v3
     - uses: actions/setup-node@v3
       with:
