@@ -17,7 +17,13 @@ jobs:
          node-version: '16'
       - name: Install dependencies
         run: |
-            npm i
+          if [ -e yarn.lock ]; then
+          yarn install --frozen-lockfile
+          elif [ -e package-lock.json ]; then
+          npm ci
+          else
+          npm i
+          fi
       - name: Install Playwright Browsers
         run: npx playwright install chromium --with-deps
       - name: Run your tests
