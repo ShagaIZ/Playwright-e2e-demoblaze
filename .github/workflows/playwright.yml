@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '15 12 * * *'
 jobs:
-  container-test-job:
+  container-autotest-job:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.25.0-focal
@@ -16,7 +16,7 @@ jobs:
          node-version: '16'
       - name: Install dependencies
         run: npm ci
-      - name: Install Playwright
+      - name: Install Playwright Browsers
         run: npx playwright install 
       - name: Run tests
         run: npx playwright test
