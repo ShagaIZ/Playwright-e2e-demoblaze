@@ -1,11 +1,7 @@
-name: CI
+name: Playwright Test
 on:
-  push:
-    branches: [main, master]
-  pull_request:
-    branches: [main, master]
   schedule:
-    - cron: '15 10 * * *'
+    - cron: '15 12 * * *'
 jobs:
   container-test-job:
     runs-on: ubuntu-latest
