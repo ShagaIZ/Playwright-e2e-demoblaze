@@ -3,7 +3,7 @@ on:
   push:
     branches: [master]
   schedule:
-    - cron: '15 12 * * *'
+    - cron: '15 12 * * 1'
 jobs:
   container-autotest-job:
     runs-on: ubuntu-latest

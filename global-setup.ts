@@ -11,7 +11,7 @@ const globalSetup = async (): Promise<void> => {
   await page.fill('[id="loginpassword"]', Credentials.CorrectPassword)
   await page.click('[onclick="logIn()"]')
   await page.waitForNavigation()
-  await page.context().storageState({ path: 'auth.json' })
+  await page.context().storageState({ path: 'session/auth.json' })
   await browser.close()
 }
 
