@@ -28,15 +28,6 @@ export class ContactModal extends LoginPage {
         this.sendMessageButton = page.locator('#exampleModal >> text=Send message')
          
     }
-    async openContactModal(Username:string,Password:string){
-        await this.page.goto('https://www.demoblaze.com/index.html')
-        await this.loginInModal.click()
-        await this.loginUsernameField.fill(Username)
-        await this.loginPasswordField.fill(Password)
-        await this.loginButton.click()
-        await this.page.waitForNavigation()
-        await this.contactButtonHeader.click()
-    }
 
     async loadPage():Promise<void>{
         await this.page.waitForLoadState('load')

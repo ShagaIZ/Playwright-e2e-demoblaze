@@ -11,7 +11,8 @@ test.describe('Общие проверки', async()=>{
     let contactModal:ContactModal
     test.beforeEach(async({page})=>{
         contactModal = new ContactModal(page)
-        await contactModal.openContactModal(Credentials.CorrectUsername,Credentials.CorrectPassword)
+        await contactModal.page.goto('https://www.demoblaze.com/index.html')
+        await contactModal.contactButtonHeader.click()
     })
 
     test('Элементы модального окна -> отображаются корректно', async()=>{

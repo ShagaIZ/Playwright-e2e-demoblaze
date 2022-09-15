@@ -1,20 +1,20 @@
-import { expect } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { Headers, Categories } from '../data/home';
 import { Credentials} from '../data/login';
-import {test} from '../fixtures/home';
+import { HomePage } from '../pages/home';
 
 
-test.beforeEach(async({homePage})=>{
+
+let homePage:HomePage
+
+test.beforeEach(async({page})=>{
+  homePage = new HomePage(page)
   await homePage.page.goto('https://www.demoblaze.com/index.html')
-  await homePage.loginInModal.click()
-  await homePage.typeUsernameField(Credentials.CorrectUsername)
-  await homePage.typePasswordField(Credentials.CorrectPassword)
-  await homePage.loginButton.click()
 })
 
 test.describe('Элементы страницы home',async()=>{
 
-    test('Элементы хедера -> отображаются корректно', async ({homePage}) => {
+    test('Элементы хедера -> отображаются корректно', async () => {
       //Логотип
       await expect(homePage.titleOfHeader).toBeVisible()
       await expect(homePage.titleOfHeader).toContainText(Headers.PRODUCT_STORE)
@@ -41,7 +41,7 @@ test.describe('Элементы страницы home',async()=>{
       await expect(homePage.nameUserButtonHeader).toContainText(Headers.Name)
   })
 
-    test('Элементы слайдера товаров -> отображается корректно', async ({homePage}) => {
+    test('Элементы слайдера товаров -> отображается корректно', async () => {
       //Слайдер товаров
       await expect(homePage.sliderWindow).toBeVisible()
       //Кнопка назад
@@ -56,7 +56,7 @@ test.describe('Элементы страницы home',async()=>{
       await expect(homePage.thirdButtonInSliderWindow).toBeVisible()
     })
  
-    test(' Элементы блока категории -> отображается корректно', async ({homePage}) => {
+    test(' Элементы блока категории -> отображается корректно', async () => {
       //Тайтл категории
       await expect(homePage.categoriesTitle).toBeVisible()
       await expect(homePage.categoriesTitle).toContainText(Categories.Categories)
@@ -74,72 +74,72 @@ test.describe('Элементы страницы home',async()=>{
 
 test.describe('Действия слайдером', async ()=>{
 
-  test('Слайд по умолчанию -> отображается первый слайд', async ({homePage})=>{
+  test('Слайд по умолчанию -> отображается первый слайд', async ()=>{
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.FirstSlide)
   })
 
-  test('Отображается первый слайд, нажать на следующую стрелку -> отображается второй слайд', async ({homePage})=>{
+  test('Отображается первый слайд, нажать на следующую стрелку -> отображается второй слайд', async ()=>{
     await homePage.clickSliderWindowNextButton()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.SecondSlide)
   })
 
-  test('Отображается первый слайд, нажать на предыдущую стрелку -> отображается третий слайд', async ({homePage})=>{
+  test('Отображается первый слайд, нажать на предыдущую стрелку -> отображается третий слайд', async ()=>{
     await homePage.clickSliderWindowPreviousButton()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.ThirdSlide)
   })
 
-  test('Отображается второй слайд, нажать на следующую стрелку -> отображается третий слайд', async ({homePage})=>{
+  test('Отображается второй слайд, нажать на следующую стрелку -> отображается третий слайд', async ()=>{
     await homePage.clickTwiceSliderWindowNextButton()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.ThirdSlide)
   })
   
-  test('Отображается второй слайд, нажать на предыдущую стрелку -> отображается первый слайд', async ({homePage})=>{
+  test('Отображается второй слайд, нажать на предыдущую стрелку -> отображается первый слайд', async ()=>{
     await homePage.clickSliderWindowNextButton()
     await homePage.clickSliderWindowPreviousButton()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.FirstSlide)
   })
 
-  test('Отображается третий слайд, нажать на следующую стрелку -> отображается первый слайд', async ({homePage})=>{
+  test('Отображается третий слайд, нажать на следующую стрелку -> отображается первый слайд', async ()=>{
     await homePage.clickTwiceSliderWindowNextButton()
     await homePage.clickSliderWindowNextButton()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.FirstSlide)
   })
 
-  test('Отображается третий слайд, нажать на предыдущую стрелку -> отображается второй слайд', async ({homePage})=>{
+  test('Отображается третий слайд, нажать на предыдущую стрелку -> отображается второй слайд', async ()=>{
     await homePage.clickTwiceSliderWindowNextButton()
     await homePage.clickSliderWindowPreviousButton()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.SecondSlide)
   })
 
-  test('Отображается первый слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ({homePage})=>{
+  test('Отображается первый слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ()=>{
     await homePage.clickOnSecondButtonInSliderWindow()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.SecondSlide)
   })
 
-  test('Отображается первый слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ({homePage})=>{
+  test('Отображается первый слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ()=>{
     await homePage.clickOnThirdButtonInSliderWindow()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.ThirdSlide)
   })
 
-  test('Отображается второй слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ({homePage})=>{
+  test('Отображается второй слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async ()=>{
     await homePage.clickOnSecondButtonInSliderWindow()
     await homePage.clickOnThirdButtonInSliderWindow()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.ThirdSlide)
   })
 
-  test('Отображается второй слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ({homePage})=>{
+  test('Отображается второй слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ()=>{
     await homePage.clickOnSecondButtonInSliderWindow()
     await homePage.clickOnFirstButtonInSliderWindow()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.FirstSlide)
   })
 
-  test('Отображается третий слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ({homePage})=>{
+  test('Отображается третий слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async ()=>{
     await homePage.clickOnThirdButtonInSliderWindow()
     await homePage.clickOnFirstButtonInSliderWindow()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.FirstSlide)
   })
 
-  test('Отображается третий слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ({homePage})=>{
+  test('Отображается третий слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async ()=>{
     await homePage.clickOnThirdButtonInSliderWindow()
     await homePage.clickOnSecondButtonInSliderWindow()
     await expect(homePage.activenessOfSlideImg).toHaveAttribute(Categories.Alt,Categories.SecondSlide)
@@ -148,7 +148,7 @@ test.describe('Действия слайдером', async ()=>{
 
 test.describe('Пагинация', async()=>{
 
-  test('По умолчанию -> отображается 9 позиций первой страницы', async ({homePage})=>{
+  test('По умолчанию -> отображается 9 позиций первой страницы', async ()=>{
     await expect(homePage.numberOfItems).toHaveCount(9)
     await expect(homePage.samsungGalaxySixItem).toBeVisible()
     await expect(homePage.nokiaLumiaItem).toBeVisible()
@@ -161,7 +161,7 @@ test.describe('Пагинация', async()=>{
     await expect(homePage.sonyVaioiSevenItem).toBeVisible()
   })
 
-  test('Нажать на кнопку пред.страница, первая страница по умолчанию -> остаёмся на первой странице, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ({homePage})=>{
+  test('Нажать на кнопку пред.страница, первая страница по умолчанию -> остаёмся на первой странице, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ()=>{
     await homePage.clickPreviousButtonOfPagination()
     await expect(homePage.numberOfItems).toHaveCount(9)
     await expect(homePage.nokiaLumiaItem).toBeVisible()
@@ -175,7 +175,7 @@ test.describe('Пагинация', async()=>{
     await expect(homePage.appleMonitorItem).toBeVisible()
   });
 
-  test('Перейти на последнюю страницу -> осуществляется переход на последнюю страницу, отображается 6 позиций', async ({homePage})=>{
+  test('Перейти на последнюю страницу -> осуществляется переход на последнюю страницу, отображается 6 позиций', async ()=>{
     await homePage.clickNextButtonOfPagination()
     await expect(homePage.numberOfItems).toHaveCount(6)
     await expect(homePage.appleMonitorItem).toBeVisible()
@@ -186,7 +186,7 @@ test.describe('Пагинация', async()=>{
     await expect(homePage.macBookProItem).toBeVisible()
   })
 
-  test('Перейти на первую страницу из последней странице -> осуществляется переход на первую страницу, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ({homePage})=>{
+  test('Перейти на первую страницу из последней странице -> осуществляется переход на первую страницу, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async ()=>{
     await homePage.clickNextAfterPreviousButtonOfPagination()
     await expect(homePage.numberOfItems).toHaveCount(9)
     await expect(homePage.nokiaLumiaItem).toBeVisible()
@@ -200,7 +200,7 @@ test.describe('Пагинация', async()=>{
     await expect(homePage.appleMonitorItem).toBeVisible()
   });
 
-  test('Перейти на последнюю страницу после перехода из последней в первую -> осуществляется переход на последнюю страницу, отображается 5 позиций, apple monitor--не отображается', async ({homePage})=>{
+  test('Перейти на последнюю страницу после перехода из последней в первую -> осуществляется переход на последнюю страницу, отображается 5 позиций, apple monitor--не отображается', async ()=>{
     await homePage.clickNextAfterPreviousThenNextButtonOfPagination()
     await expect(homePage.numberOfItems).toHaveCount(5)
     await expect(homePage.macBookAirItem).toBeVisible()
@@ -213,7 +213,7 @@ test.describe('Пагинация', async()=>{
 
 test.describe('Сортировка по категориям', async()=>{
 
-  test('Нажать на Phones -> позиции сортируется по категории Phones', async ({homePage})=>{
+  test('Нажать на Phones -> позиции сортируется по категории Phones', async ()=>{
     await homePage.categoryPhones.click()
     await expect(homePage.numberOfItems).toHaveCount(7)
     await expect(homePage.samsungGalaxySixItem).toBeVisible()
@@ -225,7 +225,7 @@ test.describe('Сортировка по категориям', async()=>{
     await expect(homePage.htcOnemNineItem).toBeVisible()
   })
 
-test('Нажать на Laptops -> позиции сортируется по категории Laptops', async ({homePage})=>{
+test('Нажать на Laptops -> позиции сортируется по категории Laptops', async ()=>{
   await homePage.categoryLaptops.click()
   await expect(homePage.numberOfItems).toHaveCount(6)
   await expect(homePage.sonyVaioiFiveItem).toBeVisible()
@@ -236,7 +236,7 @@ test('Нажать на Laptops -> позиции сортируется по к
   await expect(homePage.macBookProItem).toBeVisible()
   })
 
-test('Нажать на Monitors -> позиции сортируется по категории Monitors', async ({homePage})=>{
+test('Нажать на Monitors -> позиции сортируется по категории Monitors', async ()=>{
   await homePage.categoryMonitors.click()
   await expect(homePage.numberOfItems).toHaveCount(2)
   await expect(homePage.appleMonitorItem).toBeVisible()

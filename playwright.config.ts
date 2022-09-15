@@ -12,10 +12,12 @@ const config: PlaywrightTestConfig = {
   },
  
   reporter: 'line',
+  globalSetup: require.resolve('./global-setup'),
 
   use: {
     headless: true,
     trace: 'on-first-retry',
+    storageState: 'auth.json',
   },
 
   projects: [
