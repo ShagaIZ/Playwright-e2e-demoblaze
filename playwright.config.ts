@@ -17,7 +17,7 @@ const config: PlaywrightTestConfig = {
   use: {
     headless: true,
     trace: 'on-first-retry',
-    storageState: 'auth.json',
+    storageState: 'session/auth.json',
   },
 
   projects: [
