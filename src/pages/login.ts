@@ -68,4 +68,10 @@ export class LoginPage {
     await this.page.keyboard.press('Control+A')
     await this.page.keyboard.press('Backspace')
   }
+
+  async loadPage():Promise<void>{
+    await this.page.waitForLoadState('load')
+    await this.page.waitForLoadState('domcontentloaded')
+    await this.page.waitForLoadState('networkidle')
+}
 }
