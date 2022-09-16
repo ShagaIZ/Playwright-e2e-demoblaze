@@ -37,13 +37,13 @@ test.describe('Общие проверки', async()=>{
     
     })
     test('Нажать на Contact -> открывается модальное окно контактов', async()=>{
-       await expect(contactModal.modalVisibile).toBeVisible()
+       await expect(contactModal.exampleModal).toHaveAttribute('class', 'modal fade')
     })
 
     test('Нажать на кнопку Send Mesage, поля не заполнены -> модальное окно контактов закрывается, сообщение отправлено', async()=>{
         await contactModal.sendMessageButton.click()
         await contactModal.loadPage()
-        await expect(contactModal.modalVisibile).not.toBeVisible()
+        await expect(contactModal.exampleModal).toHaveAttribute('class', 'modal fade')
      })
 
      test('Нажать на кнопку Send Mesage, поля заполнены -> модальное окно контактов закрывается, сообщение отправлено', async()=>{
@@ -52,19 +52,19 @@ test.describe('Общие проверки', async()=>{
         await contactModal.messageField.fill(DataString.Message)
         await contactModal.sendMessageButton.click()
         await contactModal.loadPage()
-        await expect(contactModal.modalVisibile).not.toBeVisible()
+        await expect(contactModal.exampleModal).toHaveAttribute('class', 'modal fade')
      })
 
     test('Нажать на кнопку крестик -> модальное окно контактов закрывается', async()=>{
         await contactModal.closeModalCross.click()
         await contactModal.loadPage()
-        await expect(contactModal.modalVisibile).not.toBeVisible()
+        await expect(contactModal.exampleModal).toHaveAttribute('class', 'modal fade')
      })
 
      test('Нажать на кнопку Close ->  модальное окно контактов закрывается', async()=>{
         await contactModal.closeModalButton.click()
         await contactModal.loadPage()
-        await expect(contactModal.modalVisibile).not.toBeVisible()
+        await expect(contactModal.exampleModal).toHaveAttribute('class', 'modal fade')
      })
 })
 
