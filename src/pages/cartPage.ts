@@ -11,6 +11,9 @@ export class CartPage extends HomePage {
     readonly moreInformation: Locator
     readonly addCart: Locator
     readonly imageSamsungGalaxySix: Locator
+    readonly imagesonyXperiaZFive: Locator
+    readonly imageMacBook: Locator
+
 
 
     constructor(page:Page){
@@ -19,8 +22,10 @@ export class CartPage extends HomePage {
         this.nameCart = page.locator('[class="name"]')
         this.price = page.locator('[class="price-container"]')
         this.moreInformation = page.locator('[id="more-information"]')
-        this.addCart = page.locator('[onclick="addToCart(1)"]')
+        this.addCart = page.locator('text="Add to cart"')
         this.imageSamsungGalaxySix = page.locator('[src="imgs/galaxy_s6.jpg"]')
+        this.imagesonyXperiaZFive = page.locator('[src="imgs/xperia_z5.jpg"]')
+        this.imageMacBook = page.locator('[src="imgs/macbook_air.jpg"]')
     }
 
     async checkCart(url:strAndReg, nameCartText:strAndReg, priceText: strAndReg, moreInformationText: strAndReg, locator: Locator){
@@ -32,7 +37,6 @@ export class CartPage extends HomePage {
         await expect(this.moreInformation).toBeVisible()
         await expect(this.moreInformation).toHaveText(moreInformationText)
         await expect(this.addCart).toBeVisible()
-        await expect(this.addCart).toHaveText('Add to cart')
         await expect(locator).toBeVisible()
     }
 }
