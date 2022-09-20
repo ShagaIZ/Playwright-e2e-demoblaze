@@ -1,39 +1,39 @@
 import {test, expect} from "@playwright/test"
-import { CartPage } from "../pages/cartPage"
+import { ItemPage } from "../pages/itemPage"
 import { Urls } from "../common/url"
-import {Titles, MoreInformation, Price} from '../data/cart'
+import {Titles, MoreInformation, Price} from '../data/item'
 
-let cartPage:CartPage
+let itemPage:ItemPage
 
 test.beforeEach(async({page})=>{
-    cartPage = new CartPage(page)
+    itemPage = new ItemPage(page)
     await page.goto('https://www.demoblaze.com/index.html')
 })
 
 test.describe('Старница по умолчанию', async()=>{
     test('Нажать на ссылку карточки Samsung Galaxy s6 -> открывается карточка Samsung Galaxy s6, данные корректны', async()=>{
-        await cartPage.samsungGalaxySixItem.click()
-        await cartPage.checkCart(Urls.samsungGalaxySix, Titles.samsungGalaxySix, Price.samsungGalaxySix, MoreInformation.samsungGalaxySix, cartPage.imageSamsungGalaxySix)
+        await itemPage.samsungGalaxySixItem.click()
+        await itemPage.checkItem(Urls.samsungGalaxySix, Titles.samsungGalaxySix, Price.samsungGalaxySix, MoreInformation.samsungGalaxySix, itemPage.imageSamsungGalaxySix)
     })
 
     test('Нажать на ссылку карточки Sony Xperia Z5 -> открывается карточкаSony Xperia Z5, данные корректны', async()=>{
-        await cartPage.sonyXperiazFiveItem.click()
-        await cartPage.checkCart(Urls.sonyXperiaZFive, Titles.sonyXperiaZFive, Price.sonyXperiaZFive, MoreInformation.sonyXperiaZFive, cartPage.imagesonyXperiaZFive)
+        await itemPage.sonyXperiazFiveItem.click()
+        await itemPage.checkItem(Urls.sonyXperiaZFive, Titles.sonyXperiaZFive, Price.sonyXperiaZFive, MoreInformation.sonyXperiaZFive, itemPage.imagesonyXperiaZFive)
     })
 })
 
 test.describe('Следующая страница', async()=>{
 
     test.beforeEach(async()=>{
-        await cartPage.clickNextButtonOfPagination()
+        await itemPage.clickNextButtonOfPagination()
     })
         test('Нажать на ссылку карточки Samsung Galaxy s6 -> открывается карточка Samsung Galaxy s6, данные корректны', async()=>{
-        await cartPage.macBookAirItem.click()
-        await cartPage.checkCart(Urls.macBookAir, Titles.macBookAir, Price.macBookAir, MoreInformation.macBookAir, cartPage.imageMacBook)
+        await itemPage.macBookAirItem.click()
+        await itemPage.checkItem(Urls.macBookAir, Titles.macBookAir, Price.macBookAir, MoreInformation.macBookAir, itemPage.imageMacBook)
     })
         
         test('Нажать на ссылку карточки Sony Xperia Z5 -> открывается карточкаSony Xperia Z5, данные корректны', async()=>{
-        await cartPage.macBookProItem.click()
-        await cartPage.checkCart(Urls.macBookPro, Titles.macBookPro, Price.macBookPro, MoreInformation.macBookPro, cartPage.imageMacBook)
+        await itemPage.macBookProItem.click()
+        await itemPage.checkItem(Urls.macBookPro, Titles.macBookPro, Price.macBookPro, MoreInformation.macBookPro, itemPage.imageMacBook)
     })
 })

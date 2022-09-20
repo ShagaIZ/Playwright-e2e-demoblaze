@@ -4,9 +4,9 @@ import { HomePage } from "./home"
 
 type strAndReg = string | RegExp
 
-export class CartPage extends HomePage {
+export class ItemPage extends HomePage {
     readonly page: Page
-    readonly nameCart:Locator
+    readonly nameItem:Locator
     readonly price: Locator
     readonly moreInformation: Locator
     readonly addCart: Locator
@@ -15,11 +15,10 @@ export class CartPage extends HomePage {
     readonly imageMacBook: Locator
 
 
-
     constructor(page:Page){
         super(page)
         this.page = page
-        this.nameCart = page.locator('[class="name"]')
+        this.nameItem = page.locator('[class="name"]')
         this.price = page.locator('[class="price-container"]')
         this.moreInformation = page.locator('[id="more-information"]')
         this.addCart = page.locator('text="Add to cart"')
@@ -28,10 +27,10 @@ export class CartPage extends HomePage {
         this.imageMacBook = page.locator('[src="imgs/macbook_air.jpg"]')
     }
 
-    async checkCart(url:strAndReg, nameCartText:strAndReg, priceText: strAndReg, moreInformationText: strAndReg, locator: Locator){
+    async checkItem(url:strAndReg, nameCartText:strAndReg, priceText: strAndReg, moreInformationText: strAndReg, locator: Locator){
         await expect(this.page).toHaveURL(url)
-        await expect(this.nameCart).toBeVisible()
-        await expect(this.nameCart).toHaveText(nameCartText)
+        await expect(this.nameItem).toBeVisible()
+        await expect(this.nameItem).toHaveText(nameCartText)
         await expect(this.price).toBeVisible()
         await expect(this.price).toHaveText(priceText)
         await expect(this.moreInformation).toBeVisible()
