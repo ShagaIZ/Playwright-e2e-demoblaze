@@ -1,10 +1,12 @@
 import {test, expect} from "@playwright/test"
 import { AboutData } from "../data/aboutModal"
-import { Credentials} from '../data/login'
 import { AboutModal } from "../pages/aboutModal"
 
 
+test.describe.configure({ mode: 'parallel' })
+
 let aboutModal: AboutModal
+
 test.beforeEach(async({page})=>{
     aboutModal = new AboutModal(page)
     await page.goto('https://www.demoblaze.com/index.html')

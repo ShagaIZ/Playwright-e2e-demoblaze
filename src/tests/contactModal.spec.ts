@@ -1,6 +1,5 @@
 import { expect,test } from '@playwright/test'
 import {DataString} from '../data/contactModal'
-import { Credentials} from '../data/login'
 import { ContactModal } from "../pages/contactModal"
 
 
@@ -8,8 +7,11 @@ import { ContactModal } from "../pages/contactModal"
 
 test.describe('Общие проверки', async()=>{
 
-    let contactModal:ContactModal
-    test.beforeEach(async({page})=>{
+   test.describe.configure({ mode: 'parallel' })
+
+   let contactModal:ContactModal
+   
+   test.beforeEach(async({page})=>{
         contactModal = new ContactModal(page)
         await contactModal.page.goto('https://www.demoblaze.com/index.html')
         await contactModal.contactButtonHeader.click()
