@@ -1,9 +1,9 @@
-import { expect, test } from '@playwright/test';
-import { Headers, Categories } from '../data/home';
-import { Credentials} from '../data/login';
-import { HomePage } from '../pages/home';
+import { expect, test } from '@playwright/test'
+import { Headers, Categories } from '../data/home'
+import { HomePage } from '../pages/home'
 
 
+test.describe.configure({ mode: 'parallel' }) 
 
 let homePage:HomePage
 

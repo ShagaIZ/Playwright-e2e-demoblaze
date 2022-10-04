@@ -3,6 +3,8 @@ import { ItemPage } from "../pages/itemPage"
 import { Urls } from "../common/url"
 import {Titles, MoreInformation, Price} from '../data/item'
 
+test.describe.configure({ mode: 'parallel' })
+
 let itemPage:ItemPage
 
 test.beforeEach(async({page})=>{
