@@ -20,8 +20,7 @@ export class CartPage extends ItemPage{
     constructor(page:Page){
         super(page)
         this.page = page
-        this.deleteItem = page.locator('text="Delete"')
-        this.countItems = page.locator('[id="tbodyid"] >> text=Delete')
+        this.deleteItem = page.locator('[id="tbodyid"] >> text="Delete"')
         this.products = page.locator('text="Products"')
         this.picture = page.locator('text="Pic"')
         this.title = page.locator('text="Title"')
@@ -67,5 +66,6 @@ export class CartPage extends ItemPage{
     async deleteItems(){
         await this.deleteItem.click()
         await this.page.waitForLoadState('networkidle')
+        await this.page.waitForTimeout(2000)
     }
 }
