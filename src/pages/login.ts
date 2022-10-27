@@ -38,10 +38,10 @@ export class LoginPage {
   }
 
   async validationDialog(ErrorsText:string){
-    this.page.on('dialog', async (dialog) => {
+    this.page.on('dialog',  async (dialog) => {
       expect(dialog.message()).toContain(ErrorsText)
       await dialog.accept()
-      })
+    })
   }
 
   async typeAndLogin(NotUsername:string,NotPassword:string){
