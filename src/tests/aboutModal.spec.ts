@@ -1,5 +1,5 @@
 import {test, expect} from "@playwright/test"
-import { AboutData } from "../data/appData"
+import { AboutData } from "../common/appData"
 import { AboutModal } from "../pages/aboutModal"
 
 

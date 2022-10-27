@@ -1,5 +1,5 @@
 import { expect,test } from '@playwright/test'
-import {DataString} from '../data/appData'
+import {DataString} from '../common/appData'
 import { ContactModal } from "../pages/contactModal"
 
 

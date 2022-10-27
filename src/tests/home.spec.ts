@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { Headers, Categories } from '../data/appData'
+import { Headers, Categories } from '../common/appData'
 import { HomePage } from '../pages/home'
 
 

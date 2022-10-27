@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { VerificationText,Credentials,ErrorsText } from '../data/appData';
+import { VerificationText,Credentials,ErrorsText } from '../common/appData';
 import { LoginPage } from '../pages/login';
 
 

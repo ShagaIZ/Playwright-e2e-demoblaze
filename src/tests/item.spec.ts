@@ -1,7 +1,7 @@
 import {test, expect} from "@playwright/test"
 import { ItemPage } from "../pages/itemPage"
 import { Urls } from "../common/url"
-import {Titles, MoreInformation, Price} from '../data/appData'
+import {Titles, MoreInformation, Price} from '../common/appData'
 
 test.describe.configure({ mode: 'parallel' })
 
