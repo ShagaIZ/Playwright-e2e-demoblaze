@@ -1,5 +1,5 @@
 import { chromium } from '@playwright/test'
-import { Credentials} from './src/data/appData'
+import { Credentials} from './src/common/appData'
 
 
 const globalSetup = async (): Promise<void> => {

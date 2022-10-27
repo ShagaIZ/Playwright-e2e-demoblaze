@@ -25,7 +25,9 @@ test.describe('Общие проверки модального окна About U
         await expect(aboutModal.videoModalLabel).toHaveText(AboutData.About_Us)
         await expect(aboutModal.closeModalCross).toBeVisible()
         await expect(aboutModal.videoBlock).toBeVisible()
-        await expect(aboutModal.closeModalButton).toBeVisible()        
+        await expect(aboutModal.closeModalButton).toBeVisible()  
+        await expect(aboutModal.closeModalButton).toHaveCSS('color','rgb(41, 43, 44)')
+        await expect(aboutModal.closeModalButton).toHaveCSS('background-color','rgb(255, 255, 255)')      
     })
 
     test('Нажать на кнопку крестик -> модальное окно контактов закрывается', async()=>{

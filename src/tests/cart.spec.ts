@@ -30,6 +30,8 @@ test.describe('Общие проверки страницы карточки', a
         await expect(cartPage.totalSamsungGalaxySix).toBeVisible()
         await expect(cartPage.orderModalButton).toBeVisible()
         await expect(cartPage.orderModalButton).toHaveText('Place Order')
+        await expect(cartPage.orderModalButton).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(cartPage.orderModalButton).toHaveCSS('background-color','rgb(92, 184, 92)')   
         await cartPage.deleteItems()
     })
 
@@ -44,6 +46,8 @@ test.describe('Общие проверки страницы карточки', a
         await expect(cartPage.itemsVisibility).toBeEmpty()
         await expect(cartPage.orderModalButton).toBeVisible()
         await expect(cartPage.orderModalButton).toHaveText('Place Order')
+        await expect(cartPage.orderModalButton).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(cartPage.orderModalButton).toHaveCSS('background-color','rgb(92, 184, 92)') 
         
     })
 })

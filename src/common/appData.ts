@@ -47,6 +47,11 @@ export const Headers = {
     SecondSlide: "Second slide",
     ThirdSlide: "Third slide",
  }
+
+ export const Pagination = {
+    Previous:'Previous',
+    Next: 'Next',
+ }
  
 
  //Contact Modal

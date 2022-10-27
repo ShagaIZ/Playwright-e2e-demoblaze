@@ -36,6 +36,8 @@ export class ItemPage extends HomePage {
         await expect(this.moreInformation).toBeVisible()
         await expect(this.moreInformation).toHaveText(moreInformationText)
         await expect(this.addCart).toBeVisible()
+        await expect(this.addCart).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(this.addCart).toHaveCSS('background-color','rgb(92, 184, 92)') 
         await expect(locator).toBeVisible()
     }
 }

@@ -89,7 +89,11 @@ export class PlaceOrderModal extends CartPage {
         await expect(this.yearField).toBeVisible()
         await expect(this.yearField).toBeEditable()
         await expect(this.closeButton).toBeVisible()
+        await expect(this.closeButton).toHaveCSS('color','rgb(41, 43, 44)')
+        await expect(this.closeButton).toHaveCSS('background-color','rgb(255, 255, 255)') 
         await expect(this.purchaseButton).toBeVisible()
+        await expect(this.purchaseButton).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(this.purchaseButton).toHaveCSS('background-color','rgb(2, 117, 216)') 
     }
 
     

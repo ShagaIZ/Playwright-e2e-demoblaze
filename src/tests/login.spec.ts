@@ -31,7 +31,11 @@ test.describe('Общие проверки страницы login',async()=>{
       await expect(loginPage.loginPasswordField).toBeVisible()
       await expect(loginPage.loginPasswordField).toBeEditable()
       await expect(loginPage.closeModalButton).toBeVisible()
+      await expect(loginPage.closeModalButton).toHaveCSS('color','rgb(41, 43, 44)')
+      await expect(loginPage.closeModalButton).toHaveCSS('background-color','rgb(255, 255, 255)')
       await expect(loginPage.loginButton).toBeVisible()
+      await expect(loginPage.loginButton).toHaveCSS('color','rgb(255, 255, 255)')
+      await expect(loginPage.loginButton).toHaveCSS('background-color','rgb(2, 117, 216)')
   })
 
   test('Ввести валидный логин и пароль, нажать на кнопку "Log in" -> пользователь залогинен', async () => {

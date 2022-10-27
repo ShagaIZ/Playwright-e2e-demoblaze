@@ -37,7 +37,11 @@ test.describe('Общие проверки модального окна Contact
          await expect(contactModal.messageField).toBeEditable()
          await expect(contactModal.closeModalButton).toBeVisible()
          await expect(contactModal.closeModalButton).toBeVisible()
+         await expect(contactModal.closeModalButton).toHaveCSS('color','rgb(41, 43, 44)')
+         await expect(contactModal.closeModalButton).toHaveCSS('background-color','rgb(255, 255, 255)') 
          await expect(contactModal.sendMessageButton).toBeVisible()
+         await expect(contactModal.sendMessageButton).toHaveCSS('color','rgb(255, 255, 255)')
+         await expect(contactModal.sendMessageButton).toHaveCSS('background-color','rgb(2, 117, 216)')      
       })
 
       test('Нажать на кнопку Send Mesage, поля не заполнены -> модальное окно контактов закрывается, сообщение отправлено', async()=>{
