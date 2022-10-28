@@ -1,6 +1,7 @@
 import { expect,test } from '@playwright/test'
 import {DataString} from '../common/appData'
 import { ContactModal } from "../pages/contactModal"
+import {Urls} from "../common/url"
 
 
 
@@ -13,7 +14,7 @@ let contactModal:ContactModal
       
 test.beforeEach(async({page})=>{
    contactModal = new ContactModal(page)
-   await contactModal.page.goto('https://www.demoblaze.com/index.html')
+   await contactModal.page.goto(Urls.homePage)
    await contactModal.contactButtonHeader.click()
 })
 

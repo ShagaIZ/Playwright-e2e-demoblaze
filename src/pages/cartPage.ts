@@ -1,5 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test"
 import { ItemPage } from "./itemPage"
+import {Urls} from "../common/url"
 
 export class CartPage extends ItemPage{
     readonly page: Page
@@ -60,7 +61,7 @@ export class CartPage extends ItemPage{
     async addItem(){
         await this.addCart.click()
         await this.page.waitForLoadState('networkidle')
-        await this.page.goto('https://www.demoblaze.com/cart.html#')    
+        await this.page.goto(Urls.cartPage)    
     }
 
     async deleteItems(){

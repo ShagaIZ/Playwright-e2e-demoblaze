@@ -1,5 +1,6 @@
 import { Locator, Page } from '@playwright/test'
 import {HomePage } from './home'
+import {Urls} from "../common/url"
 
 
 export class AboutModal extends HomePage {
@@ -24,7 +25,7 @@ export class AboutModal extends HomePage {
     }
 
     async openAboutModal(Username:string,Password:string){
-        await this.page.goto('https://www.demoblaze.com/index.html')
+        await this.page.goto(Urls.homePage)
         await this.loginInModal.click()
         await this.loginUsernameField.fill(Username)
         await this.loginPasswordField.fill(Password)

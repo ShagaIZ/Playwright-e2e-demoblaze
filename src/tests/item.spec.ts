@@ -9,7 +9,7 @@ let itemPage:ItemPage
 
 test.beforeEach(async({page})=>{
     itemPage = new ItemPage(page)
-    await page.goto('https://www.demoblaze.com/index.html')
+    await page.goto(Urls.homePage)
 })
 
 test.describe('Старница по умолчанию', async()=>{

@@ -1,4 +1,5 @@
 import {test, expect} from '@playwright/test'
+import { Urls } from '../common/url'
 import {PlaceOrderModal} from '../pages/placeOrderModal'
 
 
@@ -16,7 +17,7 @@ test.beforeEach(async({page})=>{
 test.describe('Общие проверки модального окна Place Order', async()=>{
 
     test('Элементы модального окна с товаром -> модальное открывается, Total==цене продукта, поля пустые, кнопки "Close", "Purchase" и "Крестик" отображаются корректно', async()=>{
-        await placeOrderModal.page.goto('https://www.demoblaze.com/index.html')
+        await placeOrderModal.page.goto(Urls.homePage)
         await placeOrderModal.samsungGalaxySixItem.click()
         await placeOrderModal.addItem()
         await placeOrderModal.orderModalButton.click()
@@ -26,28 +27,28 @@ test.describe('Общие проверки модального окна Place O
     })
 
     test('Элементы модального окна без товара -> модальное открывается, Total==0, поля пустые, кнопки "Close", "Purchase" и "Крестик" отображаются корректно', async()=>{
-        await placeOrderModal.page.goto('https://www.demoblaze.com/cart.html#')
+        await placeOrderModal.page.goto(Urls.cartPage)
         await placeOrderModal.orderModalButton.click()
         await placeOrderModal.checkModal('Total:')
         await placeOrderModal.crossButton.click()     
     })
 
     test('Закрыть модальное окно с помощью кнопки Close, без товара -> модальное закрывается', async()=>{
-        await placeOrderModal.page.goto('https://www.demoblaze.com/cart.html#')
+        await placeOrderModal.page.goto(Urls.cartPage)
         await placeOrderModal.orderModalButton.click()
         await placeOrderModal.closeButton.click()
         await expect(placeOrderModal.orderModal).toHaveAttribute('class', 'modal fade')   
     })
 
     test('Нажать на кнопку Purchase, поля не заполнены, без товара -> модальное не закрывается', async()=>{
-        await placeOrderModal.page.goto('https://www.demoblaze.com/cart.html#')
+        await placeOrderModal.page.goto(Urls.cartPage)
         await placeOrderModal.orderModalButton.click()
         await placeOrderModal.purchaseButton.click()
         await expect(placeOrderModal.orderModal).not.toHaveAttribute('class', 'modal fade')   
     })
 
     test('Нажать на кнопку Purchase, поля заполнены с Name до City, с товаром -> модальное не закрывается. покупка не совершена', async()=>{
-        await placeOrderModal.page.goto('https://www.demoblaze.com/index.html')
+        await placeOrderModal.page.goto(Urls.homePage)
         await placeOrderModal.samsungGalaxySixItem.click()
         await placeOrderModal.addItem()
         await placeOrderModal.orderModalButton.click()
@@ -61,7 +62,7 @@ test.describe('Общие проверки модального окна Place O
     })
 
     test('Нажать на кнопку Purchase, поля заполнены с Credit card до Year, с товаром ->  модальное не закрывается. покупка не совершена', async()=>{
-        await placeOrderModal.page.goto('https://www.demoblaze.com/index.html')
+        await placeOrderModal.page.goto(Urls.homePage)
         await placeOrderModal.samsungGalaxySixItem.click()
         await placeOrderModal.addItem()
         await placeOrderModal.orderModalButton.click()
@@ -95,7 +96,7 @@ test.describe('Общие проверки модального окна Place O
     })
 
     test('Нажать на кнопку Purchase, поля заполнены, нажать кнопку Ок, с товаром -> осуществляется переход на страниц Home', async()=>{
-        await placeOrderModal.page.goto('https://www.demoblaze.com/index.html')
+        await placeOrderModal.page.goto(Urls.homePage)
         await placeOrderModal.samsungGalaxySixItem.click()
         await placeOrderModal.addItem()
         await placeOrderModal.orderModalButton.click()
@@ -108,7 +109,7 @@ test.describe('Общие проверки модального окна Place O
         await placeOrderModal.purchaseButton.click()
         await placeOrderModal.page.waitForLoadState('networkidle')
         await placeOrderModal.confirmButton.click()
-        await expect(placeOrderModal.page).toHaveURL('https://www.demoblaze.com/index.html')
+        await expect(placeOrderModal.page).toHaveURL(Urls.homePage)
         
     })   
 })

@@ -1,6 +1,7 @@
-import { expect, test } from '@playwright/test';
-import { VerificationText,Credentials,ErrorsText } from '../common/appData';
-import { LoginPage } from '../pages/login';
+import { expect, test } from '@playwright/test'
+import { VerificationText,Credentials,ErrorsText } from '../common/appData'
+import { LoginPage } from '../pages/login'
+import {Urls} from "../common/url"
 
 
 
@@ -13,7 +14,7 @@ let loginPage: LoginPage
 
 test.beforeEach(async({page})=>{
   loginPage = new LoginPage(page)
-  await page.goto('https://www.demoblaze.com/index.html')
+  await page.goto(Urls.homePage)
   await loginPage.loginInModal.click()
 })
 

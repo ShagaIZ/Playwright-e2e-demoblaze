@@ -1,6 +1,7 @@
 import { expect, test } from '@playwright/test'
 import { Headers, Categories, Pagination } from '../common/appData'
 import { HomePage } from '../pages/home'
+import {Urls} from "../common/url"
 
 
 test.describe.configure({ mode: 'parallel' }) 
@@ -9,7 +10,7 @@ let homePage:HomePage
 
 test.beforeEach(async({page})=>{
   homePage = new HomePage(page)
-  await homePage.page.goto('https://www.demoblaze.com/index.html')
+  await homePage.page.goto(Urls.homePage)
 })
 
 test.describe('Элементы страницы home',async()=>{

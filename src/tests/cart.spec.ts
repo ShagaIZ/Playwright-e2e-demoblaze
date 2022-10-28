@@ -1,5 +1,6 @@
 import {test,expect} from "@playwright/test"
 import { CartPage } from "../pages/cartPage"
+import {Urls} from "../common/url"
 
 
 
@@ -9,7 +10,7 @@ let cartPage: CartPage
 
 test.beforeEach(async({page})=>{
     cartPage = new CartPage(page)
-    await page.goto('https://www.demoblaze.com/index.html')
+    await page.goto(Urls.homePage)
 })
 
 
@@ -37,7 +38,7 @@ test.describe('Общие проверки страницы карточки', a
 
     
     test('Элементы страницы без карточки', async()=>{
-        await cartPage.page.goto('https://www.demoblaze.com/cart.html#')  
+        await cartPage.page.goto(Urls.cartPage)  
         await expect(cartPage.products).toBeVisible()
         await expect(cartPage.picture).toBeVisible()
         await expect(cartPage.title).toBeVisible()
