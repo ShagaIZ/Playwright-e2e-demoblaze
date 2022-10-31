@@ -64,7 +64,7 @@ export class PlaceOrderModal extends CartPage {
         this.confirmButton = page.locator('[class="sa-button-container"] >> text="OK"')
     }
 
-    async checkModal(total:string){
+    async checkModal(total:string):Promise<void>{
         await this.page.waitForLoadState('networkidle')
         await expect(this.orderModal).toHaveAttribute('class', 'modal fade show')   
         await expect(this.modalTitle).toHaveText('Place order')

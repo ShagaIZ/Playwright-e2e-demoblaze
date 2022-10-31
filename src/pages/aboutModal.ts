@@ -24,7 +24,7 @@ export class AboutModal extends HomePage {
         this.modalVisble = page.locator('[class="modal fade"]>>[id="videoModalLabel"]')
     }
 
-    async openAboutModal(Username:string,Password:string){
+    async openAboutModal(Username:string,Password:string):Promise<void>{
         await this.page.goto(Urls.homePage)
         await this.loginInModal.click()
         await this.loginUsernameField.fill(Username)

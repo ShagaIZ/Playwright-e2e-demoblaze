@@ -28,7 +28,7 @@ export class ItemPage extends HomePage {
         this.imageMacBook = page.locator('[src="imgs/macbook_air.jpg"]')
     }
 
-    async checkItem(url:strAndReg, nameCartText:strAndReg, priceText: strAndReg, moreInformationText: strAndReg, locator: Locator){
+    async checkItem(url:strAndReg, nameCartText:strAndReg, priceText: strAndReg, moreInformationText: strAndReg, locator: Locator):Promise<void>{
         await expect(this.page).toHaveURL(url)
         await expect(this.nameItem).toBeVisible()
         await expect(this.nameItem).toHaveText(nameCartText)
