@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { Headers, Categories, Pagination } from '../common/appData'
+import { Headers, Categories, Pagination, Colors } from '../common/appData'
 import { HomePage } from '../pages/home'
 import {Urls} from "../common/url"
 
@@ -18,27 +18,27 @@ test.describe('Элементы страницы home',async()=>{
     test('Элементы хедера -> отображаются корректно', async () => {
         await expect(homePage.titleOfHeader).toBeVisible()
         await expect(homePage.titleOfHeader).toContainText(Headers.PRODUCT_STORE)
-        await expect(homePage.titleOfHeader).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(homePage.titleOfHeader).toHaveCSS('color',Colors.White)
         await expect(homePage.countOfElementsInTitleOfHeader).toHaveCount(1)
         await expect(homePage.navbarHeaderElement).toBeVisible()
         await expect(homePage.homeButtonHeader).toBeVisible()
         await expect(homePage.homeButtonHeader).toContainText(Headers.Home)
-        await expect(homePage.homeButtonHeader).toHaveCSS('color','rgb(134, 134, 136)')
+        await expect(homePage.homeButtonHeader).toHaveCSS('color',Colors.DarkGrayishBlue)
         await expect(homePage.contactButtonHeader).toBeVisible()
         await expect(homePage.contactButtonHeader).toContainText(Headers.Contact)
-        await expect(homePage.contactButtonHeader).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(homePage.contactButtonHeader).toHaveCSS('color',Colors.White)
         await expect(homePage.aboutUsButtonHeader).toBeVisible()
         await expect(homePage.aboutUsButtonHeader).toContainText(Headers.AboutUs)
-        await expect(homePage.aboutUsButtonHeader).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(homePage.aboutUsButtonHeader).toHaveCSS('color',Colors.White)
         await expect(homePage.cartButtonHeader).toBeVisible()
         await expect(homePage.cartButtonHeader).toContainText(Headers.Cart)
-        await expect(homePage.cartButtonHeader).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(homePage.cartButtonHeader).toHaveCSS('color',Colors.White)
         await expect(homePage.logoutButtonHeader).toBeVisible()
         await expect(homePage.logoutButtonHeader).toContainText(Headers.Logout)
-        await expect(homePage.logoutButtonHeader).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(homePage.logoutButtonHeader).toHaveCSS('color',Colors.White)
         await expect(homePage.nameUserButtonHeader).toBeVisible()
         await expect(homePage.nameUserButtonHeader).toContainText(Headers.Name)
-        await expect(homePage.nameUserButtonHeader).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(homePage.nameUserButtonHeader).toHaveCSS('color',Colors.White)
   })
 
     test('Элементы слайдера товаров -> отображаются корректно', async () => {
@@ -53,25 +53,25 @@ test.describe('Элементы страницы home',async()=>{
     test('Элементы блока категории -> отображаются корректно', async () => {
         await expect(homePage.categoriesTitle).toBeVisible()
         await expect(homePage.categoriesTitle).toContainText(Categories.Categories)
-        await expect(homePage.categoriesTitle).toHaveCSS('color','rgb(255, 255, 255)')
+        await expect(homePage.categoriesTitle).toHaveCSS('color', Colors.White)
         await expect(homePage.categoryPhones).toBeVisible()
         await expect(homePage.categoryPhones).toContainText(Categories.Phones)
-        await expect(homePage.categoryPhones).toHaveCSS('color','rgb(102, 102, 102)')
+        await expect(homePage.categoryPhones).toHaveCSS('color',Colors.GraniteGray)
         await expect(homePage.categoryLaptops).toBeVisible()
         await expect(homePage.categoryLaptops).toContainText(Categories.Laptops)
-        await expect(homePage.categoryLaptops).toHaveCSS('color','rgb(102, 102, 102)')
+        await expect(homePage.categoryLaptops).toHaveCSS('color',Colors.GraniteGray)
         await expect(homePage.categoryMonitors).toBeVisible()
         await expect(homePage.categoryMonitors).toContainText(Categories.Monitors)
-        await expect(homePage.categoryMonitors).toHaveCSS('color','rgb(102, 102, 102)')
+        await expect(homePage.categoryMonitors).toHaveCSS('color',Colors.GraniteGray)
   })
 
     test('Элементы пагинации -> отображаются корректно', async () => {
         await expect(homePage.previousButtonOfPagination).toBeVisible()
         await expect(homePage.previousButtonOfPagination).toContainText(Pagination.Previous)
-        await expect(homePage.previousButtonOfPagination).toHaveCSS('color','rgb(2, 117, 216)')
+        await expect(homePage.previousButtonOfPagination).toHaveCSS('color',Colors.DarkBlue)
         await expect(homePage.nextButtonOfPagination).toBeVisible()
         await expect(homePage.nextButtonOfPagination).toContainText(Pagination.Next)
-        await expect(homePage.nextButtonOfPagination).toHaveCSS('color','rgb(2, 117, 216)')
+        await expect(homePage.nextButtonOfPagination).toHaveCSS('color',Colors.DarkBlue)
     })
 })
 

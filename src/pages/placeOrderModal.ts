@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test"
 import { CartPage } from "./cartPage"
+import { Colors } from "../common/appData"
 
 
 export class PlaceOrderModal extends CartPage {
@@ -89,11 +90,11 @@ export class PlaceOrderModal extends CartPage {
         await expect(this.yearField).toBeVisible()
         await expect(this.yearField).toBeEditable()
         await expect(this.closeButton).toBeVisible()
-        await expect(this.closeButton).toHaveCSS('color','rgb(41, 43, 44)')
-        await expect(this.closeButton).toHaveCSS('background-color','rgb(255, 255, 255)') 
+        await expect(this.closeButton).toHaveCSS('color', Colors.Onyx)
+        await expect(this.closeButton).toHaveCSS('background-color', Colors.White) 
         await expect(this.purchaseButton).toBeVisible()
-        await expect(this.purchaseButton).toHaveCSS('color','rgb(255, 255, 255)')
-        await expect(this.purchaseButton).toHaveCSS('background-color','rgb(2, 117, 216)') 
+        await expect(this.purchaseButton).toHaveCSS('color', Colors.White)
+        await expect(this.purchaseButton).toHaveCSS('background-color', Colors.DarkBlue) 
     }
 
     

@@ -1,5 +1,5 @@
 import {test, expect} from "@playwright/test"
-import { AboutData } from "../common/appData"
+import { AboutData, Colors } from "../common/appData"
 import { AboutModal } from "../pages/aboutModal"
 import {Urls} from "../common/url"
 
@@ -27,8 +27,8 @@ test.describe('Общие проверки модального окна About U
         await expect(aboutModal.closeModalCross).toBeVisible()
         await expect(aboutModal.videoBlock).toBeVisible()
         await expect(aboutModal.closeModalButton).toBeVisible()  
-        await expect(aboutModal.closeModalButton).toHaveCSS('color','rgb(41, 43, 44)')
-        await expect(aboutModal.closeModalButton).toHaveCSS('background-color','rgb(255, 255, 255)')      
+        await expect(aboutModal.closeModalButton).toHaveCSS('color',Colors.Onyx)
+        await expect(aboutModal.closeModalButton).toHaveCSS('background-color',Colors.White)      
     })
 
     test('Нажать на кнопку крестик -> модальное окно контактов закрывается', async()=>{

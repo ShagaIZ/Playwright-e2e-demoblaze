@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { VerificationText,Credentials,ErrorsText } from '../common/appData'
+import { VerificationText,Credentials,ErrorsText, Colors } from '../common/appData'
 import { LoginPage } from '../pages/login'
 import {Urls} from "../common/url"
 
@@ -32,11 +32,11 @@ test.describe('Общие проверки страницы login',async()=>{
       await expect(loginPage.loginPasswordField).toBeVisible()
       await expect(loginPage.loginPasswordField).toBeEditable()
       await expect(loginPage.closeModalButton).toBeVisible()
-      await expect(loginPage.closeModalButton).toHaveCSS('color','rgb(41, 43, 44)')
-      await expect(loginPage.closeModalButton).toHaveCSS('background-color','rgb(255, 255, 255)')
+      await expect(loginPage.closeModalButton).toHaveCSS('color',Colors.Onyx)
+      await expect(loginPage.closeModalButton).toHaveCSS('background-color', Colors.White)
       await expect(loginPage.loginButton).toBeVisible()
-      await expect(loginPage.loginButton).toHaveCSS('color','rgb(255, 255, 255)')
-      await expect(loginPage.loginButton).toHaveCSS('background-color','rgb(2, 117, 216)')
+      await expect(loginPage.loginButton).toHaveCSS('color', Colors.White)
+      await expect(loginPage.loginButton).toHaveCSS('background-color',Colors.DarkBlue)
   })
 
   test('Ввести валидный логин и пароль, нажать на кнопку "Log in" -> пользователь залогинен', async () => {
