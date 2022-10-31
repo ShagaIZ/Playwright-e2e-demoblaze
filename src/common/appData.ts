@@ -101,3 +101,10 @@ export const Colors = {
     GraniteGray: 'rgb(102, 102, 102)',
     DarkGrayishBlue: 'rgb(134, 134, 136)',
 }
+
+// Модальные окна
+
+export const ModalVisibility = {
+    ModalFade: 'modal fade',
+    ModalFadeShow: 'modal fade show',
+}

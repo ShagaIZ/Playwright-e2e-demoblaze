@@ -1,6 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test"
 import { CartPage } from "./cartPage"
-import { Colors } from "../common/appData"
+import { Colors, ModalVisibility } from "../common/appData"
 
 
 export class PlaceOrderModal extends CartPage {
@@ -66,7 +66,7 @@ export class PlaceOrderModal extends CartPage {
 
     async checkModal(total:string):Promise<void>{
         await this.page.waitForLoadState('networkidle')
-        await expect(this.orderModal).toHaveAttribute('class', 'modal fade show')   
+        await expect(this.orderModal).toHaveAttribute('class', ModalVisibility.ModalFadeShow)   
         await expect(this.modalTitle).toHaveText('Place order')
         await expect(this.crossButton).toBeVisible()
         await expect(this.total).toBeVisible()

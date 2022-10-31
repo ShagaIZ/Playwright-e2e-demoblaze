@@ -1,5 +1,6 @@
 import {test, expect} from '@playwright/test'
 import { Urls } from '../common/url'
+import { ModalVisibility } from '../common/appData'
 import {PlaceOrderModal} from '../pages/placeOrderModal'
 
 
@@ -37,14 +38,14 @@ test.describe('Общие проверки модального окна Place O
         await placeOrderModal.page.goto(Urls.cartPage)
         await placeOrderModal.orderModalButton.click()
         await placeOrderModal.closeButton.click()
-        await expect(placeOrderModal.orderModal).toHaveAttribute('class', 'modal fade')   
+        await expect(placeOrderModal.orderModal).toHaveAttribute('class', ModalVisibility.ModalFade)   
     })
 
     test('Нажать на кнопку Purchase, поля не заполнены, без товара -> модальное не закрывается', async()=>{
         await placeOrderModal.page.goto(Urls.cartPage)
         await placeOrderModal.orderModalButton.click()
         await placeOrderModal.purchaseButton.click()
-        await expect(placeOrderModal.orderModal).not.toHaveAttribute('class', 'modal fade')   
+        await expect(placeOrderModal.orderModal).not.toHaveAttribute('class', ModalVisibility.ModalFade)   
     })
 
     test('Нажать на кнопку Purchase, поля заполнены с Name до City, с товаром -> модальное не закрывается. покупка не совершена', async()=>{
@@ -56,7 +57,7 @@ test.describe('Общие проверки модального окна Place O
         await placeOrderModal.countryField.fill('Monco')
         await placeOrderModal.cityField.fill('Raketa')
         await placeOrderModal.purchaseButton.click()
-        await expect(placeOrderModal.orderModal).not.toHaveAttribute('class', 'modal fade')
+        await expect(placeOrderModal.orderModal).not.toHaveAttribute('class', ModalVisibility.ModalFade)
         await placeOrderModal.closeButton.click() 
         await placeOrderModal.deleteItems()
     })
@@ -70,7 +71,7 @@ test.describe('Общие проверки модального окна Place O
         await placeOrderModal.monthField.fill('November')
         await placeOrderModal.yearTitle.fill('2022')
         await placeOrderModal.purchaseButton.click()
-        await expect(placeOrderModal.orderModal).not.toHaveAttribute('class', 'modal fade')
+        await expect(placeOrderModal.orderModal).not.toHaveAttribute('class', ModalVisibility.ModalFade)
         await placeOrderModal.closeButton.click() 
         await placeOrderModal.deleteItems()
     })
