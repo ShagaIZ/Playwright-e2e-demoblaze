@@ -1,5 +1,6 @@
 import { Locator, Page } from '@playwright/test'
 import {HomePage } from './home'
+import {Urls} from "../common/url"
 
 
 export class AboutModal extends HomePage {
@@ -23,8 +24,8 @@ export class AboutModal extends HomePage {
         this.modalVisble = page.locator('[class="modal fade"]>>[id="videoModalLabel"]')
     }
 
-    async openAboutModal(Username:string,Password:string){
-        await this.page.goto('https://www.demoblaze.com/index.html')
+    async openAboutModal(Username:string,Password:string):Promise<void>{
+        await this.page.goto(Urls.homePage)
         await this.loginInModal.click()
         await this.loginUsernameField.fill(Username)
         await this.loginPasswordField.fill(Password)

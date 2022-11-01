@@ -1,5 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test"
 import { HomePage } from "./home"
+import { Colors } from "../common/appData"
 
 
 type strAndReg = string | RegExp
@@ -27,7 +28,7 @@ export class ItemPage extends HomePage {
         this.imageMacBook = page.locator('[src="imgs/macbook_air.jpg"]')
     }
 
-    async checkItem(url:strAndReg, nameCartText:strAndReg, priceText: strAndReg, moreInformationText: strAndReg, locator: Locator){
+    async checkItem(url:strAndReg, nameCartText:strAndReg, priceText: strAndReg, moreInformationText: strAndReg, locator: Locator):Promise<void>{
         await expect(this.page).toHaveURL(url)
         await expect(this.nameItem).toBeVisible()
         await expect(this.nameItem).toHaveText(nameCartText)
@@ -36,6 +37,8 @@ export class ItemPage extends HomePage {
         await expect(this.moreInformation).toBeVisible()
         await expect(this.moreInformation).toHaveText(moreInformationText)
         await expect(this.addCart).toBeVisible()
+        await expect(this.addCart).toHaveCSS('color',Colors.White)
+        await expect(this.addCart).toHaveCSS('background-color',Colors.LightGreen) 
         await expect(locator).toBeVisible()
     }
 }

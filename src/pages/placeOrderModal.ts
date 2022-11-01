@@ -1,5 +1,6 @@
 import { Page, Locator, expect } from "@playwright/test"
 import { CartPage } from "./cartPage"
+import { Colors, ModalVisibility } from "../common/appData"
 
 
 export class PlaceOrderModal extends CartPage {
@@ -63,9 +64,9 @@ export class PlaceOrderModal extends CartPage {
         this.confirmButton = page.locator('[class="sa-button-container"] >> text="OK"')
     }
 
-    async checkModal(total:string){
+    async checkModal(total:string):Promise<void>{
         await this.page.waitForLoadState('networkidle')
-        await expect(this.orderModal).toHaveAttribute('class', 'modal fade show')   
+        await expect(this.orderModal).toHaveAttribute('class', ModalVisibility.ModalFadeShow)   
         await expect(this.modalTitle).toHaveText('Place order')
         await expect(this.crossButton).toBeVisible()
         await expect(this.total).toBeVisible()
@@ -89,7 +90,11 @@ export class PlaceOrderModal extends CartPage {
         await expect(this.yearField).toBeVisible()
         await expect(this.yearField).toBeEditable()
         await expect(this.closeButton).toBeVisible()
+        await expect(this.closeButton).toHaveCSS('color', Colors.Onyx)
+        await expect(this.closeButton).toHaveCSS('background-color', Colors.White) 
         await expect(this.purchaseButton).toBeVisible()
+        await expect(this.purchaseButton).toHaveCSS('color', Colors.White)
+        await expect(this.purchaseButton).toHaveCSS('background-color', Colors.DarkBlue) 
     }
 
     

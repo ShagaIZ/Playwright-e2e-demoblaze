@@ -38,29 +38,29 @@ export class LoginPage {
   }
 
   async validationDialog(ErrorsText:string){
-    this.page.on('dialog', async (dialog) => {
+    this.page.on('dialog',  async (dialog) => {
       expect(dialog.message()).toContain(ErrorsText)
       await dialog.accept()
-      })
+    })
   }
 
-  async typeAndLogin(NotUsername:string,NotPassword:string){
+  async typeAndLogin(NotUsername:string,NotPassword:string):Promise<void>{
     await this.typeUsernameField(NotUsername)
     await this.typePasswordField(NotPassword)
     await this.loginButton.click()
   }
 
-  async validationNotVisibilityUserName(VerificationText:string){
+  async validationNotVisibilityUserName(VerificationText:string):Promise<void>{
     await expect(this.nameOfUser).not.toBeVisible()
     await expect(this.nameOfUser).not.toContainText(VerificationText)
   }
 
-  async validationVisibilityUserName(VerificationText:string){
+  async validationVisibilityUserName(VerificationText:string):Promise<void>{
     await expect(this.nameOfUser).toBeVisible()
     await expect(this.nameOfUser).toContainText(VerificationText)
   }
 
-  async clearUsernameAndPasswordField(){
+  async clearUsernameAndPasswordField():Promise<void>{
     await this.loginUsernameField.click()
     await this.page.keyboard.press('Control+A')
     await this.page.keyboard.press('Backspace')
