@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2019",
+    "module": "commonjs",
+    "lib": ["esnext", "dom", "DOM.Iterable", "es5"],
+    "baseUrl": ".",
+    
+    "esModuleInterop": true,
+    "strict": true,
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "noEmit": true,
+    "noImplicitOverride": true,
+    "useUnknownInCatchVariables": false,
+  },
+  "compileOnSave": true,
+  "include": ["packages"],
+  "exclude": [
+    "node_modules"
+  ],
+}
