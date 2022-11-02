@@ -26,7 +26,7 @@ export class ItemPage extends HomePage {
         this.imageSamsungGalaxySix = page.locator('[src="imgs/galaxy_s6.jpg"]');
         this.imagesonyXperiaZFive = page.locator('[src="imgs/xperia_z5.jpg"]');
         this.imageMacBook = page.locator('[src="imgs/macbook_air.jpg"]');
-    };
+    }
 
     async checkItem(url:strAndReg, nameCartText:strAndReg, priceText: strAndReg, moreInformationText: strAndReg, locator: Locator):Promise<void>{
         await expect(this.page).toHaveURL(url);
@@ -40,5 +40,5 @@ export class ItemPage extends HomePage {
         await expect(this.addCart).toHaveCSS('color',Colors.White);
         await expect(this.addCart).toHaveCSS('background-color',Colors.LightGreen) ;
         await expect(locator).toBeVisible();
-    };
-};
+    }
+}
