@@ -6,7 +6,7 @@ import { Colors } from "../common/appData"
 type strAndReg = string | RegExp
 
 export class ItemPage extends HomePage {
-    readonly page: Page
+    override readonly page: Page
     readonly nameItem:Locator
     readonly price: Locator
     readonly moreInformation: Locator
@@ -29,16 +29,16 @@ export class ItemPage extends HomePage {
     }
 
     async checkItem(url:strAndReg, nameCartText:strAndReg, priceText: strAndReg, moreInformationText: strAndReg, locator: Locator):Promise<void>{
-        await expect(this.page).toHaveURL(url)
-        await expect(this.nameItem).toBeVisible()
-        await expect(this.nameItem).toHaveText(nameCartText)
-        await expect(this.price).toBeVisible()
-        await expect(this.price).toHaveText(priceText)
-        await expect(this.moreInformation).toBeVisible()
-        await expect(this.moreInformation).toHaveText(moreInformationText)
-        await expect(this.addCart).toBeVisible()
-        await expect(this.addCart).toHaveCSS('color',Colors.White)
-        await expect(this.addCart).toHaveCSS('background-color',Colors.LightGreen) 
-        await expect(locator).toBeVisible()
+        await expect(this.page).toHaveURL(url);
+        await expect(this.nameItem).toBeVisible();
+        await expect(this.nameItem).toHaveText(nameCartText);
+        await expect(this.price).toBeVisible();
+        await expect(this.price).toHaveText(priceText);
+        await expect(this.moreInformation).toBeVisible();
+        await expect(this.moreInformation).toHaveText(moreInformationText);
+        await expect(this.addCart).toBeVisible();
+        await expect(this.addCart).toHaveCSS('color',Colors.White);
+        await expect(this.addCart).toHaveCSS('background-color',Colors.LightGreen) ;
+        await expect(locator).toBeVisible();
     }
 }
