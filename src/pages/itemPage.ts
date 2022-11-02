@@ -3,7 +3,7 @@ import { HomePage } from "./home"
 import { Colors } from "../common/appData"
 
 
-type strAndReg = string | RegExp
+type strAndReg = string | RegExp;
 
 export class ItemPage extends HomePage {
     override readonly page: Page
@@ -19,14 +19,14 @@ export class ItemPage extends HomePage {
     constructor(page:Page){
         super(page)
         this.page = page
-        this.nameItem = page.locator('[class="name"]')
-        this.price = page.locator('[class="price-container"]')
-        this.moreInformation = page.locator('[id="more-information"]')
-        this.addCart = page.locator('text="Add to cart"')
-        this.imageSamsungGalaxySix = page.locator('[src="imgs/galaxy_s6.jpg"]')
-        this.imagesonyXperiaZFive = page.locator('[src="imgs/xperia_z5.jpg"]')
-        this.imageMacBook = page.locator('[src="imgs/macbook_air.jpg"]')
-    }
+        this.nameItem = page.locator('[class="name"]');
+        this.price = page.locator('[class="price-container"]');
+        this.moreInformation = page.locator('[id="more-information"]');
+        this.addCart = page.locator('text="Add to cart"');
+        this.imageSamsungGalaxySix = page.locator('[src="imgs/galaxy_s6.jpg"]');
+        this.imagesonyXperiaZFive = page.locator('[src="imgs/xperia_z5.jpg"]');
+        this.imageMacBook = page.locator('[src="imgs/macbook_air.jpg"]');
+    };
 
     async checkItem(url:strAndReg, nameCartText:strAndReg, priceText: strAndReg, moreInformationText: strAndReg, locator: Locator):Promise<void>{
         await expect(this.page).toHaveURL(url);
@@ -40,5 +40,5 @@ export class ItemPage extends HomePage {
         await expect(this.addCart).toHaveCSS('color',Colors.White);
         await expect(this.addCart).toHaveCSS('background-color',Colors.LightGreen) ;
         await expect(locator).toBeVisible();
-    }
-}
+    };
+};
