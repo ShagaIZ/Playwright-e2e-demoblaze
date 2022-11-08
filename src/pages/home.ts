@@ -1,49 +1,48 @@
-import { Locator, Page } from '@playwright/test';
-import { LoginPage} from './login';
-
+import { Locator, Page } from '@playwright/test'
+import { LoginPage } from './login'
 
 export class HomePage extends LoginPage {
   readonly page: Page
-  readonly titleOfHeader:Locator
-  readonly iconOfNavbarBrend:Locator
-  readonly countOfElementsInTitleOfHeader:Locator
+  readonly titleOfHeader: Locator
+  readonly iconOfNavbarBrend: Locator
+  readonly countOfElementsInTitleOfHeader: Locator
   readonly navbarHeaderElement: Locator
-  readonly homeButtonHeader:Locator
-  readonly contactButtonHeader:Locator
-  readonly aboutUsButtonHeader:Locator
-  readonly cartButtonHeader:Locator
-  readonly logoutButtonHeader:Locator
-  readonly nameUserButtonHeader:Locator
-  readonly sliderWindow:Locator
-  readonly sliderWindowPreviousButton:Locator
-  readonly sliderWindowNextButton:Locator
-  readonly firstButtonInSliderWindow:Locator
-  readonly secondButtonInSliderWindow:Locator
-  readonly thirdButtonInSliderWindow:Locator
-  readonly categoriesTitle:Locator
-  readonly categoryPhones:Locator
-  readonly categoryLaptops:Locator
-  readonly categoryMonitors:Locator
-  readonly activenessOfSlideImg:Locator
-  readonly firstSlide:Locator
-  readonly previousButtonOfPagination:Locator
-  readonly nextButtonOfPagination:Locator
-  readonly nokiaLumiaItem:Locator
-  readonly nexusSixItem:Locator
-  readonly samsungGalaxySevenItem:Locator
-  readonly samsungGalaxySixItem:Locator
-  readonly iphoneSixItem:Locator
-  readonly sonyXperiazFiveItem:Locator
-  readonly htcOnemNineItem:Locator
-  readonly sonyVaioiFiveItem:Locator
-  readonly sonyVaioiSevenItem:Locator
-  readonly appleMonitorItem:Locator
-  readonly macBookAirItem:Locator
-  readonly delliSevenItem:Locator
-  readonly dellInchItem:Locator
-  readonly asusFullHDItem:Locator
-  readonly macBookProItem:Locator
-  readonly numberOfItems:Locator
+  readonly homeButtonHeader: Locator
+  readonly contactButtonHeader: Locator
+  readonly aboutUsButtonHeader: Locator
+  readonly cartButtonHeader: Locator
+  readonly logoutButtonHeader: Locator
+  readonly nameUserButtonHeader: Locator
+  readonly sliderWindow: Locator
+  readonly sliderWindowPreviousButton: Locator
+  readonly sliderWindowNextButton: Locator
+  readonly firstButtonInSliderWindow: Locator
+  readonly secondButtonInSliderWindow: Locator
+  readonly thirdButtonInSliderWindow: Locator
+  readonly categoriesTitle: Locator
+  readonly categoryPhones: Locator
+  readonly categoryLaptops: Locator
+  readonly categoryMonitors: Locator
+  readonly activenessOfSlideImg: Locator
+  readonly firstSlide: Locator
+  readonly previousButtonOfPagination: Locator
+  readonly nextButtonOfPagination: Locator
+  readonly nokiaLumiaItem: Locator
+  readonly nexusSixItem: Locator
+  readonly samsungGalaxySevenItem: Locator
+  readonly samsungGalaxySixItem: Locator
+  readonly iphoneSixItem: Locator
+  readonly sonyXperiazFiveItem: Locator
+  readonly htcOnemNineItem: Locator
+  readonly sonyVaioiFiveItem: Locator
+  readonly sonyVaioiSevenItem: Locator
+  readonly appleMonitorItem: Locator
+  readonly macBookAirItem: Locator
+  readonly delliSevenItem: Locator
+  readonly dellInchItem: Locator
+  readonly asusFullHDItem: Locator
+  readonly macBookProItem: Locator
+  readonly numberOfItems: Locator
 
   constructor(page: Page) {
     super(page)
@@ -87,48 +86,48 @@ export class HomePage extends LoginPage {
     this.macBookProItem = page.locator('[class="card-title"]>[href="prod.html?idp_=15"]')
     this.numberOfItems = page.locator('[id="tbodyid"]>[class="col-lg-4 col-md-6 mb-4"]')
   }
- 
-  async typeUsernameField(username:string){
+
+  async typeUsernameField(username: string) {
     await this.loginUsernameField.click()
     await this.loginUsernameField.type(username)
   }
 
-  async typePasswordField(password:string){
+  async typePasswordField(password: string) {
     await this.loginPasswordField.click()
     await this.loginPasswordField.type(password)
   }
 
-  async clickSliderWindowNextButton(): Promise<void>{
+  async clickSliderWindowNextButton(): Promise<void> {
     await this.page.waitForTimeout(2000)
     await this.sliderWindowNextButton.click()
     await this.page.waitForTimeout(2000)
   }
 
-  async clickSliderWindowPreviousButton(): Promise<void>{
+  async clickSliderWindowPreviousButton(): Promise<void> {
     await this.page.waitForTimeout(2000)
     await this.sliderWindowPreviousButton.click()
     await this.page.waitForTimeout(2000)
   }
-  
-  async clickOnFirstButtonInSliderWindow(): Promise<void>{
+
+  async clickOnFirstButtonInSliderWindow(): Promise<void> {
     await this.page.waitForTimeout(2000)
     await this.firstButtonInSliderWindow.click()
     await this.page.waitForTimeout(2000)
   }
 
-  async clickOnSecondButtonInSliderWindow(): Promise<void>{
+  async clickOnSecondButtonInSliderWindow(): Promise<void> {
     await this.page.waitForTimeout(2000)
     await this.secondButtonInSliderWindow.click()
     await this.page.waitForTimeout(2000)
   }
 
-  async clickOnThirdButtonInSliderWindow(): Promise<void>{
+  async clickOnThirdButtonInSliderWindow(): Promise<void> {
     await this.page.waitForTimeout(2000)
     await this.thirdButtonInSliderWindow.click()
     await this.page.waitForTimeout(2000)
   }
-  
-  async clickPreviousButtonOfPagination(): Promise<void>{
+
+  async clickPreviousButtonOfPagination(): Promise<void> {
     await this.page.waitForTimeout(2000)
     await this.previousButtonOfPagination.click()
     await this.page.waitForTimeout(2000)
@@ -140,14 +139,14 @@ export class HomePage extends LoginPage {
     await this.page.waitForTimeout(2000)
   }
 
-  async clickNextAfterPreviousButtonOfPagination(): Promise<void>{
+  async clickNextAfterPreviousButtonOfPagination(): Promise<void> {
     await this.page.waitForTimeout(2000)
     await this.nextButtonOfPagination.click()
     await this.page.waitForTimeout(2000)
     await this.previousButtonOfPagination.click()
   }
 
-  async clickNextAfterPreviousThenNextButtonOfPagination(): Promise<void>{
+  async clickNextAfterPreviousThenNextButtonOfPagination(): Promise<void> {
     await this.page.waitForTimeout(2000)
     await this.nextButtonOfPagination.click()
     await this.page.waitForTimeout(2000)
@@ -156,7 +155,7 @@ export class HomePage extends LoginPage {
     await this.nextButtonOfPagination.click()
   }
 
-  async clickTwiceSliderWindowNextButton(): Promise<void>{
+  async clickTwiceSliderWindowNextButton(): Promise<void> {
     await this.clickSliderWindowNextButton()
     await this.clickSliderWindowNextButton()
   }
