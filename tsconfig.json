@@ -14,7 +14,10 @@
     "useUnknownInCatchVariables": false,
   },
   "compileOnSave": true,
-  "include": ["packages"],
+  "include": [
+    "packages",
+    "src",
+    "tests",],
   "exclude": [
     "node_modules"
   ],
