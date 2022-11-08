@@ -1,7 +1,6 @@
 import { chromium } from '@playwright/test'
-import { Credentials} from './src/common/appData'
-import {Urls} from "./src/common/url"
-
+import { Credentials } from './src/common/appData'
+import { Urls } from './src/common/url'
 
 const globalSetup = async (): Promise<void> => {
   const browser = await chromium.launch()
@@ -15,6 +14,5 @@ const globalSetup = async (): Promise<void> => {
   await page.context().storageState({ path: 'session/auth.json' })
   await browser.close()
 }
-
 
 export default globalSetup

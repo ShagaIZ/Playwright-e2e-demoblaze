@@ -1,17 +1,17 @@
-import { expect, Locator, Page } from '@playwright/test';
+import { expect, Locator, Page } from '@playwright/test'
 
 export class LoginPage {
   readonly page: Page
-  readonly modalWindow:Locator
-  readonly loginInModal:Locator
-  readonly loginInModalLabel:Locator
-  readonly closeModalCross:Locator
-  readonly loginUsernameField:Locator
-  readonly loginPasswordField:Locator
-  readonly closeModalButton:Locator
-  readonly loginButton:Locator
-  readonly nameOfUser:Locator
-  readonly modalFade:Locator
+  readonly modalWindow: Locator
+  readonly loginInModal: Locator
+  readonly loginInModalLabel: Locator
+  readonly closeModalCross: Locator
+  readonly loginUsernameField: Locator
+  readonly loginPasswordField: Locator
+  readonly closeModalButton: Locator
+  readonly loginButton: Locator
+  readonly nameOfUser: Locator
+  readonly modalFade: Locator
 
   constructor(page: Page) {
     this.page = page
@@ -24,43 +24,43 @@ export class LoginPage {
     this.closeModalButton = page.locator('#logInModal >> text=Close')
     this.loginButton = page.locator('[onclick="logIn()"]')
     this.nameOfUser = page.locator('[id="nameofuser"]')
-    this.modalFade = page.locator('[class="modal fade"]') 
+    this.modalFade = page.locator('[class="modal fade"]')
   }
 
-  async typeUsernameField(username:string){
+  async typeUsernameField(username: string) {
     await this.loginUsernameField.click()
     await this.loginUsernameField.type(username)
   }
 
-  async typePasswordField(password:string){
-    await this.loginPasswordField.click();
+  async typePasswordField(password: string) {
+    await this.loginPasswordField.click()
     await this.loginPasswordField.type(password)
   }
 
-  async validationDialog(ErrorsText:string){
-    this.page.on('dialog',  async (dialog) => {
+  async validationDialog(ErrorsText: string) {
+    this.page.on('dialog', async dialog => {
       expect(dialog.message()).toContain(ErrorsText)
       await dialog.accept()
     })
   }
 
-  async typeAndLogin(NotUsername:string,NotPassword:string):Promise<void>{
+  async typeAndLogin(NotUsername: string, NotPassword: string): Promise<void> {
     await this.typeUsernameField(NotUsername)
     await this.typePasswordField(NotPassword)
     await this.loginButton.click()
   }
 
-  async validationNotVisibilityUserName(VerificationText:string):Promise<void>{
+  async validationNotVisibilityUserName(VerificationText: string): Promise<void> {
     await expect(this.nameOfUser).not.toBeVisible()
     await expect(this.nameOfUser).not.toContainText(VerificationText)
   }
 
-  async validationVisibilityUserName(VerificationText:string):Promise<void>{
+  async validationVisibilityUserName(VerificationText: string): Promise<void> {
     await expect(this.nameOfUser).toBeVisible()
     await expect(this.nameOfUser).toContainText(VerificationText)
   }
 
-  async clearUsernameAndPasswordField():Promise<void>{
+  async clearUsernameAndPasswordField(): Promise<void> {
     await this.loginUsernameField.click()
     await this.page.keyboard.press('Control+A')
     await this.page.keyboard.press('Backspace')
@@ -69,9 +69,9 @@ export class LoginPage {
     await this.page.keyboard.press('Backspace')
   }
 
-  async loadPage():Promise<void>{
+  async loadPage(): Promise<void> {
     await this.page.waitForLoadState('load')
     await this.page.waitForLoadState('domcontentloaded')
     await this.page.waitForLoadState('networkidle')
-}
+  }
 }
