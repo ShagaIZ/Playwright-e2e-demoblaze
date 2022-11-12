@@ -1,7 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { VerificationText, Credentials, ErrorsText, Colors } from '../common/appData'
 import { LoginPage } from '../pages/login'
-import { Urls } from '../common/url'
 
 test.use({ storageState: { cookies: [], origins: [] } })
 
@@ -11,7 +10,7 @@ let loginPage: LoginPage
 
 test.beforeEach(async ({ page }) => {
   loginPage = new LoginPage(page)
-  await page.goto(Urls.homePage)
+  await page.goto(process.env.HOME!)
   await loginPage.loginInModal.click()
 })
 

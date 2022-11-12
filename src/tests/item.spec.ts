@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test'
 import { ItemPage } from '../pages/itemPage'
-import { Urls } from '../common/url'
 import { Titles, MoreInformation, Price } from '../common/appData'
 
 test.describe.configure({ mode: 'parallel' })
@@ -9,18 +8,18 @@ let itemPage: ItemPage
 
 test.beforeEach(async ({ page }) => {
   itemPage = new ItemPage(page)
-  await page.goto(Urls.homePage)
+  await page.goto(process.env.HOME!)
 })
 
 test.describe('Старница по умолчанию', async () => {
   test('Нажать на карточку Samsung Galaxy s6 -> открывается карточка Samsung Galaxy s6, данные корректны', async () => {
     await itemPage.samsungGalaxySixItem.click()
-    await itemPage.checkItem(Urls.samsungGalaxySix, Titles.samsungGalaxySix, Price.samsungGalaxySix, MoreInformation.samsungGalaxySix, itemPage.imageSamsungGalaxySix)
+    await itemPage.checkItem(process.env.SAMSUNG_GALAXY_SIX!, Titles.samsungGalaxySix, Price.samsungGalaxySix, MoreInformation.samsungGalaxySix, itemPage.imageSamsungGalaxySix)
   })
 
   test('Нажать на карточку Sony Xperia Z5 -> открывается карточкаSony Xperia Z5, данные корректны', async () => {
     await itemPage.sonyXperiazFiveItem.click()
-    await itemPage.checkItem(Urls.sonyXperiaZFive, Titles.sonyXperiaZFive, Price.sonyXperiaZFive, MoreInformation.sonyXperiaZFive, itemPage.imagesonyXperiaZFive)
+    await itemPage.checkItem(process.env.SONY_XPERIA_Z_FIVE!, Titles.sonyXperiaZFive, Price.sonyXperiaZFive, MoreInformation.sonyXperiaZFive, itemPage.imagesonyXperiaZFive)
   })
 })
 
@@ -30,11 +29,11 @@ test.describe('Следующая страница', async () => {
   })
   test('Нажать на карточку Samsung Galaxy s6 -> открывается карточка Samsung Galaxy s6, данные корректны', async () => {
     await itemPage.macBookAirItem.click()
-    await itemPage.checkItem(Urls.macBookAir, Titles.macBookAir, Price.macBookAir, MoreInformation.macBookAir, itemPage.imageMacBook)
+    await itemPage.checkItem(process.env.MAC_BOOK_AIR!, Titles.macBookAir, Price.macBookAir, MoreInformation.macBookAir, itemPage.imageMacBook)
   })
 
   test('Нажать на карточку  Sony Xperia Z5 -> открывается карточкаSony Xperia Z5, данные корректны', async () => {
     await itemPage.macBookProItem.click()
-    await itemPage.checkItem(Urls.macBookPro, Titles.macBookPro, Price.macBookPro, MoreInformation.macBookPro, itemPage.imageMacBook)
+    await itemPage.checkItem(process.env.MAC_BOOK_PRO!, Titles.macBookPro, Price.macBookPro, MoreInformation.macBookPro, itemPage.imageMacBook)
   })
 })

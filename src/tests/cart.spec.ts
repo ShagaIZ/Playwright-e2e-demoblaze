@@ -1,6 +1,5 @@
 import { test, expect } from '@playwright/test'
 import { CartPage } from '../pages/cartPage'
-import { Urls } from '../common/url'
 import { Colors } from '../common/appData'
 
 test.describe.configure({ mode: 'serial' })
@@ -9,7 +8,7 @@ let cartPage: CartPage
 
 test.beforeEach(async ({ page }) => {
   cartPage = new CartPage(page)
-  await page.goto(Urls.homePage)
+  await page.goto(process.env.HOME!)
 })
 
 test.describe('Общие проверки страницы карточки', async () => {
@@ -34,7 +33,7 @@ test.describe('Общие проверки страницы карточки', a
   })
 
   test('Элементы страницы без карточки', async () => {
-    await cartPage.page.goto(Urls.cartPage)
+    await cartPage.page.goto(process.env.CART!)
     await expect(cartPage.products).toBeVisible()
     await expect(cartPage.picture).toBeVisible()
     await expect(cartPage.title).toBeVisible()

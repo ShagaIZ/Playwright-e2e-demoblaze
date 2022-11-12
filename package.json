@@ -7,7 +7,8 @@
     "lint:pretify": "prettier --write \"src/**/*.{ts,tsx,scss,json}\"",
     "lint": "eslint --fix . --ext .ts",
     "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "test:prod": "dotenv -e .env.prod playwright test"
   },
   "repository": {
     "type": "git",
@@ -37,7 +38,9 @@
       "npm run lint",
       "git add"
     ]
-}
-
-
+  },
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "dotenv-cli": "^6.0.0"
+  }
 }
