@@ -1,7 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { DataString, Colors, ModalVisibility } from '../common/appData'
 import { ContactModal } from '../pages/contactModal'
-import { Urls } from '../common/url'
 
 test.describe.configure({ mode: 'parallel' })
 
@@ -9,7 +8,7 @@ let contactModal: ContactModal
 
 test.beforeEach(async ({ page }) => {
   contactModal = new ContactModal(page)
-  await contactModal.page.goto(Urls.homePage)
+  await contactModal.page.goto(process.env.HOME!)
   await contactModal.contactButtonHeader.click()
 })
 

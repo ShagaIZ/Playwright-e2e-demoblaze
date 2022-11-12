@@ -1,9 +1,8 @@
-import { Locator, Page, expect } from '@playwright/test'
+import { Locator, Page as TYPE_Page, expect } from '@playwright/test'
 import { ItemPage } from './itemPage'
-import { Urls } from '../common/url'
 
 export class CartPage extends ItemPage {
-  readonly page: Page
+  override readonly page: TYPE_Page
   readonly deleteItem: Locator
   readonly countItems: Locator
   readonly products: Locator
@@ -18,7 +17,7 @@ export class CartPage extends ItemPage {
   readonly orderModalButton: Locator
   readonly itemsVisibility: Locator
 
-  constructor(page: Page) {
+  constructor(page: TYPE_Page) {
     super(page)
     this.page = page
     this.deleteItem = page.locator('[id="tbodyid"] >> text="Delete"')
@@ -57,7 +56,7 @@ export class CartPage extends ItemPage {
   async addItem(): Promise<void> {
     await this.addCart.click()
     await this.page.waitForLoadState('networkidle')
-    await this.page.goto(Urls.cartPage)
+    await this.page.goto(process.env.CART!)
   }
 
   async deleteItems(): Promise<void> {
