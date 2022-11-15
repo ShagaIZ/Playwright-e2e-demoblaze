@@ -3,11 +3,11 @@ import { CartPage } from './cartPage'
 import { Colors, ModalVisibility } from '../common/appData'
 
 export class PlaceOrderModal extends CartPage {
-  readonly page: Page
+  override readonly page: Page
   readonly modalTitle: Locator
   readonly orderModal: Locator
   readonly crossButton: Locator
-  readonly total: Locator
+  readonly totalOrder: Locator
   readonly nameTitle: Locator
   readonly nameField: Locator
   readonly countryTitle: Locator
@@ -37,7 +37,7 @@ export class PlaceOrderModal extends CartPage {
     this.modalTitle = page.locator('[class="modal fade show"]>>[id="orderModalLabel"]')
     this.orderModal = page.locator('[id="orderModal"]')
     this.crossButton = page.locator('text=Place order × >> [aria-label="Close"]')
-    this.total = page.locator('[id="totalm"]')
+    this.totalOrder = page.locator('[id="totalm"]')
     this.nameTitle = page.locator('text="Name:"')
     this.nameField = page.locator('[id="name"]')
     this.countryTitle = page.locator('text="Country:"')
@@ -67,8 +67,8 @@ export class PlaceOrderModal extends CartPage {
     await expect(this.orderModal).toHaveAttribute('class', ModalVisibility.ModalFadeShow)
     await expect(this.modalTitle).toHaveText('Place order')
     await expect(this.crossButton).toBeVisible()
-    await expect(this.total).toBeVisible()
-    await expect(this.total).toHaveText(total)
+    await expect(this.totalOrder).toBeVisible()
+    await expect(this.totalOrder).toHaveText(total)
     await expect(this.nameTitle).toBeVisible()
     await expect(this.nameField).toBeVisible()
     await expect(this.nameField).toBeEditable()

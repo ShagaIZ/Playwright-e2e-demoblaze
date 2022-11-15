@@ -14,7 +14,7 @@ let homePage: HomePage
 
 test.beforeEach(async ({ page }) => {
   homePage = new HomePage(page)
-  await homePage.page.goto(process.env.HOME!)
+  await homePage.page.goto(process.env.HOME)
 })
 
 test.describe('Элементы страницы home', async () => {

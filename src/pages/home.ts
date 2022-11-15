@@ -2,7 +2,7 @@ import { Locator, Page } from '@playwright/test'
 import { LoginPage } from './login'
 
 export class HomePage extends LoginPage {
-  readonly page: Page
+  override readonly page: Page
   readonly titleOfHeader: Locator
   readonly iconOfNavbarBrend: Locator
   readonly countOfElementsInTitleOfHeader: Locator
@@ -87,15 +87,15 @@ export class HomePage extends LoginPage {
     this.numberOfItems = page.locator('[id="tbodyid"]>[class="col-lg-4 col-md-6 mb-4"]')
   }
 
-  async typeUsernameField(username: string) {
-    await this.loginUsernameField.click()
-    await this.loginUsernameField.type(username)
-  }
+  // async typeUsernameField(username: string) {
+  //   await this.loginUsernameField.click()
+  //   await this.loginUsernameField.type(username)
+  // }
 
-  async typePasswordField(password: string) {
-    await this.loginPasswordField.click()
-    await this.loginPasswordField.type(password)
-  }
+  // async typePasswordField(password: string) {
+  //   await this.loginPasswordField.click()
+  //   await this.loginPasswordField.type(password)
+  // }
 
   async clickSliderWindowNextButton(): Promise<void> {
     await this.page.waitForTimeout(2000)

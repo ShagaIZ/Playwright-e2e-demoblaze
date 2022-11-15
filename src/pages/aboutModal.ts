@@ -1,8 +1,14 @@
-import { Locator, Page as TYPE_Page } from '@playwright/test'
+import { Locator, Page } from '@playwright/test'
 import { HomePage } from './home'
+import dotenv from 'dotenv'
+
+dotenv.config({
+  path: '.env.prod',
+  override: true,
+})
 
 export class AboutModal extends HomePage {
-  override readonly page: TYPE_Page
+  override readonly page: Page
   readonly videoModal: Locator
   readonly videoModalLabel: Locator
   readonly crossButton: Locator
@@ -10,7 +16,7 @@ export class AboutModal extends HomePage {
   readonly videoBlock: Locator
   readonly modalVisble: Locator
 
-  constructor(page: TYPE_Page) {
+  constructor(page: Page) {
     super(page)
     this.page = page
     this.videoModal = page.locator('[id="videoModal"]')
@@ -22,7 +28,7 @@ export class AboutModal extends HomePage {
   }
 
   async openAboutModal(Username: string, Password: string): Promise<void> {
-    await this.page.goto(process.env.HOME!)
+    await this.page.goto(process.env.HOME)
     await this.loginInModal.click()
     await this.loginUsernameField.fill(Username)
     await this.loginPasswordField.fill(Password)

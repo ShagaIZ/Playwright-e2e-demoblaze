@@ -16,7 +16,7 @@ let loginPage: LoginPage
 
 test.beforeEach(async ({ page }) => {
   loginPage = new LoginPage(page)
-  await page.goto(process.env.HOME!)
+  await page.goto(process.env.HOME)
   await loginPage.loginInModal.click()
 })
 

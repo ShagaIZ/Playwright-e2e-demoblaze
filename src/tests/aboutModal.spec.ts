@@ -27,7 +27,7 @@ test.describe('Общие проверки модального окна About U
   test('Элементы модального окна', async () => {
     await expect(aboutModal.videoModalLabel).toBeVisible()
     await expect(aboutModal.videoModalLabel).toHaveText(AboutData.About_Us)
-    await expect(aboutModal.closeModalCross).toBeVisible()
+    await expect(aboutModal.crossButton).toBeVisible()
     await expect(aboutModal.videoBlock).toBeVisible()
     await expect(aboutModal.closeButton).toBeVisible()
     await expect(aboutModal.closeButton).toHaveCSS('color', Colors.Onyx)
@@ -44,5 +44,3 @@ test.describe('Общие проверки модального окна About U
     await expect(aboutModal.videoModal).toHaveAttribute('class', ModalVisibility.ModalFade)
   })
 })
-
-// PWDEBUG=1 npx playwright test

@@ -15,7 +15,7 @@ let cartPage: CartPage
 
 test.beforeEach(async ({ page }) => {
   cartPage = new CartPage(page)
-  await page.goto(process.env.HOME!)
+  await page.goto(process.env.HOME)
 })
 
 test.describe('Общие проверки страницы карточки', async () => {
@@ -27,10 +27,10 @@ test.describe('Общие проверки страницы карточки', a
     await expect(cartPage.picture).toBeVisible()
     await expect(cartPage.title).toBeVisible()
     await expect(cartPage.samsungGalaxySix).toBeVisible()
-    await expect(cartPage.price).toBeVisible()
+    await expect(cartPage.priceCart).toBeVisible()
     await expect(cartPage.priceSamsungGalaxySix).toBeVisible()
     await expect(cartPage.deleteItem).toBeVisible()
-    await expect(cartPage.total).toBeVisible()
+    await expect(cartPage.totalCart).toBeVisible()
     await expect(cartPage.totalSamsungGalaxySix).toBeVisible()
     await expect(cartPage.orderModalButton).toBeVisible()
     await expect(cartPage.orderModalButton).toHaveText('Place Order')
@@ -44,8 +44,8 @@ test.describe('Общие проверки страницы карточки', a
     await expect(cartPage.products).toBeVisible()
     await expect(cartPage.picture).toBeVisible()
     await expect(cartPage.title).toBeVisible()
-    await expect(cartPage.price).toBeVisible()
-    await expect(cartPage.total).toBeVisible()
+    await expect(cartPage.priceCart).toBeVisible()
+    await expect(cartPage.totalCart).toBeVisible()
     await expect(cartPage.itemsVisibility).toBeEmpty()
     await expect(cartPage.orderModalButton).toBeVisible()
     await expect(cartPage.orderModalButton).toHaveText('Place Order')
