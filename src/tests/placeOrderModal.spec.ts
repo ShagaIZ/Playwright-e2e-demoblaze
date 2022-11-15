@@ -8,8 +8,6 @@ dotenv.config({
   override: true,
 })
 
-test.describe.configure({ mode: 'serial' })
-
 let placeOrderModal: PlaceOrderModal
 
 test.beforeEach(async ({ page }) => {

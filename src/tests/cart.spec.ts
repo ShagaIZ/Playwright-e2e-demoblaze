@@ -9,8 +9,6 @@ dotenv.config({
   override: true,
 })
 
-test.describe.configure({ mode: 'serial' })
-
 let cartPage: CartPage
 
 test.beforeEach(async ({ page }) => {
