@@ -40,7 +40,7 @@ test.describe('Общие проверки модального окна About U
    })
 
    test('Нажать на кнопку Close ->  модальное окно контактов закрывается', async () => {
-      await aboutModal.closeModalButton.click()
+      await aboutModal.closeButton.click()
       await expect(aboutModal.videoModal).toHaveAttribute('class', ModalVisibility.ModalFade)
    })
 })
