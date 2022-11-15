@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { VerificationText, Credentials, ErrorsText, Colors } from '../common/appData'
-import { LoginPage } from '../pages/login'
+import { LoginPage } from '../pages/loginPage'
 import dotenv from 'dotenv'
 
 dotenv.config({

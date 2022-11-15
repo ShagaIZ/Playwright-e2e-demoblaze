@@ -1,10 +1,10 @@
 import { Locator, Page, expect } from '@playwright/test'
-import { HomePage } from './home'
+import { AppPage } from './../pages/applicationPage/appPage'
 import { Colors } from '../common/appData'
 
 type strAndReg = string | RegExp
 
-export class ItemPage extends HomePage {
+export class ItemPage extends AppPage {
    override readonly page: Page
    readonly nameItem: Locator
    readonly priceItem: Locator

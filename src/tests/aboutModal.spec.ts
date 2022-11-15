@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { AboutData, Colors, ModalVisibility } from '../common/appData'
-import { AboutModal } from '../pages/aboutModal'
+import { AboutModal } from '../pages/applicationPage/modals/aboutModal'
 import dotenv from 'dotenv'
 
 dotenv.config({

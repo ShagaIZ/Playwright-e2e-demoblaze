@@ -1,5 +1,5 @@
 import { Locator, Page } from '@playwright/test'
-import { LoginPage } from './login'
+import { LoginPage } from '../../loginPage'
 
 export class ContactModal extends LoginPage {
    override readonly page: Page

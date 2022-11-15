@@ -1,6 +1,6 @@
 import { test, expect } from '@playwright/test'
 import { ModalVisibility } from '../common/appData'
-import { PlaceOrderModal } from '../pages/placeOrderModal'
+import { PlaceOrderModal } from '../pages/applicationPage/modals/placeOrderModal'
 import dotenv from 'dotenv'
 
 dotenv.config({

@@ -1,6 +1,6 @@
 import { Page, Locator, expect } from '@playwright/test'
-import { CartPage } from './cartPage'
-import { Colors, ModalVisibility } from '../common/appData'
+import { CartPage } from '../../cartPage'
+import { Colors, ModalVisibility } from '../../../common/appData'
 
 export class PlaceOrderModal extends CartPage {
    override readonly page: Page

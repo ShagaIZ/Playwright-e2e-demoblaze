@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test'
-import { LoginPage } from './login'
+import { LoginPage } from '../loginPage'
 
-export class HomePage extends LoginPage {
+export class AppPage extends LoginPage {
    override readonly page: Page
    readonly titleOfHeader: Locator
    readonly iconOfNavbarBrend: Locator

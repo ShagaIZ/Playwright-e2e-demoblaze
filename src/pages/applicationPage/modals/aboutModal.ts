@@ -1,5 +1,5 @@
 import { Locator, Page } from '@playwright/test'
-import { HomePage } from './home'
+import { AppPage } from './../appPage'
 import dotenv from 'dotenv'
 
 dotenv.config({
@@ -7,7 +7,7 @@ dotenv.config({
    override: true,
 })
 
-export class AboutModal extends HomePage {
+export class AboutModal extends AppPage {
    override readonly page: Page
    readonly videoModal: Locator
    readonly videoModalLabel: Locator
