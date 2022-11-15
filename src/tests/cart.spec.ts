@@ -2,6 +2,13 @@ import { test, expect } from '@playwright/test'
 import { CartPage } from '../pages/cartPage'
 import { Colors } from '../common/appData'
 
+import dotenv from 'dotenv'
+
+dotenv.config({
+  path: '.env.prod',
+  override: true,
+})
+
 test.describe.configure({ mode: 'serial' })
 
 let cartPage: CartPage

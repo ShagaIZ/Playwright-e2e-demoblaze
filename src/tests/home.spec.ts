@@ -1,6 +1,12 @@
 import { expect, test } from '@playwright/test'
 import { Headers, Categories, Pagination, Colors } from '../common/appData'
 import { HomePage } from '../pages/home'
+import dotenv from 'dotenv'
+
+dotenv.config({
+  path: '.env.prod',
+  override: true,
+})
 
 test.describe.configure({ mode: 'parallel' })
 

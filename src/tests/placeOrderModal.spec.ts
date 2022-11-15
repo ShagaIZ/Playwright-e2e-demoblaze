@@ -1,7 +1,12 @@
 import { test, expect } from '@playwright/test'
-
 import { ModalVisibility } from '../common/appData'
 import { PlaceOrderModal } from '../pages/placeOrderModal'
+import dotenv from 'dotenv'
+
+dotenv.config({
+  path: '.env.prod',
+  override: true,
+})
 
 test.describe.configure({ mode: 'serial' })
 

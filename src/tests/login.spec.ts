@@ -1,6 +1,12 @@
 import { expect, test } from '@playwright/test'
 import { VerificationText, Credentials, ErrorsText, Colors } from '../common/appData'
 import { LoginPage } from '../pages/login'
+import dotenv from 'dotenv'
+
+dotenv.config({
+  path: '.env.prod',
+  override: true,
+})
 
 test.use({ storageState: { cookies: [], origins: [] } })
 

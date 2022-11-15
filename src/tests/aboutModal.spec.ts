@@ -1,6 +1,12 @@
 import { test, expect } from '@playwright/test'
 import { AboutData, Colors, ModalVisibility } from '../common/appData'
 import { AboutModal } from '../pages/aboutModal'
+import dotenv from 'dotenv'
+
+dotenv.config({
+  path: '.env.prod',
+  override: true,
+})
 
 test.describe.configure({ mode: 'parallel' })
 
@@ -8,7 +14,7 @@ let aboutModal: AboutModal
 
 test.beforeEach(async ({ page }) => {
   aboutModal = new AboutModal(page)
-  await page.goto(process.env.HOME!)
+  await page.goto(process.env.HOME)
   await aboutModal.aboutUsButtonHeader.click()
   await aboutModal.loadPage()
 })

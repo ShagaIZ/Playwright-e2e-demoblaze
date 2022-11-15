@@ -1,6 +1,12 @@
 import { expect, test } from '@playwright/test'
 import { DataString, Colors, ModalVisibility } from '../common/appData'
 import { ContactModal } from '../pages/contactModal'
+import dotenv from 'dotenv'
+
+dotenv.config({
+  path: '.env.prod',
+  override: true,
+})
 
 test.describe.configure({ mode: 'parallel' })
 
