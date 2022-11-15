@@ -4,7 +4,6 @@
     "module": "commonjs",
     "lib": ["esnext", "dom", "DOM.Iterable", "es5"],
     "baseUrl": ".",
-    
     "esModuleInterop": true,
     "strict": true,
     "allowJs": true,
@@ -12,12 +11,18 @@
     "noEmit": true,
     "noImplicitOverride": true,
     "useUnknownInCatchVariables": false,
+    "strictPropertyInitialization": false,
+    "strictNullChecks": false
   },
   "compileOnSave": true,
   "include": [
     "packages",
     "src",
-    "tests",],
+    "tests",
+    "global-setup.ts"
+  ]
+    
+    ,
   "exclude": [
     "node_modules"
   ],
