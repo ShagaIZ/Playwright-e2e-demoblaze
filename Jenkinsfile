@@ -1,31 +1,36 @@
+
 pipeline {
-  agent any
-  stages {
-    stage('install ci') {
-      steps {
-        sh '''
-          npm install
-        '''
-      }
-    }
-      stage('install playwright') {
-      steps {
-        sh '''
-          npx playwright install
-        '''
-      }
-    }
-    stage('test') {
-      steps {
-        sh '''
-          npm run test:prod
-        '''
-      }
-      post {
-        success {
-          archiveArtifacts(artifacts: 'homepage-*.png', followSymlinks: false)
-          sh 'rm -rf *.png'
+   agent {
+        docker {
+            image 'node:lts-bullseye-slim' 
+            args '-p 3000:3000' 
         }
+    }
+    
+stages {
+       
+    stage('Git') {
+      steps {
+        git 'https://github.com/ShagaIZ/Playwright-e2e-demoblaze'
+      }
+    }
+     
+    stage('Build') {
+      steps {
+        sh 'npm install'
+      }
+    }  
+    
+    stage('browser') {
+      steps {
+        sh 'npx playwright install'
+        
+      }
+    } 
+            
+    stage('Test') {
+      steps {
+        sh 'npm run test:prod'
       }
     }
   }
