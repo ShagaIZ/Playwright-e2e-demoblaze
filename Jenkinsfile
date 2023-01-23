@@ -1,5 +1,5 @@
 pipeline {
-  agent { docker 'mcr.microsoft.com/playwright:v1.29.0-focal' }
+  agent any { docker 'mcr.microsoft.com/playwright:v1.29.0-focal' }
   stages {
     stage('install playwright') {
       steps {
