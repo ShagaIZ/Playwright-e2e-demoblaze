@@ -1,10 +1,18 @@
 pipeline {
   agent any 
   stages {
-    stage('install ci') {
+    stage('install ') {
       steps {
         sh '''
-          npm ci
+          npm i install
+        '''
+      }
+    }
+
+     stage('install ') {
+      steps {
+        sh '''
+          npm  install
         '''
       }
     }
