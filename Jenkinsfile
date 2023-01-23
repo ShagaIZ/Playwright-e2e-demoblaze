@@ -1,37 +1,26 @@
-
 pipeline {
-   agent {
-        docker {
-            image 'node:lts-bullseye-slim' 
-            args '-p 3000:3000' 
-        }
-    }
-    
-stages {
-       
-    stage('Git') {
-      steps {
-        git 'https://github.com/ShagaIZ/Playwright-e2e-demoblaze'
-      }
-    }
-     
-    stage('Build') {
-      steps {
-        sh 'npm install'
-      }
-    }  
-    
-    stage('browser') {
-      steps {
-        sh 'npx playwright install'
-        
-      }
+  agent { 
+    docker { 
+      image 'mcr.microsoft.com/playwright:v1.29.0-focal'
     } 
-            
-    stage('Test') {
+  }
+  stages {
+    stage('install playwright') {
       steps {
-        sh 'npm run test:prod'
+        sh '''
+          npm ci
+          npx playwright install
+        '''
       }
+    }
+   
+    stage('test') {
+      steps {
+        sh '''
+          npm run test:prod
+        '''
+      }
+      
     }
   }
 }
