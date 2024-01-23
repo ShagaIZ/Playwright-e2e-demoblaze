@@ -20,7 +20,7 @@ const config: PlaywrightTestConfig = {
 
    projects: [
       {
-         name: 'chromium',
+         name: 'playwright-e2e-demoblaze',
          use: {
             ...devices['Desktop Chrome'],
          },
