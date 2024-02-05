@@ -87,16 +87,6 @@ export class AppPage extends LoginPage {
       this.numberOfItems = page.locator('[id="tbodyid"]>[class="col-lg-4 col-md-6 mb-4"]')
    }
 
-   // async typeUsernameField(username: string) {
-   //   await this.loginUsernameField.click()
-   //   await this.loginUsernameField.type(username)
-   // }
-
-   // async typePasswordField(password: string) {
-   //   await this.loginPasswordField.click()
-   //   await this.loginPasswordField.type(password)
-   // }
-
    async clickSliderWindowNextButton(): Promise<void> {
       await this.page.waitForTimeout(2000)
       await this.sliderWindowNextButton.click()

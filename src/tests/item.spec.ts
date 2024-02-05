@@ -1,4 +1,4 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
 import { ItemPage } from '../pages/itemPage'
 import { Titles, MoreInformation, Price } from '../common/appData'
 import dotenv from 'dotenv'
