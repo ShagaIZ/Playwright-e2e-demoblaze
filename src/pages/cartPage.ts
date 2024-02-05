@@ -34,19 +34,6 @@ export class CartPage extends ItemPage {
       this.itemsVisibility = page.locator('[id="tbodyid"]')
    }
 
-   // Нужно доработать метод, нерабочий
-
-   /* async checkAvailabilityItem(){
-        await this.page.goto('https://www.demoblaze.com/cart.html#')
-        await this.countItems.waitFor()
-        const items:number = await this.countItems.count()
-            if(items>0){ 
-                for(let i = 0; items >= i; i++){
-                    await this.deleteItem.first().click();
-                }
-            }      
-        }*/
-
    async checkAddCart(locator: Locator): Promise<void> {
       await this.addItem()
       await expect(locator).toBeVisible()
