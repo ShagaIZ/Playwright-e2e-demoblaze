@@ -149,4 +149,9 @@ export class AppPage extends LoginPage {
       await this.clickSliderWindowNextButton()
       await this.clickSliderWindowNextButton()
    }
+   async mockResponce(json: any) {
+      await this.page.route('https://api.demoblaze.com/entries', async route => {
+         await route.fulfill({ path: `${json}` })
+      })
+   }
 }
