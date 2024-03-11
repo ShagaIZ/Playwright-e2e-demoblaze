@@ -12,6 +12,7 @@
     "noImplicitOverride": true,
     "useUnknownInCatchVariables": false,
     "strictPropertyInitialization": false,
+    "types": ["node"],
     "strictNullChecks": false
   },
   "compileOnSave": true,
