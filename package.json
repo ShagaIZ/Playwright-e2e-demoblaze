@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/ShagaIZ/Playwright-e2e-demoblaze#readme",
   "devDependencies": {
-    "@playwright/test": "^1.21.1",
+    "@playwright/test": "^1.42.1",
+    "@types/node": "^20.11.25",
     "@typescript-eslint/eslint-plugin": "^5.42.0",
     "@typescript-eslint/parser": "^5.42.0",
     "eslint": "^8.26.0",
