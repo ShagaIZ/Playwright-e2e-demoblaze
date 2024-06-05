@@ -4,8 +4,8 @@ import { Titles, MoreInformation, Price } from '../common/appData'
 import dotenv from 'dotenv'
 
 dotenv.config({
-   path: '.env.prod',
-   override: true,
+   // path: '.env.prod',
+   // override: true, Функционал не работает
 })
 
 test.describe.configure({ mode: 'parallel' })
