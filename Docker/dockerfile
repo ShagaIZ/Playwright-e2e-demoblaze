@@ -1,5 +1,5 @@
 FROM node:18
-FROM mcr.microsoft.com/playwright:v1.42.1-jammy
+FROM mcr.microsoft.com/playwright:v1.52.0-noble
 
 WORKDIR /src
 
