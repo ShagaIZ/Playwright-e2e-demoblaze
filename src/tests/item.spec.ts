@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 
 dotenv.config({
    path: '.env.prod',
-   override: true,
+   // override: true,
 })
 
 test.describe.configure({ mode: 'parallel' })
