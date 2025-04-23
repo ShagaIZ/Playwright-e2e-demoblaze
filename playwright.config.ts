@@ -10,20 +10,24 @@ const config: PlaywrightTestConfig = {
    },
 
    reporter: 'line',
-   globalSetup: require.resolve('./global-setup'),
-
    use: {
       headless: true,
       trace: 'on-first-retry',
-      storageState: 'session/auth.json',
    },
 
    projects: [
       {
+         name: 'setup cookies',
+         testMatch: 'global.setup.ts',
+      },
+
+      {
          name: 'playwright-e2e-demoblaze',
          use: {
             ...devices['Desktop Chrome'],
+            storageState: 'session/auth.json',
          },
+         dependencies: ['setup cookies'],
       },
    ],
 }
