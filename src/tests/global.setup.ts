@@ -1,7 +1,7 @@
-import { chromium } from '@playwright/test'
-import { Credentials } from './src/common/appData'
+import { chromium, test as setup } from '@playwright/test'
+import { Credentials } from 'src/common/appData'
 
-const globalSetup = async (): Promise<void> => {
+setup('setup cookies', async () => {
    const browser = await chromium.launch()
    const page = await browser.newPage()
    await page.goto('https://www.demoblaze.com/index.html')
@@ -12,6 +12,4 @@ const globalSetup = async (): Promise<void> => {
    await page.waitForNavigation()
    await page.context().storageState({ path: 'session/auth.json' })
    await browser.close()
-}
-
-export default globalSetup
+})
