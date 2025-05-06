@@ -63,7 +63,6 @@ export class PlaceOrderModal extends CartPage {
    }
 
    async checkModal(total: string): Promise<void> {
-      await this.page.waitForLoadState('networkidle')
       await expect(this.orderModal).toHaveAttribute('class', ModalVisibility.ModalFadeShow)
       await expect(this.modalTitle).toHaveText('Place order')
       await expect(this.crossButton).toBeVisible()

@@ -8,8 +8,6 @@ dotenv.config({
    override: true,
 })
 
-test.describe.configure({ mode: 'parallel' })
-
 let contactModal: ContactModal
 
 test.beforeEach(async ({ page }) => {

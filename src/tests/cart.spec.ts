@@ -38,7 +38,7 @@ test.describe('Общие проверки страницы карточки', a
    })
 
    test('Элементы страницы без карточки', async () => {
-      await cartPage.page.goto(process.env.CART!)
+      await cartPage.page.goto(process.env.CART)
       await expect(cartPage.products).toBeVisible()
       await expect(cartPage.picture).toBeVisible()
       await expect(cartPage.title).toBeVisible()

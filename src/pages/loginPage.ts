@@ -72,6 +72,5 @@ export class LoginPage {
    async loadPage(): Promise<void> {
       await this.page.waitForLoadState('load')
       await this.page.waitForLoadState('domcontentloaded')
-      await this.page.waitForLoadState('networkidle')
    }
 }

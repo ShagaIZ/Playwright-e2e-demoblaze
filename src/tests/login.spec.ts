@@ -10,8 +10,6 @@ dotenv.config({
 
 test.use({ storageState: { cookies: [], origins: [] } })
 
-test.describe.configure({ mode: 'parallel' })
-
 let loginPage: LoginPage
 
 test.beforeEach(async ({ page }) => {
