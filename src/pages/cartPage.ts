@@ -41,14 +41,15 @@ export class CartPage extends ItemPage {
    }
 
    async addItem(): Promise<void> {
+      await this.page.waitForTimeout(1000)
       await this.addCart.click()
-      await this.page.waitForLoadState('networkidle')
-      await this.page.goto(process.env.CART!)
+      await this.page.waitForTimeout(1000)
+      await this.page.goto(process.env.CART)
    }
 
    async deleteItems(): Promise<void> {
+      await this.page.waitForTimeout(1000)
       await this.deleteItem.click()
-      await this.page.waitForLoadState('networkidle')
-      await this.page.waitForTimeout(2000)
+      await this.page.waitForTimeout(1000)
    }
 }
