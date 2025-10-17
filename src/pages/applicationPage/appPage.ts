@@ -1,5 +1,6 @@
 import { Locator, Page } from '@playwright/test'
 import { LoginPage } from '../loginPage'
+import { urls } from 'src/utlis/urls'
 
 export class AppPage extends LoginPage {
    override readonly page: Page
@@ -150,7 +151,7 @@ export class AppPage extends LoginPage {
       await this.clickSliderWindowNextButton()
    }
    async mockResponce(json: string) {
-      await this.page.route('https://api.demoblaze.com/entries', async route => {
+      await this.page.route(urls.entries, async route => {
          await route.fulfill({ path: `${json}` })
       })
    }

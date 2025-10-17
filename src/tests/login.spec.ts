@@ -1,12 +1,9 @@
 import { expect, test } from '@playwright/test'
-import { VerificationText, Credentials, ErrorsText, Colors } from '../common/appData'
+import { VerificationText, ErrorsText, Colors } from '../common/appData'
 import { LoginPage } from '../pages/loginPage'
-import dotenv from 'dotenv'
+import { urls } from 'src/utlis/urls'
+import { Credentials } from 'src/common/userData'
 
-dotenv.config({
-   path: '.env.prod',
-   override: true,
-})
 
 test.use({ storageState: { cookies: [], origins: [] } })
 
@@ -14,7 +11,7 @@ let loginPage: LoginPage
 
 test.beforeEach(async ({ page }) => {
    loginPage = new LoginPage(page)
-   await page.goto(process.env.HOME)
+   await page.goto(urls.home)
    await loginPage.loginInModal.click()
 })
 
@@ -40,13 +37,6 @@ test.describe('Общие проверки страницы login', async () => 
 
    test('Ввести валидный логин и пароль, нажать на кнопку "Log in" -> пользователь залогинен', async () => {
       await loginPage.typeAndLogin(Credentials.CorrectUsername, Credentials.CorrectPassword)
-      await loginPage.validationVisibilityUserName(VerificationText.Name)
-   })
-
-   test('Вставить из БО валидный логин и пароль, нажать на кнопку "Log in" -> пользователь залогинен', async () => {
-      await loginPage.loginUsernameField.fill(Credentials.CorrectUsername)
-      await loginPage.loginPasswordField.fill(Credentials.CorrectPassword)
-      await loginPage.loginButton.click()
       await loginPage.validationVisibilityUserName(VerificationText.Name)
    })
 

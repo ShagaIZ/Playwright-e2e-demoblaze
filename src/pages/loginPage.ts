@@ -27,16 +27,6 @@ export class LoginPage {
       this.modalFade = page.locator('[class="modal fade"]')
    }
 
-   async typeUsernameField(username: string) {
-      await this.loginUsernameField.click()
-      await this.loginUsernameField.type(username)
-   }
-
-   async typePasswordField(password: string) {
-      await this.loginPasswordField.click()
-      await this.loginPasswordField.type(password)
-   }
-
    async validationDialog(ErrorsText: string) {
       this.page.on('dialog', async dialog => {
          expect(dialog.message()).toContain(ErrorsText)
@@ -44,9 +34,9 @@ export class LoginPage {
       })
    }
 
-   async typeAndLogin(NotUsername: string, NotPassword: string): Promise<void> {
-      await this.typeUsernameField(NotUsername)
-      await this.typePasswordField(NotPassword)
+   async typeAndLogin(username: string, password: string): Promise<void> {
+      await this.loginUsernameField.fill(username)
+      await this.loginPasswordField.fill(password)
       await this.loginButton.click()
    }
 
@@ -56,6 +46,7 @@ export class LoginPage {
    }
 
    async validationVisibilityUserName(VerificationText: string): Promise<void> {
+      await this.nameOfUser.waitFor()
       await expect(this.nameOfUser).toBeVisible()
       await expect(this.nameOfUser).toContainText(VerificationText)
    }
@@ -67,10 +58,5 @@ export class LoginPage {
       await this.loginPasswordField.click()
       await this.page.keyboard.press('Control+A')
       await this.page.keyboard.press('Backspace')
-   }
-
-   async loadPage(): Promise<void> {
-      await this.page.waitForLoadState('load')
-      await this.page.waitForLoadState('domcontentloaded')
    }
 }
