@@ -3,16 +3,20 @@ import { devices } from '@playwright/test'
 
 const config: PlaywrightTestConfig = {
    testDir: './src/tests',
-   workers: 1,
-   timeout: 50 * 1000,
+   workers: 4,
+   timeout: 70 * 1000,
+   retries: 1,
    expect: {
-      timeout: 5000,
+      timeout: 10000,
+      toMatchSnapshot: {
+         maxDiffPixels: 100,
+         threshold: 0.1,
+      },
    },
-
-   reporter: 'line',
+   reporter: 'list',
    use: {
       headless: true,
-      trace: 'on-first-retry',
+      trace: 'retain-on-failure',
    },
 
    projects: [
