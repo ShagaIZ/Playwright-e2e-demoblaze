@@ -1,7 +1,8 @@
 
-FROM mcr.microsoft.com/playwright:v1.52.0-noble
+FROM mcr.microsoft.com/playwright:v1.56.0-noble
 WORKDIR /src
+COPY package*.json ./
+RUN npm ci
 COPY . .
 ENV PATH /src/node_modules/.bin:$PATH
-RUN apt-get update -y && npm install
-CMD [ "bash", "test.sh" ]
+CMD ["npm", "run", "test:prod"]
