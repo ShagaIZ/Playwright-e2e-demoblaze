@@ -1,0 +1,22 @@
+name: E2E Tests
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Build Docker image
+        run: docker build -t my-playwright-image .
+      - name: Run Playwright tests
+        run: |
+          docker run --rm \
+            -e USERNAME_ONE=${{ secrets.USERNAME_ONE }} \
+            -e PASSWORD_ONE=${{ secrets.PASSWORD_ONE }} \
+            -e USERNAME_TWO=${{ secrets.USERNAME_TWO }} \
+            -e PASSWORD_TWO=${{ secrets.PASSWORD_TWO }} \
+            my-playwright-image
