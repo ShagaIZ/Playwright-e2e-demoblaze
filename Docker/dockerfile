@@ -1,16 +1,7 @@
-FROM node:18
+
 FROM mcr.microsoft.com/playwright:v1.52.0-noble
-
 WORKDIR /src
-
 COPY . .
-
-ENV PATH /app/node_modules/.bin:$PATH
-
-
-RUN apt-get update -y
-RUN npm install
-
-
+ENV PATH /src/node_modules/.bin:$PATH
+RUN apt-get update -y && npm install
 CMD [ "bash", "test.sh" ]
-
