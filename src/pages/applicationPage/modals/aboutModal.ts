@@ -1,6 +1,8 @@
 import { Locator, Page } from '@playwright/test'
 import { AppPage } from './../appPage'
 import dotenv from 'dotenv'
+import { url } from 'inspector'
+import { urls } from 'src/utlis/urls'
 
 dotenv.config({
    path: '.env.prod',
@@ -28,7 +30,7 @@ export class AboutModal extends AppPage {
    }
 
    async openAboutModal(Username: string, Password: string): Promise<void> {
-      await this.page.goto(process.env.HOME)
+      await this.page.goto(urls.home)
       await this.loginInModal.click()
       await this.loginUsernameField.fill(Username)
       await this.loginPasswordField.fill(Password)

@@ -1,22 +1,31 @@
 import { test, expect } from '@playwright/test'
 import { ModalVisibility } from '../common/appData'
 import { PlaceOrderModal } from '../pages/applicationPage/modals/placeOrderModal'
-import dotenv from 'dotenv'
+import { LoginPage } from 'src/pages/loginPage'
+import { CartPage } from 'src/pages/cartPage'
+import { urls } from 'src/utlis/urls'
+import { Credentials } from 'src/common/userData'
 
-dotenv.config({
-   path: '.env.prod',
-   override: true,
-})
 
 let placeOrderModal: PlaceOrderModal
+let loginPage: LoginPage
+let cartPage: CartPage
 
 test.beforeEach(async ({ page }) => {
    placeOrderModal = new PlaceOrderModal(page)
+   loginPage = new LoginPage(page)
+   cartPage = new CartPage(page)
+   await placeOrderModal.page.goto(urls.home)
+   await loginPage.loginInModal.click()
+   await loginPage.typeAndLogin(Credentials.SecondUsername, Credentials.SecondPassword)
+   await page.goto(urls.cart)
+   await cartPage.deleteAllProducts()
+   await placeOrderModal.page.goto(urls.home)
+
 })
 
-test.describe('Общие проверки модального окна Place Order', async () => {
+test.describe('Общие проверки модального окна Place Order',  async () => {
    test('Элементы модального окна с товаром -> модальное открывается, Total==цене продукта, поля пустые, кнопки "Close", "Purchase" и "Крестик" отображаются корректно', async () => {
-      await placeOrderModal.page.goto(process.env.HOME)
       await placeOrderModal.samsungGalaxySixItem.click()
       await placeOrderModal.addItem()
       await placeOrderModal.orderModalButton.click()
@@ -26,28 +35,29 @@ test.describe('Общие проверки модального окна Place O
    })
 
    test('Элементы модального окна без товара -> модальное открывается, Total==0, поля пустые, кнопки "Close", "Purchase" и "Крестик" отображаются корректно', async () => {
-      await placeOrderModal.page.goto(process.env.CART)
+      await placeOrderModal.page.goto(urls.cart)
       await placeOrderModal.orderModalButton.click()
       await placeOrderModal.checkModal('Total:')
       await placeOrderModal.crossButton.click()
    })
 
    test('Закрыть модальное окно с помощью кнопки Close, без товара -> модальное закрывается', async () => {
-      await placeOrderModal.page.goto(process.env.CART)
+      await placeOrderModal.page.goto(urls.cart)
       await placeOrderModal.orderModalButton.click()
       await placeOrderModal.closeButton.click()
+      await placeOrderModal.page.waitForTimeout(1000)
       await expect(placeOrderModal.orderModal).toHaveAttribute('class', ModalVisibility.ModalFade)
    })
 
    test('Нажать на кнопку Purchase, поля не заполнены, без товара -> модальное не закрывается', async () => {
-      await placeOrderModal.page.goto(process.env.CART)
+      await placeOrderModal.page.goto(urls.cart)
       await placeOrderModal.orderModalButton.click()
       await placeOrderModal.purchaseButton.click()
+      await placeOrderModal.page.waitForTimeout(1000)
       await expect(placeOrderModal.orderModal).not.toHaveAttribute('class', ModalVisibility.ModalFade)
    })
 
    test('Нажать на кнопку Purchase, поля заполнены с Name до City, с товаром -> модальное не закрывается. покупка не совершена', async () => {
-      await placeOrderModal.page.goto(process.env.HOME)
       await placeOrderModal.samsungGalaxySixItem.click()
       await placeOrderModal.addItem()
       await placeOrderModal.orderModalButton.click()
@@ -55,13 +65,13 @@ test.describe('Общие проверки модального окна Place O
       await placeOrderModal.countryField.fill('Monco')
       await placeOrderModal.cityField.fill('Raketa')
       await placeOrderModal.purchaseButton.click()
+      await placeOrderModal.page.waitForTimeout(1000)
       await expect(placeOrderModal.orderModal).not.toHaveAttribute('class', ModalVisibility.ModalFade)
       await placeOrderModal.closeButton.click()
       await placeOrderModal.deleteItems()
    })
 
    test('Нажать на кнопку Purchase, поля заполнены с Credit card до Year, с товаром ->  модальное не закрывается. покупка не совершена', async () => {
-      await placeOrderModal.page.goto(process.env.HOME)
       await placeOrderModal.samsungGalaxySixItem.click()
       await placeOrderModal.addItem()
       await placeOrderModal.orderModalButton.click()
@@ -69,6 +79,7 @@ test.describe('Общие проверки модального окна Place O
       await placeOrderModal.monthField.fill('November')
       await placeOrderModal.yearTitle.fill('2022')
       await placeOrderModal.purchaseButton.click()
+      await placeOrderModal.page.waitForTimeout(1000)
       await expect(placeOrderModal.orderModal).not.toHaveAttribute('class', ModalVisibility.ModalFade)
       await placeOrderModal.closeButton.click()
       await placeOrderModal.deleteItems()
@@ -95,7 +106,6 @@ test.describe('Общие проверки модального окна Place O
    })
 
    test('Нажать на кнопку Purchase, поля заполнены, нажать кнопку Ок, с товаром -> осуществляется переход на страниц Home', async () => {
-      await placeOrderModal.page.goto(process.env.HOME)
       await placeOrderModal.samsungGalaxySixItem.click()
       await placeOrderModal.addItem()
       await placeOrderModal.orderModalButton.click()
@@ -109,6 +119,6 @@ test.describe('Общие проверки модального окна Place O
       await expect(placeOrderModal.confirmButton).toBeVisible()
       await placeOrderModal.page.waitForTimeout(1000)
       await placeOrderModal.confirmButton.click()
-      await expect(placeOrderModal.page).toHaveURL(process.env.HOME)
+      await expect(placeOrderModal.page).toHaveURL(urls.home)
    })
 })

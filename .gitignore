@@ -3,3 +3,4 @@ node_modules/
 /playwright-report/
 /dist-pw/
 session/auth.json
+.env.local

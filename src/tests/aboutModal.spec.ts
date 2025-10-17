@@ -1,20 +1,14 @@
 import { test, expect } from '@playwright/test'
 import { AboutData, Colors, ModalVisibility } from '../common/appData'
 import { AboutModal } from '../pages/applicationPage/modals/aboutModal'
-import dotenv from 'dotenv'
-
-dotenv.config({
-   path: '.env.prod',
-   override: true,
-})
+import { urls } from 'src/utlis/urls'
 
 let aboutModal: AboutModal
 
 test.beforeEach(async ({ page }) => {
    aboutModal = new AboutModal(page)
-   await page.goto(process.env.HOME)
+   await page.goto(urls.home)
    await aboutModal.aboutUsButtonHeader.click()
-   await aboutModal.loadPage()
 })
 
 test.describe('Общие проверки модального окна About Us', async () => {
@@ -34,11 +28,13 @@ test.describe('Общие проверки модального окна About U
 
    test('Нажать на кнопку крестик -> модальное окно контактов закрывается', async () => {
       await aboutModal.crossButton.click()
+      await aboutModal.page.waitForTimeout(1000)
       await expect(aboutModal.videoModal).toHaveAttribute('class', ModalVisibility.ModalFade)
    })
 
    test('Нажать на кнопку Close ->  модальное окно контактов закрывается', async () => {
       await aboutModal.closeButton.click()
+       await aboutModal.page.waitForTimeout(1000)
       await expect(aboutModal.videoModal).toHaveAttribute('class', ModalVisibility.ModalFade)
    })
 })

@@ -1,5 +1,6 @@
 import { Locator, Page, expect } from '@playwright/test'
 import { ItemPage } from './itemPage'
+import { urls } from 'src/utlis/urls'
 
 export class CartPage extends ItemPage {
    override readonly page: Page
@@ -41,15 +42,25 @@ export class CartPage extends ItemPage {
    }
 
    async addItem(): Promise<void> {
-      await this.page.waitForTimeout(1000)
+      await this.page.waitForTimeout(2000)
       await this.addCart.click()
       await this.page.waitForTimeout(1000)
-      await this.page.goto(process.env.CART)
+      await this.page.goto(urls.cart)
    }
 
    async deleteItems(): Promise<void> {
       await this.page.waitForTimeout(1000)
       await this.deleteItem.click()
-      await this.page.waitForTimeout(1000)
+      await this.page.waitForTimeout(2000)
+   }
+   async deleteAllProducts() {
+      await this.page.waitForTimeout(3000);
+      const deleteButton = this.page.locator('[id="tbodyid"] >> text="Delete"')
+      let count = await deleteButton.count();
+      while (count > 0) {
+         await deleteButton.first().click({ force: true });
+         await this.page.waitForTimeout(2000);
+         count = await deleteButton.count();
+      }
    }
 }

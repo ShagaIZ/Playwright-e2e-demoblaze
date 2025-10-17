@@ -1,18 +1,14 @@
 import { expect, test } from '@playwright/test'
 import { DataString, Colors, ModalVisibility } from '../common/appData'
 import { ContactModal } from '../pages/applicationPage/modals/contactModal'
-import dotenv from 'dotenv'
+import { urls } from 'src/utlis/urls'
 
-dotenv.config({
-   path: '.env.prod',
-   override: true,
-})
 
 let contactModal: ContactModal
 
 test.beforeEach(async ({ page }) => {
    contactModal = new ContactModal(page)
-   await contactModal.page.goto(process.env.HOME)
+   await contactModal.page.goto(urls.home)
    await contactModal.contactButtonHeader.click()
 })
 
@@ -42,7 +38,7 @@ test.describe('Общие проверки модального окна Contact
 
    test('Нажать на кнопку Send Mesage, поля не заполнены -> модальное окно контактов закрывается, сообщение отправлено', async () => {
       await contactModal.sendMessageButton.click()
-      await contactModal.loadPage()
+       await contactModal.page.waitForTimeout(1000)
       await expect(contactModal.exampleModal).toHaveAttribute('class', ModalVisibility.ModalFade)
    })
 
@@ -51,19 +47,19 @@ test.describe('Общие проверки модального окна Contact
       await contactModal.nameField.fill(DataString.Name)
       await contactModal.messageField.fill(DataString.Message)
       await contactModal.sendMessageButton.click()
-      await contactModal.loadPage()
+      await contactModal.page.waitForTimeout(1000)
       await expect(contactModal.exampleModal).toHaveAttribute('class', ModalVisibility.ModalFade)
    })
 
    test('Нажать на кнопку крестик -> модальное окно контактов закрывается', async () => {
       await contactModal.crossButtonContact.click()
-      await contactModal.loadPage()
+      await contactModal.page.waitForTimeout(1000)
       await expect(contactModal.exampleModal).toHaveAttribute('class', ModalVisibility.ModalFade)
    })
 
    test('Нажать на кнопку Close ->  модальное окно контактов закрывается', async () => {
       await contactModal.closeButtonContact.click()
-      await contactModal.loadPage()
+      await contactModal.page.waitForTimeout(1000)
       await expect(contactModal.exampleModal).toHaveAttribute('class', ModalVisibility.ModalFade)
    })
 })

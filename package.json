@@ -8,7 +8,7 @@
     "lint": "eslint --fix . --ext .ts",
     "prepare": "husky install",
     "pre-commit": "lint-staged",
-    "test:prod": "dotenv -e .env.prod playwright test"
+    "test:prod": "dotenv -e .env.prod -e .env.local playwright test"
   },
   "repository": {
     "type": "git",
