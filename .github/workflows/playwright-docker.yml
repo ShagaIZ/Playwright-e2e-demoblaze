@@ -8,10 +8,11 @@ on:
 jobs:
   e2e:
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v3
       - name: Build Docker image
-        run: docker build -t my-playwright-image .
+        run: docker build -t playwright-e2e -f Docker/dockerfile .
       - name: Run Playwright tests
         run: |
           docker run --rm \
@@ -19,4 +20,4 @@ jobs:
             -e PASSWORD_ONE=${{ secrets.PASSWORD_ONE }} \
             -e USERNAME_TWO=${{ secrets.USERNAME_TWO }} \
             -e PASSWORD_TWO=${{ secrets.PASSWORD_TWO }} \
-            my-playwright-image
+            playwright-e2e
