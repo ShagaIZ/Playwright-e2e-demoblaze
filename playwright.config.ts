@@ -13,7 +13,7 @@ const config: PlaywrightTestConfig = {
          threshold: 0.1,
       },
    },
-   reporter: 'list',
+   reporter: [['list', { printSteps: true }]],
    use: {
       headless: true,
       trace: 'retain-on-failure',
