@@ -1,13 +1,3 @@
-// Login Page
-export const Credentials = {
-   CorrectUsername: 'Test2022',
-   CorrectPassword: 'Test2022',
-   NotCorrectUsername: '454545qq',
-   NotCorrectPassword: '454545qq',
-   EmptyUsername: '',
-   EmptyPassword: '',
-}
-
 export const VerificationText = {
    LogIn: 'Log in',
    Name: 'Welcome Test2022',
@@ -94,7 +84,7 @@ export const MoreInformation = {
 export const Colors = {
    White: 'rgb(255, 255, 255)',
    Onyx: 'rgb(41, 43, 44)',
-   LightGreen: 'rgb(92, 184, 92)',
+   LightGreen: 'rgb(52, 168, 83)',
    DarkBlue: 'rgb(2, 117, 216)',
    GraniteGray: 'rgb(102, 102, 102)',
    DarkGrayishBlue: 'rgb(134, 134, 136)',

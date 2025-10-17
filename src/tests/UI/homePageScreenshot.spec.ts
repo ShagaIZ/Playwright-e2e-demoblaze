@@ -1,20 +1,17 @@
 import { expect, test } from '@playwright/test'
 import { AppPage } from '../../pages/applicationPage/appPage'
-import dotenv from 'dotenv'
-
-dotenv.config({
-   path: '.env.prod',
-   override: true,
-})
+import { urls } from 'src/utlis/urls'
 
 let appPage: AppPage
 
 test.beforeEach(async ({ page }) => {
    appPage = new AppPage(page)
-   await appPage.mockResponce(process.env.JSON_MOCK_HOME_PAGE)
-   await appPage.page.goto(process.env.HOME)
+   await appPage.mockResponce(urls.homePageJson)
+   await appPage.page.goto(urls.home)
+   await appPage.page.waitForLoadState('load')
 })
 
 test('Соответствие скриншота cтраницы Home', async () => {
+   await appPage.page.waitForTimeout(2000)
    await expect(appPage.page).toHaveScreenshot('homePage.png')
 })

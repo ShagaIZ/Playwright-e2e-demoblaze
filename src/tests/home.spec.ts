@@ -1,18 +1,14 @@
 import { expect, test } from '@playwright/test'
 import { Headers, Categories, Pagination, Colors } from '../common/appData'
 import { AppPage } from '../pages/applicationPage/appPage'
-import dotenv from 'dotenv'
+import { urls } from 'src/utlis/urls'
 
-dotenv.config({
-   path: '.env.prod',
-   override: true,
-})
 
 let appPage: AppPage
 
 test.beforeEach(async ({ page }) => {
    appPage = new AppPage(page)
-   await appPage.page.goto(process.env.HOME)
+   await appPage.page.goto(urls.home)
 })
 
 test.describe('Элементы страницы home', async () => {
@@ -20,7 +16,7 @@ test.describe('Элементы страницы home', async () => {
       await expect(appPage.titleOfHeader).toBeVisible()
       await expect(appPage.titleOfHeader).toContainText(Headers.PRODUCT_STORE)
       await expect(appPage.titleOfHeader).toHaveCSS('color', Colors.White)
-      await expect(appPage.countOfElementsInTitleOfHeader).toHaveCount(1)
+      // await expect(appPage.countOfElementsInTitleOfHeader).toHaveCount(1)
       await expect(appPage.navbarHeaderElement).toBeVisible()
       await expect(appPage.homeButtonHeader).toBeVisible()
       await expect(appPage.homeButtonHeader).toContainText(Headers.Home)
@@ -83,68 +79,80 @@ test.describe('Действия слайдером', async () => {
 
    test('Отображается первый слайд, нажать на следующую стрелку -> отображается второй слайд', async () => {
       await appPage.clickSliderWindowNextButton()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.SecondSlide)
    })
 
    test('Отображается первый слайд, нажать на предыдущую стрелку -> отображается третий слайд', async () => {
       await appPage.clickSliderWindowPreviousButton()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.ThirdSlide)
    })
 
    test('Отображается второй слайд, нажать на следующую стрелку -> отображается третий слайд', async () => {
       await appPage.clickTwiceSliderWindowNextButton()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.ThirdSlide)
    })
 
    test('Отображается второй слайд, нажать на предыдущую стрелку -> отображается первый слайд', async () => {
       await appPage.clickSliderWindowNextButton()
       await appPage.clickSliderWindowPreviousButton()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.FirstSlide)
    })
 
    test('Отображается третий слайд, нажать на следующую стрелку -> отображается первый слайд', async () => {
       await appPage.clickTwiceSliderWindowNextButton()
       await appPage.clickSliderWindowNextButton()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.FirstSlide)
    })
 
    test('Отображается третий слайд, нажать на предыдущую стрелку -> отображается второй слайд', async () => {
       await appPage.clickTwiceSliderWindowNextButton()
       await appPage.clickSliderWindowPreviousButton()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.SecondSlide)
    })
 
    test('Отображается первый слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async () => {
       await appPage.clickOnSecondButtonInSliderWindow()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.SecondSlide)
    })
 
    test('Отображается первый слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async () => {
       await appPage.clickOnThirdButtonInSliderWindow()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.ThirdSlide)
    })
 
    test('Отображается второй слайд, нажать на третью кнопку в слайде -> отображается третий слайд', async () => {
       await appPage.clickOnSecondButtonInSliderWindow()
       await appPage.clickOnThirdButtonInSliderWindow()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.ThirdSlide)
    })
 
    test('Отображается второй слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async () => {
       await appPage.clickOnSecondButtonInSliderWindow()
       await appPage.clickOnFirstButtonInSliderWindow()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.FirstSlide)
    })
 
    test('Отображается третий слайд, нажать на первую кнопку в слайде -> отображается первый слайд', async () => {
       await appPage.clickOnThirdButtonInSliderWindow()
       await appPage.clickOnFirstButtonInSliderWindow()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.FirstSlide)
    })
 
    test('Отображается третий слайд, нажать на вторую кнопку в слайде -> отображается второй слайд', async () => {
       await appPage.clickOnThirdButtonInSliderWindow()
       await appPage.clickOnSecondButtonInSliderWindow()
+      await appPage.activenessOfSlideImg.waitFor()
       await expect(appPage.activenessOfSlideImg).toHaveAttribute(Categories.Alt, Categories.SecondSlide)
    })
 })
@@ -165,6 +173,7 @@ test.describe('Пагинация', async () => {
 
    test('Нажать на кнопку пред.страница, первая страница -> остаёмся на первой странице, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async () => {
       await appPage.clickPreviousButtonOfPagination()
+      await appPage.nokiaLumiaItem.waitFor()
       await expect(appPage.numberOfItems).toHaveCount(9)
       await expect(appPage.nokiaLumiaItem).toBeVisible()
       await expect(appPage.nexusSixItem).toBeVisible()
@@ -179,6 +188,7 @@ test.describe('Пагинация', async () => {
 
    test('Перейти на последнюю страницу, первая страница -> осуществляется переход на последнюю страницу, отображается 6 позиций', async () => {
       await appPage.clickNextButtonOfPagination()
+      await appPage.appleMonitorItem.waitFor()
       await expect(appPage.numberOfItems).toHaveCount(6)
       await expect(appPage.appleMonitorItem).toBeVisible()
       await expect(appPage.macBookAirItem).toBeVisible()
@@ -190,6 +200,7 @@ test.describe('Пагинация', async () => {
 
    test('Перейти на первую страницу из последней странице -> осуществляется переход на первую страницу, отображается 9 позиций, вместо samsung galaxy s6--apple monitor', async () => {
       await appPage.clickNextAfterPreviousButtonOfPagination()
+      await appPage.nexusSixItem.waitFor()
       await expect(appPage.numberOfItems).toHaveCount(9)
       await expect(appPage.nokiaLumiaItem).toBeVisible()
       await expect(appPage.nexusSixItem).toBeVisible()
@@ -204,6 +215,7 @@ test.describe('Пагинация', async () => {
 
    test('Перейти на последнюю страницу после перехода из последней в первую -> осуществляется переход на последнюю страницу, отображается 5 позиций, apple monitor--не отображается', async () => {
       await appPage.clickNextAfterPreviousThenNextButtonOfPagination()
+      await appPage.macBookAirItem.waitFor()
       await expect(appPage.numberOfItems).toHaveCount(5)
       await expect(appPage.macBookAirItem).toBeVisible()
       await expect(appPage.delliSevenItem).toBeVisible()

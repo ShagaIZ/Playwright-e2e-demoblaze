@@ -1,25 +1,23 @@
 import { test, expect } from '@playwright/test'
 import { CartPage } from '../pages/cartPage'
 import { Colors } from '../common/appData'
+import { urls } from 'src/utlis/urls'
 
-import dotenv from 'dotenv'
-
-dotenv.config({
-   path: '.env.prod',
-   override: true,
-})
 
 let cartPage: CartPage
 
 test.beforeEach(async ({ page }) => {
    cartPage = new CartPage(page)
-   await page.goto(process.env.HOME)
+   await page.goto(urls.cart)
+   await cartPage.deleteAllProducts()
+   await page.goto(urls.home)
 })
 
 test.describe('Общие проверки страницы карточки', async () => {
    test('Элементы страницы с карточкой', async () => {
       await cartPage.samsungGalaxySixItem.click()
       await cartPage.addItem()
+      await cartPage.page.waitForTimeout(1000)
       await expect(cartPage.itemsVisibility).not.toBeEmpty()
       await expect(cartPage.products).toBeVisible()
       await expect(cartPage.picture).toBeVisible()
@@ -38,7 +36,7 @@ test.describe('Общие проверки страницы карточки', a
    })
 
    test('Элементы страницы без карточки', async () => {
-      await cartPage.page.goto(process.env.CART)
+      await cartPage.page.goto(urls.cart)
       await expect(cartPage.products).toBeVisible()
       await expect(cartPage.picture).toBeVisible()
       await expect(cartPage.title).toBeVisible()
@@ -71,11 +69,13 @@ test.describe('Добавление продуктов на страницу Car
       })
 
       test('Добавить Samsung Galaxy s6 -> карточка Samsung Galaxy s6 добавлена, данные корректны', async () => {
+         await cartPage.macBookAirItem.waitFor()
          await cartPage.macBookAirItem.click()
          await cartPage.checkAddCart(cartPage.imageMacBook)
       })
 
       test('Добавить Sony Xperia Z5 -> карточка Sony Xperia Z5 добавлена, данные корректны', async () => {
+         await cartPage.macBookProItem.waitFor()
          await cartPage.macBookProItem.click()
          await cartPage.checkAddCart(cartPage.imageMacBook)
       })
